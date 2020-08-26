@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="unitaf">
+    <Package name="main">
+        <Key ID="STR_unitaf_main_Author">
+            <English>Grezvany13</English>
+            <German>Grezvany13</German>
+            <Japanese>Grezvany13</Japanese>
+            <Chinese>Grezvany13</Chinese>
+            <Chinesesimp>Grezvany13</Chinesesimp>
+            <Portuguese>Grezvany13</Portuguese>
+            <Russian>Grezvany13</Russian>
+            <French>Grezvany13</French>
+            <Polish>Grezvany13</Polish>
+            <Turkish>Grezvany13</Turkish>
+            <Italian>Grezvany13</Italian>
+        </Key>
+        <Key ID="STR_unitaf_main_URL">
+            <English>https://discord.gg/QPEjKvV</English>
+            <French>https://discord.gg/QPEjKvV</French>
+            <Spanish>https://discord.gg/QPEjKvV</Spanish>
+            <Italian>https://discord.gg/QPEjKvV</Italian>
+            <Polish>https://discord.gg/QPEjKvV</Polish>
+            <Russian>https://discord.gg/QPEjKvV</Russian>
+            <German>https://discord.gg/QPEjKvV</German>
+            <Czech>https://discord.gg/QPEjKvV</Czech>
+            <Chinese>https://discord.gg/QPEjKvV</Chinese>
+            <Portuguese>https://discord.gg/QPEjKvV</Portuguese>
+            <Korean>https://discord.gg/QPEjKvV</Korean>
+            <Chinesesimp>https://discord.gg/QPEjKvV</Chinesesimp>
+            <Turkish>https://discord.gg/QPEjKvV</Turkish>
+            <Japanese>https://discord.gg/QPEjKvV</Japanese>
+        </Key>
+    </Package>
+</Project>

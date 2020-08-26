@@ -1,0 +1,12 @@
+name = "UNITAF";
+picture = "unitaf.paa";
+actionName = "UNITAF";
+action = "https://unitedtaskforce.net";
+description = "UNITAF";
+logo = "unitaf.paa";
+logoOver = "unitaf.paa";
+tooltip = "UNITAF";
+tooltipOwned = "UNITAF tooltipOwned";
+overview = "UNITAF";
+author = "UNITAF";
+overviewPicture = "unitaf.paa";
