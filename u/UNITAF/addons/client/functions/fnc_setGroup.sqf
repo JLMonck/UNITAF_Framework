@@ -43,3 +43,5 @@ if !(_groupExists) then {
 		_player assignTeam _teamColor;
 	};
 } forEach allGroups;
+
+player setVariable [QGVAR('hasGroup'), true, true];

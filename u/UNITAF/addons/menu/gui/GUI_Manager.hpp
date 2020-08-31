@@ -16,8 +16,8 @@ class GVAR(GUI_Button_Base) {
 	colorBackgroundDisabled[] = COLOR_BUTTON_DISABLED;
 
 	colorBorder[] = {0,0,0,0};
-	colorText[] = {1,1,1,1};
-	colorDisabled[] = {1,1,1,1};
+	colorText[] = COLOR_TEXT;
+	colorDisabled[] = COLOR_TEXT;
 	colorShadow[] = {0,0,0,0};
 	
 	font = "PuristaMedium";
@@ -39,7 +39,7 @@ class GVAR(GUI_Button_Base) {
 
 class GVAR(GUI) {
 	idd = IDC_Menu;
-	access = 2;
+	access = 0;
 	onLoad = QUOTE(_this call FUNC(menuOnLoad));
 	
 	class ControlsBackground {
@@ -52,8 +52,8 @@ class GVAR(GUI) {
 			h = safeZoneH * 0.69921875;
 			style = ST_SHADOW;
 			text = "";
-			colorBackground[] = {0.1608,0.1804,0.2196,1};
-			colorText[] = {1,1,1,1};
+			colorBackground[] = COLOR_BACKGROUND;
+			colorText[] = COLOR_TEXT;
 			font = "PuristaMedium";
 			sizeEx = (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1);
 		};
@@ -65,9 +65,9 @@ class GVAR(GUI) {
 			w = 1;
 			h = (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 2);
 			style = ST_CENTER;
-			text = "UNITAF Manager";
+			text = "UNITAF Menu";
 			colorBackground[] = {0,0,0,0};
-			colorText[] = {1,1,1,1};
+			colorText[] = COLOR_TEXT;
 			font = "PuristaSemiBold";
 			sizeEx = (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 2);
 		};
@@ -79,17 +79,21 @@ class GVAR(GUI) {
 			x = safeZoneX + safeZoneW * 0.63616399;
 			y = safeZoneY + safeZoneH * 0.76822917;
 			text = "Close";
-			colorBackground[] = {0.5216, 0.4392, 0.2275, 1};
-			// action = "closeDialog IDC_CANCEL";
+			colorBackground[] = COLOR_BUTTON_CLOSE;
+			colorBackgroundActive[] = COLOR_BUTTON_CLOSE;
+			colorFocused[] = COLOR_BUTTON_CLOSE;
 		};
 		class GVAR(GUI_Button_LoadORBAT): GVAR(GUI_Button_Base) {
 			idc = IDC_LoadORBAT;
 			x = safeZoneX + safeZoneW * 0.63616399;
 			y = safeZoneY + safeZoneH * 0.61979167;
 			text = "Load ORBAT Data";
-			colorBackground[] = {0, 0.502, 0, 1};
+			colorBackground[] = COLOR_BUTTON_LOAD;
+			colorBackgroundActive[] = COLOR_BUTTON_LOAD;
+			colorFocused[] = COLOR_BUTTON_LOAD;
 			action = QUOTE([player] call EFUNC(client,getORBAT));
 		};
+
 		class GVAR(GUI_Button_GetRadio): GVAR(GUI_Button_Base) {
 			idc = -1;
 			x = safeZoneX + safeZoneW * 0.26281113;

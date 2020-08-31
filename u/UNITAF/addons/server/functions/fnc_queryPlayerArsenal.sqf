@@ -18,7 +18,7 @@
 params ["_player"];
 
 if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
-	["UNITAF_ClientEvent_PlayerArsenal", [
+	[QEGVAR(ClientEvent,PlayerArsenal), [
 		(parseSimpleArray "[1, [""ACE_EarPlugs"",""TFAR_anprc152"", ""ItemGPS""]]")  select 1
 	], [_player]] call CBA_fnc_targetEvent;
 };
@@ -29,4 +29,4 @@ _playerArsenal = parseSimpleArray ("extDB3" callExtension format["0:FETCHDATA:SE
 
 if (!((_playerArsenal select 0) isEqualTo 1)) exitWith { diag_log "extDB3: Error retrieving Player Arsenal"; };
 
-["UNITAF_ClientEvent_PlayerArsenal", [_playerArsenal select 1], [_player]] call CBA_fnc_targetEvent;
+[QEGVAR(ClientEvent,PlayerArsenal), [_playerArsenal select 1], [_player]] call CBA_fnc_targetEvent;

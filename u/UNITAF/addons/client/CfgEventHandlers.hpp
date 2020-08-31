@@ -7,6 +7,13 @@ class Extended_PreInit_EventHandlers {
 class Extended_PostInit_EventHandlers {
     class ADDON {
        clientInit = QUOTE(call COMPILE_FILE(XEH_postInitClient));
-       //init = QUOTE(call COMPILE_FILE(XEH_postInitClient));
+    };
+};
+
+class Extended_Respawn_EventHandlers {
+    class CAManBase {
+        class GVAR(onPlayerRespawn) {
+            respawn = QUOTE(call COMPILE_FILE(XEH_onPlayerRespawn));
+        };
     };
 };

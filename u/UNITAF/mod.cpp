@@ -1,12 +1,12 @@
-name = "UNITAF";
+name = "UNITAF Framework";
 picture = "unitaf.paa";
 actionName = "UNITAF";
 action = "https://unitedtaskforce.net";
-description = "UNITAF";
+description = "UNITAF Framework - Community mod which adds unique features to the game designed to work with UTFN";
 logo = "unitaf.paa";
 logoOver = "unitaf.paa";
 tooltip = "UNITAF";
-tooltipOwned = "UNITAF tooltipOwned";
+tooltipOwned = "UNITAF Framework";
 overview = "UNITAF";
 author = "UNITAF";
 overviewPicture = "unitaf.paa";

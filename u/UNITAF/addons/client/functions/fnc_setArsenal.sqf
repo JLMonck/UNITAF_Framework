@@ -16,17 +16,15 @@
  */
 params ["_items"];
 
-// loop over 50 numbers ("unitaf_arsenal_1" till "unitaf_arsenal_50")
-for [{ _i = 1 }, { _i <= 50 }, { _i = _i + 1 }] do {
-	// get the box variable name
-	_boxName = format ["unitaf_arsenal_%1", _i];
-	if !(isNil _boxName) then {
-		// if the variable exist, run some scripts
-		_box = missionNamespace getVariable _boxName;
-		[_box, true, false] call ace_arsenal_fnc_removeVirtualItems;
-		[_box, _items, false] call ace_arsenal_fnc_initBox;
-	} else {
-		// after first time a variable doesn't exist, kill the loop
-		_i = 999;
-	};
+if (isClass(configFile >> "CfgPatches" >> "ace_arsenal")) then {
+	_boxes = ["UNITAF_arsenal", 25] call EFUNC(main,fillArrayPrefix);
+	{
+		if !(isNil _x) then {
+			_box = missionNamespace getVariable _x;
+			[_box, true, false] call ace_arsenal_fnc_removeVirtualItems;
+			[_box, _items, false] call ace_arsenal_fnc_initBox;
+		};
+	} count _boxes;
+	
+	player setVariable [QGVAR('hasArsenal'), true, true];
 };

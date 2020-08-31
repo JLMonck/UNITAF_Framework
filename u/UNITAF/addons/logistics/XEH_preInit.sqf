@@ -122,6 +122,8 @@ if (isClass(configFile >> "CfgPatches" >> "zen_custom_modules")) then {
 							_container addItemCargoGlobal [_x select 0, _x select 1];
 						} count _contents;
 					};
+					// ensure all curators get access to the container
+					[QEGVAR(ServerEvent,addToCurator), [_container]] call CBA_fnc_serverEvent;
 				},
 				{
 					// no nothing on Cancel

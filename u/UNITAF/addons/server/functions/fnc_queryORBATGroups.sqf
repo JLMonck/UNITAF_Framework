@@ -18,7 +18,7 @@
 params ["_operationID"];
 
 if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
-	["UNITAF_ServerEvent_ORBATGroups", [
+	[QEGVAR(ServerEvent,ORBATGroups), [
 		(parseSimpleArray "[1, [[1,""MONTY"",""WEST""]]]")  select 1
 	]] call CBA_fnc_serverEvent;	
 };
@@ -29,4 +29,5 @@ WHERE ol.operation = '%1' AND olc.operation = ol.operation GROUP BY ol.unit", _o
 
 if (!((_ORBATGroups select 0) isEqualTo 1)) exitWith { diag_log "extDB3: Error retrieving ORBAT Groups"; };
 
-["UNITAF_ServerEvent_ORBATGroups", [_ORBATGroups select 1]] call CBA_fnc_serverEvent;
+[QEGVAR(ServerEvent,ORBATGroups), [_ORBATGroups select 1]] call CBA_fnc_serverEvent;
+

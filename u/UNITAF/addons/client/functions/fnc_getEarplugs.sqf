@@ -17,7 +17,9 @@
 
 params ["_player"];
 
-if !("ACE_EarPlugs" in (items _player) && (_player getVariable ["ACE_hasEarPlugsIn", false]) isEqualTo true) then {
-	_player addItem "ACE_EarPlugs";
-	hint "Have a pair of earplugs before you go combat deaf";
+if (isClass(configFile >> "CfgPatches" >> "ace_hearing")) then {
+	if !("ACE_EarPlugs" in (items _player) && (_player getVariable ["ACE_hasEarPlugsIn", false]) isEqualTo true) then {
+		_player addItem "ACE_EarPlugs";
+		hint "Have a pair of earplugs before you go combat deaf";
+	};
 };

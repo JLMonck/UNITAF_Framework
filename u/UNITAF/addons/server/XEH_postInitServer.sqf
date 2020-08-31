@@ -3,18 +3,22 @@
 /**
  * Set Event Handlers
  */
-["UNITAF_ServerEvent_ORBATGroups", {
+[QEGVAR(ServerEvent,ORBATGroups), {
 	_this call FUNC(setORBATGroups);
 }] call CBA_fnc_addEventHandler;
 
-["UNITAF_ServerEvent_queryPlayerInventory", {
+[QEGVAR(ServerEvent,queryPlayerInventory), {
 	_this call FUNC(queryPlayerInventory);
 }] call CBA_fnc_addEventHandler;
-["UNITAF_ServerEvent_queryPlayerData", {
+[QEGVAR(ServerEvent,queryPlayerData), {
 	_this call FUNC(queryPlayerData);
 }] call CBA_fnc_addEventHandler;
-["UNITAF_ServerEvent_queryPlayerArsenal", {
+[QEGVAR(ServerEvent,queryPlayerArsenal), {
 	_this call FUNC(queryPlayerArsenal);
+}] call CBA_fnc_addEventHandler;
+
+[QEGVAR(ServerEvent,addToCurator), {
+	_this call FUNC(addToCurators);
 }] call CBA_fnc_addEventHandler;
 
 

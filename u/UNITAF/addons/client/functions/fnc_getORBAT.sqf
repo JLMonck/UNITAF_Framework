@@ -16,6 +16,6 @@
  */
 params ["_player"];
 
-["UNITAF_ServerEvent_queryPlayerData", [_player]] call CBA_fnc_serverEvent;
-["UNITAF_ServerEvent_queryPlayerInventory", [_player]] call CBA_fnc_serverEvent;
-["UNITAF_ServerEvent_queryPlayerArsenal", [_player]] call CBA_fnc_serverEvent;
+[QEGVAR(ServerEvent,queryPlayerData), [_player]] call CBA_fnc_serverEvent;
+[QEGVAR(ServerEvent,queryPlayerInventory), [_player]] call CBA_fnc_serverEvent;
+[QEGVAR(ServerEvent,queryPlayerArsenal), [_player]] call CBA_fnc_serverEvent;

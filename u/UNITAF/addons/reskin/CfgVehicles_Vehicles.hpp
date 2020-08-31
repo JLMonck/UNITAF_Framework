@@ -1,6 +1,7 @@
 class Truck_F;
 class Van_02_base_F: Truck_F {
 	class TextureSources;
+	class AnimationSources;
 };
 class Van_02_vehicle_base_F: Van_02_base_F {
 	class TextureSources: TextureSources {
@@ -25,6 +26,8 @@ class GVAR(Training_Van_Black): Van_02_vehicle_base_F {
 	side = 1;
 	scope = 2;
 	scopeCurator = 2;
+	crew = "B_GEN_Soldier_F";
+	typicalCargo[] = {"B_GEN_Soldier_F"};
 	faction = "Faction_UNITAF";
 	editorSubcategory = "EdSubcat_UNITAF_Training";
 	displayName = "[UNITAF] Van Training Transport (Black)";
@@ -52,6 +55,8 @@ class GVAR(Training_Van_Khaki): Van_02_vehicle_base_F {
 	side = 1;
 	scope = 2;
 	scopeCurator = 2;
+	crew = "B_GEN_Soldier_F";
+	typicalCargo[] = {"B_GEN_Soldier_F"};
 	faction = "Faction_UNITAF";
 	editorSubcategory = "EdSubcat_UNITAF_Training";
 	displayName = "[UNITAF] Van Training Transport (Khaki)";
@@ -76,13 +81,19 @@ class GVAR(Training_Van_Khaki): Van_02_vehicle_base_F {
 	};
 };
 
-class Offroad_01_military_comms_base_F;
-//class B_GEN_Offroad_01_comms_F: Offroad_01_military_comms_base_F {};
+class Offroad_01_military_base_F;
+class Offroad_01_military_covered_base_F: Offroad_01_military_base_F {
+	class TextureSources;
+	class AnimationSources;
+	class UserActions;
+};
 
-class GVAR(Training_Offroad_Black): Offroad_01_military_comms_base_F {
+class GVAR(Training_Offroad_Black): Offroad_01_military_covered_base_F {
 	side = 1;
 	scope = 2;
 	scopeCurator = 2;
+	crew = "B_GEN_Soldier_F";
+	typicalCargo[] = {"B_GEN_Soldier_F"};
 	faction = "Faction_UNITAF";
 	editorSubcategory = "EdSubcat_UNITAF_Training";
 	displayName = "[UNITAF] Offroad Instructor (black)";
@@ -105,10 +116,12 @@ class GVAR(Training_Offroad_Black): Offroad_01_military_comms_base_F {
 		"HideBumper2", 0
 	};
 };
-class GVAR(Training_Offroad_Khaki): Offroad_01_military_comms_base_F {
+class GVAR(Training_Offroad_Khaki): Offroad_01_military_covered_base_F {
 	side = 1;
 	scope = 2;
 	scopeCurator = 2;
+	crew = "B_GEN_Soldier_F";
+	typicalCargo[] = {"B_GEN_Soldier_F"};
 	faction = "Faction_UNITAF";
 	editorSubcategory = "EdSubcat_UNITAF_Training";
 	displayName = "[UNITAF] Offroad Instructor (Khaki)";
@@ -132,10 +145,12 @@ class GVAR(Training_Offroad_Khaki): Offroad_01_military_comms_base_F {
 	};
 };
 
-class GVAR(Training_Offroad_KhakiCI): Offroad_01_military_comms_base_F {
+class GVAR(Training_Offroad_KhakiCI): Offroad_01_military_covered_base_F {
 	side = 1;
 	scope = 2;
 	scopeCurator = 2;
+	crew = "B_GEN_Soldier_F";
+	typicalCargo[] = {"B_GEN_Soldier_F"};
 	faction = "Faction_UNITAF";
 	editorSubcategory = "EdSubcat_UNITAF_Training";
 	displayName = "[UNITAF] Offroad Chief Instructor (Khaki)";

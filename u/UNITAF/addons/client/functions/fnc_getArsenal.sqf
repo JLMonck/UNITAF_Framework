@@ -18,4 +18,4 @@
  */
 params ["_player"];
 
-["UNITAF_ServerEvent_queryPlayerArsenal", [_player]] call CBA_fnc_serverEvent;
+[QEGVAR(ServerEvent,queryPlayerArsenal), [_player]] call CBA_fnc_serverEvent;

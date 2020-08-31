@@ -12,15 +12,12 @@
  * Public: No
  */
 
-waitUntil {isPlayer player};
+if !(hasInterface) exitWith {};
+waitUntil { alive player && ! isNull player };
 
-/**
- * TEMP !!!
- * Needs to be replaced by UNITAF Menu
- */
 if (!isClass(configFile >> "CfgPatches" >> "ace_interact_menu")) then {
 	player addAction  [
-		"Open UNITAF Manager",
+		"Open UNITAF Menu",
 		{
 			createDialog QGVAR(GUI);
 		}

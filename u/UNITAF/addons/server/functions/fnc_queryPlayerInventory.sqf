@@ -20,7 +20,7 @@ _operationID = missionName;
 _playerUID = str (getPlayerUID _player);
 
 if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
-	["UNITAF_ClientEvent_PlayerInventory", [
+	[QEGVAR(ClientEvent,PlayerInventory), [
 		(parseSimpleArray "[1, [[""arifle_MXC_Holo_pointer_F"", """", ""acc_pointer_IR"", ""optic_Holosight"", [""30Rnd_65x39_caseless_mag"", 30], [], """"],[""launch_B_Titan_short_F"", """", """", """", [""Titan_AT"", 1], [], """"],[""hgun_P07_F"", """", """", """", [""16Rnd_9x21_Mag"", 16], [], """"],[""U_B_CombatUniform_mcam"", [[""FirstAidKit"", 1], [""30Rnd_65x39_caseless_mag"", 2, 30], [""Chemlight_green"", 1, 1]]],[""V_PlateCarrier1_rgr"", [[""30Rnd_65x39_caseless_mag"", 3, 30], [""16Rnd_9x21_Mag"", 2, 16], [""SmokeShell"", 1 ,1], [""SmokeShellGreen"", 1, 1], [""Chemlight_green"", 1, 1]]],[""B_AssaultPack_mcamo_AT"",[[""Titan_AT"", 2, 1]]],""H_HelmetB_light_desert"", ""G_Bandanna_tan"",[],[""ItemMap"","""",""TFAR_anprc152"",""ItemCompass"",""ItemWatch"",""NVGoggles""]]]")  select 1
 	], [_player]] call CBA_fnc_targetEvent;	
 };
@@ -29,4 +29,4 @@ _inventory = parseSimpleArray ("extDB3" callExtension format["0:FETCHDATA:SELECT
 
 if (!((_inventory select 0) isEqualTo 1)) exitWith { diag_log "extDB3: Error retrieving player inventory"; };
 
-["UNITAF_ClientEvent_PlayerInventory", [_inventory select 1], [_player]] call CBA_fnc_targetEvent;
+[QEGVAR(ClientEvent,PlayerInventory), [_inventory select 1], [_player]] call CBA_fnc_targetEvent;

@@ -21,8 +21,12 @@ _markers = ["UNITAF_base", 10] call EFUNC(main,fillArrayPrefix);
 
 // check if player is inside marker area
 {
-	if (getPos _player inArea _x) then {
-		_return = true;
+	// check if marker exists
+	if !(getMarkerColor _x isEqualTo "") then {
+		// check if player is in area
+		if (getPos _player inArea _x) then {
+			_return = true;
+		};
 	};
 } count _markers;
 
@@ -30,8 +34,12 @@ _markers = ["UNITAF_base", 10] call EFUNC(main,fillArrayPrefix);
 if !(_return) then {
 	// check if player is within 50m of marker
 	{
-		if (_player distance _x < 50) then {
-			_return = true;
+		// check if marker exists
+		if !(getMarkerColor _x isEqualTo "") then {
+			// check distance between player and marker
+			if (_player distance _x < 50) then {
+				_return = true;
+			};
 		};
 	} count _markers;
 };
@@ -41,8 +49,10 @@ if !(_return) then {
 	_boxes = ["UNITAF_arsenal", 25] call EFUNC(main,fillArrayPrefix);
 	// check if player is within 50m range of ORBAT Arsenal
 	{
+		// check if variable exists
 		if !(isNil _x) then {
 			_box = missionNamespace getVariable _x;
+			// check distance between player and object
 			if (_player distance _box < 50) then {
 				_return = true;
 			};

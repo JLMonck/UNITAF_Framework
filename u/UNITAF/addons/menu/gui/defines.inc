@@ -85,6 +85,9 @@
 #define IDC_CANCEL              2       // for (contextually) CANCEL, ESCAPE or ABORT
 
 // Colors
+#define COLOR_BACKGROUND        { 0.1608, 0.1804, 0.2196, 1 }
+#define COLOR_TEXT              { 1, 1, 1, 1 }
+
 #define COLOR_BUTTON            { 0, 0, 0.0745, 1 }
 #define COLOR_BUTTON_CLOSE      { 0.5216, 0.4392, 0.2275, 1 }
 #define COLOR_BUTTON_LOAD       { 0, 0.502, 0, 1 }

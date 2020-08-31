@@ -19,8 +19,8 @@ class CfgPatches {
 
 class CfgMods {
     class PREFIX {
-        dir = "@UNITAF_DEV";
-        name = "UNITAF - DEV Mod";
+        dir = "@UNITAF_Framework";
+        name = "UNITAF - Framework";
         picture = "";
         hidePicture = "true";
         hideName = "true";
@@ -29,6 +29,8 @@ class CfgMods {
         description = "This work is licensed under ARMA PUBLIC LICENSE SHARE ALIKE (APL-SA)";
     };
 };
+
+#include "CfgEventHandlers.hpp"
 
 class CfgFactionClasses {
     class Faction_UNITAF {
@@ -57,6 +59,7 @@ class CfgEditorSubcategories
 	};
 };
 
+// Minor Easter Egg
 class CfgVehicles {
     class Land_FlatTV_01_F;
 

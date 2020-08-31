@@ -20,7 +20,7 @@ _operationID = missionName;
 _playerUID = str (getPlayerUID _player);
 
 if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
-	["UNITAF_ClientEvent_PlayerData", [
+	[QEGVAR(ClientEvent,PlayerData), [
 		(parseSimpleArray "[1, [""Pvt"",0,0,0,2,1,""MONTY"",42,""GREEN"",100,""PRIVATE""]]")  select 1
 	], [_player]] call CBA_fnc_targetEvent;	
 };
@@ -29,4 +29,4 @@ _playerData = parseSimpleArray ("extDB3" callExtension format["0:FETCHDATA:SELEC
 
 if (!((_playerData select 0) isEqualTo 1)) exitWith { diag_log "extDB3: Error retrieving player data"; };
 
-["UNITAF_ClientEvent_PlayerData", [_playerData select 1], [_player]] call CBA_fnc_targetEvent;
+[QEGVAR(_ClientEvent,PlayerData), [_playerData select 1], [_player]] call CBA_fnc_targetEvent;

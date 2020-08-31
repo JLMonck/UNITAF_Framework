@@ -15,14 +15,14 @@
 /**
  * Set Event Handlers
  */
-["UNITAF_ClientEvent_PlayerInventory", {
+[QEGVAR(ClientEvent,PlayerInventory), {
 	_this call FUNC(setInventory);
 }] call CBA_fnc_addEventHandler;
 
-["UNITAF_ClientEvent_PlayerData", {
+[QEGVAR(ClientEvent,PlayerData), {
 	_this call FUNC(setPlayerData);
 }] call CBA_fnc_addEventHandler;
 
-["UNITAF_ClientEvent_PlayerArsenal", {
+[QEGVAR(ClientEvent,PlayerArsenal), {
 	_this call FUNC(setArsenal);
 }] call CBA_fnc_addEventHandler;
