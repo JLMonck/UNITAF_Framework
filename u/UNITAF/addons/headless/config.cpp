@@ -16,13 +16,3 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
-#include "CfgVehicles.hpp"
-#include "gui\GUI_Menu.hpp"
-
-class CfgCommands {
-	allowedHTMLLoadURIs[] = {
-        // strings support wildcards '*' and '?'
-		"*unitedtaskforce.net/*",
-        "media.discordapp.net/attachments/*"
-	};
-};

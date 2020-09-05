@@ -7,7 +7,10 @@ PREP(setPlayerData);
 PREP(getORBAT);
 PREP(setGroup);
 PREP(setRadioFreq);
+PREP(setTempFreq);
 
 PREP(getEarplugs);
 PREP(getRadio);
 PREP(getNVG);
+
+PREP(callENDEX);

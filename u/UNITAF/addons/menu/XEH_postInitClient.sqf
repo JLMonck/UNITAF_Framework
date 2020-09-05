@@ -19,7 +19,7 @@ if (!isClass(configFile >> "CfgPatches" >> "ace_interact_menu")) then {
 	player addAction  [
 		"Open UNITAF Menu",
 		{
-			createDialog QGVAR(GUI);
+			_this call FUNC(openGUI);
 		}
 	];
 };

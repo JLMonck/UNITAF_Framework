@@ -25,8 +25,8 @@ if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
 
 _playerID = getPlayerUID _player;
 // return flat array with items allowed in ACE Arsenal for this specific player
-_playerArsenal = parseSimpleArray ("extDB3" callExtension format["0:FETCHDATA:SELECT * FROM table", _playerID]);
+_playerArsenal = "extDB3" callExtension format ["0:FETCHDATA:SELECT * FROM table", _playerID];
 
-if (!((_playerArsenal select 0) isEqualTo 1)) exitWith { diag_log "extDB3: Error retrieving Player Arsenal"; };
+if (!(parseSimpleArray (_playerArsenal) select 0 isEqualTo 1)) exitWith { diag_log "extDB3: Error retrieving Player Arsenal"; };
 
-[QEGVAR(ClientEvent,PlayerArsenal), [_playerArsenal select 1], [_player]] call CBA_fnc_targetEvent;
+[QEGVAR(ClientEvent,PlayerArsenal), [parseSimpleArray (_playerArsenal) select 1], [_player]] call CBA_fnc_targetEvent;

@@ -17,7 +17,7 @@ if ((getMissionConfigValue ["UNITAF_autoORBAT", 0]) isEqualTo 1) then {
 		waitUntil {isPlayer _unit};
 
 		// check if spawned object is a "humanoid" and if it doesn't have userData yet
-		if (_unit isKindOf "CAManBase" && (player getVariable [QGVAR('hasUserData'), false]) isEqualTo false) then {
+		if (_unit isKindOf "CAManBase" && (player getVariable [QGVAR(hasUserData), false]) isEqualTo false) then {
 
 			_menuKeybinds = ["UNITAF_menu", "open_unitaf_menu"] call CBA_fnc_getKeybind;
 			_menuKeybind = (_menuKeybinds select 5) call CBA_fnc_localizeKey;
@@ -36,7 +36,7 @@ if ((getMissionConfigValue ["UNITAF_autoORBAT", 0]) isEqualTo 1) then {
 			_unit enablesimulation false;
 
 			[player] call FUNC(getORBAT);
-			waitUntil { (player getVariable [QGVAR('hasUserData'), false]) isEqualTo true };
+			waitUntil { (player getVariable [QGVAR(hasUserData), false]) isEqualTo true };
 
 			sleep 3;
 			_unit enablesimulation true;

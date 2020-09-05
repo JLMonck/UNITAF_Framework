@@ -42,5 +42,5 @@ player setUnitTrait ["UAVHacker", false];
 // set radio frequencies of callsign
 [player, _freq, _lr_freq] call FUNC(setRadioFreq);
 
-player setVariable [QGVAR('hasUserData'), true, true];
-player setVariable [QGVAR('userData'), _playerData, true];
+player setVariable [QGVAR(hasUserData), true, true];
+player setVariable [QGVAR(userData), _playerData, true];

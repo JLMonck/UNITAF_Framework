@@ -26,8 +26,6 @@ TFAR_currentUnit = _player;
 			// set Channel 2 as alternative
 			_sw_settings set [5, 1];
 
-			diag_log str _sw_settings;
-
 			// set settings on (active) SR radio of player
 			[call TFAR_fnc_activeSwRadio, _sw_settings] call TFAR_fnc_setSwSettings;
 		};

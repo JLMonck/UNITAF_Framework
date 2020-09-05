@@ -24,6 +24,7 @@ params ["_ORBATGroups"];
 	switch (toupper _side) do {
 		case 'EAST': { _group = createGroup [east, false]; };
 		case 'GUER': { _group = createGroup [resistance, false]; };
+		case 'ZEUS';
 		case 'CIV': { _group = createGroup [civilian, false]; };
 		case 'WEST';
 		default { _group = createGroup [west, false]; };

@@ -26,3 +26,7 @@
 [QEGVAR(ClientEvent,PlayerArsenal), {
 	_this call FUNC(setArsenal);
 }] call CBA_fnc_addEventHandler;
+
+[QEGVAR(ClientEvent,callENDEX), {
+	_this call FUNC(callENDEX);
+}] call CBA_fnc_addEventHandler;

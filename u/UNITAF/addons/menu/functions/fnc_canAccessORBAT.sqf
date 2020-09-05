@@ -37,7 +37,7 @@ if !(_return) then {
 		// check if marker exists
 		if !(getMarkerColor _x isEqualTo "") then {
 			// check distance between player and marker
-			if (_player distance _x < 50) then {
+			if (_player distance (getMarkerPos _x) < 50) then {
 				_return = true;
 			};
 		};

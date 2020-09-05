@@ -24,10 +24,10 @@ if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
 };
 
 // Must return: <ID>, <CALLSIGN>, <SIDE>
-_ORBATGroups = parseSimpleArray ("extDB3" callExtension format["0:FETCHDATA:SELECT ol.unit, CONCAT(oc.callsign,' ',u.append) as callsign, 'WEST' as side FROM operation_layout ol LEFT JOIN operation_unit_callsigns olc ON olc.unit = ol.unit LEFT JOIN operation_callsigns oc ON oc.id = olc.callsign LEFT JOIN units u ON u.id = ol.unit LEFT JOIN users us ON us.id = ol.user
-WHERE ol.operation = '%1' AND olc.operation = ol.operation GROUP BY ol.unit", _operationID]);
+_ORBATGroups = "extDB3" callExtension format["0:FETCHDATA:SELECT ol.unit, CONCAT(oc.callsign,' ',u.append) as callsign, 'WEST' as side FROM operation_layout ol LEFT JOIN operation_unit_callsigns olc ON olc.unit = ol.unit LEFT JOIN operation_callsigns oc ON oc.id = olc.callsign LEFT JOIN units u ON u.id = ol.unit LEFT JOIN users us ON us.id = ol.user
+WHERE ol.operation = '%1' AND olc.operation = ol.operation GROUP BY ol.unit", _operationID];
 
-if (!((_ORBATGroups select 0) isEqualTo 1)) exitWith { diag_log "extDB3: Error retrieving ORBAT Groups"; };
+if (!(parseSimpleArray (_ORBATGroups)  select 0 isEqualTo 1)) exitWith { diag_log "extDB3: Error retrieving ORBAT Groups"; };
 
-[QEGVAR(ServerEvent,ORBATGroups), [_ORBATGroups select 1]] call CBA_fnc_serverEvent;
+[QEGVAR(ServerEvent,ORBATGroups), [parseSimpleArray (_ORBATGroups) select 1]] call CBA_fnc_serverEvent;
 

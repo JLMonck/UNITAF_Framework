@@ -26,5 +26,5 @@ if (isClass(configFile >> "CfgPatches" >> "ace_arsenal")) then {
 		};
 	} count _boxes;
 	
-	player setVariable [QGVAR('hasArsenal'), true, true];
+	player setVariable [QGVAR(hasArsenal), true, true];
 };

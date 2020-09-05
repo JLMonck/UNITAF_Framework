@@ -115,7 +115,6 @@ FIRETEAM SIZE: 6
 
 //	CONTAINER_EMPTY(CLASSNAME,NAME,LOAD,MODEL,PREVIEW)
 
-
 	class GVAR(Container_Medium_Supply_Platoon): ReammoBox_F {
 		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Cargo20_white_F.jpg";
 		model = "\A3\Structures_F\Ind\Cargo\Cargo20_white_F.p3d";

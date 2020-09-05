@@ -1,10 +1,6 @@
-class Truck_F;
-class Van_02_base_F: Truck_F {
-	class TextureSources;
-	class AnimationSources;
-};
+class Van_02_base_F;
 class Van_02_vehicle_base_F: Van_02_base_F {
-	class TextureSources: TextureSources {
+	class TextureSources {
 		class UNITAFBlack {
 			displayName = "[UNITAF] Black";
 			author = "UNITAF";
@@ -81,12 +77,7 @@ class GVAR(Training_Van_Khaki): Van_02_vehicle_base_F {
 	};
 };
 
-class Offroad_01_military_base_F;
-class Offroad_01_military_covered_base_F: Offroad_01_military_base_F {
-	class TextureSources;
-	class AnimationSources;
-	class UserActions;
-};
+class Offroad_01_military_covered_base_F;
 
 class GVAR(Training_Offroad_Black): Offroad_01_military_covered_base_F {
 	side = 1;

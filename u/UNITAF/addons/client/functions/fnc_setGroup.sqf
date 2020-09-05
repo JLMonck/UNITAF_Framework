@@ -6,7 +6,7 @@
  * Arguments:
  * 0: player <OBJECT>
  * 1: callsign <STRING>
- * 2: teamColo <STRING>
+ * 2: teamColour <STRING>
  *
  * Return Value:
  * None
@@ -44,4 +44,4 @@ if !(_groupExists) then {
 	};
 } forEach allGroups;
 
-player setVariable [QGVAR('hasGroup'), true, true];
+player setVariable [QGVAR(hasGroup), true, true];

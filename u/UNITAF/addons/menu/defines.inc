@@ -85,16 +85,52 @@
 #define IDC_CANCEL              2       // for (contextually) CANCEL, ESCAPE or ABORT
 
 // Colors
-#define COLOR_BACKGROUND        { 0.1608, 0.1804, 0.2196, 1 }
+#define COLOR_BACKGROUND        { 0.1451, 0.1451, 0.1608, 0.8 }
 #define COLOR_TEXT              { 1, 1, 1, 1 }
+#define COLOR_SUBTEXT           { 0.5216, 0.4392, 0.2275, 1 }
+#define COLOR_TEXT_DISABLED     { 0.302, 0.302, 0.302, 1 }
 
-#define COLOR_BUTTON            { 0, 0, 0.0745, 1 }
-#define COLOR_BUTTON_CLOSE      { 0.5216, 0.4392, 0.2275, 1 }
-#define COLOR_BUTTON_LOAD       { 0, 0.502, 0, 1 }
-#define COLOR_BUTTON_DISABLED   { 0.3, 0.3, 0.3, 1 }
+#define COLOR_BUTTON            { 0.0745, 0.0824, 0.1059, 1 }
+#define COLOR_BUTTON_DISABLED   { 0.302, 0.302, 0.302, 1 }
+
+#define COLOR_BUTTON_CLOSE      { 0.702, 0.102, 0.102, 1 }
+#define COLOR_BUTTON_LOAD       { 0.5216, 0.4392, 0.2275, 1 }
+#define COLOR_BUTTON_ADMIN      { 0, 0.2, 0.2, 1 }
 
 // IDC's
 // UNITAF = 85 + 78 + 73 + 84 + 65 + 70 = 455 =  455000
 
+// overal display
 #define IDC_Menu                455000
-#define IDC_LoadORBAT           455001
+#define IDC_CLOSE               455001
+#define IDC_BACK                455002
+
+// MAIN
+#define IDC_CONTROL_MAIN        455100
+#define IDC_BUTTON_LoadORBAT    455101
+#define IDC_BUTTON_Admin        455102
+
+#define IDC_Callsign            455103
+#define IDC_Report              455104
+#define IDC_Role                455105
+#define IDC_Color               455106
+#define IDC_Team                455107
+
+#define IDC_BUTTON_ORBAT        455108
+#define IDC_BUTTON_OPORD        455109
+
+// OPORD
+#define IDC_CONTROL_OPORD       455200
+#define IDC_OPORD_HTML          455201
+
+// ORBAT
+#define IDC_CONTROL_ORBAT       455300
+#define IDC_ORBAT_TABLE         455301
+#define IDC_ORBAT_TABLE_FIRST   4553000
+#define IDC_ORBAT_TABLE_LAST    4553999
+
+// ADMIN
+#define IDC_CONTROL_ADMIN               455400
+#define IDC_ADMIN_BUTTON_releadORBAT    455401
+#define IDC_ADMIN_BUTTON_ENDEX          455402
+#define GUI_ADMIN_Button_ZEUS           455403

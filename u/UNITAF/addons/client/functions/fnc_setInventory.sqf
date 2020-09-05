@@ -28,5 +28,5 @@ params ["_inventory"];
 		[player, currentWeapon player, true] call ace_safemode_fnc_setWeaponSafety;
 	};
 
-	player setVariable [QGVAR('hasInventory'), true, true];
+	player setVariable [QGVAR(hasInventory), true, true];
 };

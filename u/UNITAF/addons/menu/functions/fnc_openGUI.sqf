@@ -19,4 +19,4 @@ if (dialog) exitWith {
     closeDialog 0;
 };
 
-createDialog QGVAR(GUI)
+createDialog QGVAR(GUI);
