@@ -29,4 +29,5 @@ params ["_inventory"];
 	};
 
 	player setVariable [QGVAR(hasInventory), true, true];
+	player setVariable [QGVAR(defaultInventory), _inventory];
 };

@@ -16,6 +16,7 @@ class Van_02_vehicle_base_F: Van_02_base_F {
 			factions[] = {"Faction_UNITAF"};
 		};
 	};
+	dlc = QUOTE(PREFIX);
 };
 
 class GVAR(Training_Van_Black): Van_02_vehicle_base_F {
@@ -46,6 +47,7 @@ class GVAR(Training_Van_Black): Van_02_vehicle_base_F {
 		"sidesteps_hide", 1,
 		"rearsteps_hide", 1
 	};
+	dlc = QUOTE(PREFIX);
 };
 class GVAR(Training_Van_Khaki): Van_02_vehicle_base_F {
 	side = 1;
@@ -75,6 +77,7 @@ class GVAR(Training_Van_Khaki): Van_02_vehicle_base_F {
 		"sidesteps_hide", 1,
 		"rearsteps_hide", 1
 	};
+	dlc = QUOTE(PREFIX);
 };
 
 class Offroad_01_military_covered_base_F;
@@ -106,6 +109,7 @@ class GVAR(Training_Offroad_Black): Offroad_01_military_covered_base_F {
 		"HideBumper1", 1,
 		"HideBumper2", 0
 	};
+	dlc = QUOTE(PREFIX);
 };
 class GVAR(Training_Offroad_Khaki): Offroad_01_military_covered_base_F {
 	side = 1;
@@ -134,6 +138,7 @@ class GVAR(Training_Offroad_Khaki): Offroad_01_military_covered_base_F {
 		"HideBumper1", 1,
 		"HideBumper2", 0
 	};
+	dlc = QUOTE(PREFIX);
 };
 
 class GVAR(Training_Offroad_KhakiCI): Offroad_01_military_covered_base_F {
@@ -163,4 +168,5 @@ class GVAR(Training_Offroad_KhakiCI): Offroad_01_military_covered_base_F {
 		"HideBumper1", 1,
 		"HideBumper2", 0
 	};
+	dlc = QUOTE(PREFIX);
 };

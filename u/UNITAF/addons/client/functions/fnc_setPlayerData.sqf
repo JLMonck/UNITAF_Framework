@@ -13,23 +13,21 @@
  */
 
 params ["_playerData"];
-// _playerData = [playerRank, playerAdmin, playerPos, playerDir, is_medic_level, is_engineer_level, callsign, freq, buddy, lr_freq, armarank];
-_playerData params ["_playerRank", "_playerAdmin", "_playerPos", "_playerDir", "_is_medic_level", "_is_engineer_level", "_callsign", "_freq", "_buddy", "_lr_freq", "_armarank"];
-
-_playerRank = "";		// just override it (for now)
+// _playerData = [armauid, playerRank, playerAdmin, playerPos, playerDir, operation, is_medic_level, is_engineer_level, unit, callsign, freq, buddy, lr_freq, armarank, role, leader, is_zeus, is_eod, is_logistics, is_reporter];
+_playerData params ["_armaUID", "_playerRank", "_playerAdmin", "_playerPos", "_playerDir", "_operation", "_isMedic", "_isEgnineer", "_unit", "_callsign", "_freq", "_buddy", "_lr_freq", "_armarank", "_role", "_leader", "_isZeus", "_isEOD", "_isLogistics", "_isReporter"];
 
 // set tank
 player setUnitRank _armarank;
 
 // set ACE traits
-player setUnitTrait ["medic", (_is_medic_level > 0)];
-player setVariable ["ace_medical_medicClass", _is_medic_level, true];
+player setUnitTrait ["medic", (_isMedic > 0)];
+player setVariable ["ace_medical_medicClass", _isMedic, true];
 
-player setUnitTrait ["engineer", (_is_engineer_level > 0)];
-player setVariable ["ACE_IsEngineer", _is_engineer_level, true];
+player setUnitTrait ["engineer", (_isEgnineer > 0)];
+player setVariable ["ACE_IsEngineer", _isEgnineer, true];
 
 player setUnitTrait ["explosiveSpecialist", false];
-player setVariable ["ACE_isEOD", 0, true];
+player setVariable ["ACE_isEOD", _isEOD, true];
 
 player setUnitTrait ["UAVHacker", false];
 
@@ -44,3 +42,7 @@ player setUnitTrait ["UAVHacker", false];
 
 player setVariable [QGVAR(hasUserData), true, true];
 player setVariable [QGVAR(userData), _playerData, true];
+
+if (_isZeus isEqualTo 1) then {
+	[QEGVAR(ServerEvent,addToCurator), [player]] call CBA_fnc_serverEvent;
+};

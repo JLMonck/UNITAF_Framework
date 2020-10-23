@@ -2,45 +2,89 @@
 
 disableSerialization;
 
-params ["_unit", "_corpse", ["_arsenal", false, [true]]];
+params ["_player", "_corpse", ["_arsenal", false, [true]]];
 
 if ((getMissionConfigValue ["UNITAF_autoORBAT", 0]) isEqualTo 1) then {
 	// run through spawn to fix timing issues (because scripts can't run on same frame as unit creation)
-	[_unit, _corpse, _arsenal] spawn {
-		params ["_unit", "_corpse", "_arsenal"];
+	[_player, _corpse, _arsenal] spawn {
+		params ["_player", "_corpse", "_arsenal"];
 
 		//XEH should only be called on local units
-		if (!local _unit) exitWith {false};
+		if (!local _player) exitWith {false};
 		if(!hasInterface) exitWith {false};
 		if(isDedicated) exitWith {false};
-		waitUntil {!isNull _unit};
-		waitUntil {isPlayer _unit};
+		waitUntil {!isNull _player};
+		waitUntil {isPlayer _player};
 
 		// check if spawned object is a "humanoid" and if it doesn't have userData yet
-		if (_unit isKindOf "CAManBase" && (player getVariable [QGVAR(hasUserData), false]) isEqualTo false) then {
-
-			_menuKeybinds = ["UNITAF_menu", "open_unitaf_menu"] call CBA_fnc_getKeybind;
-			_menuKeybind = (_menuKeybinds select 5) call CBA_fnc_localizeKey;
-
+		if (_player isKindOf "CAManBase" && (_player getVariable [QGVAR(hasUserData), false]) isEqualTo false) then {
 			_loadingText = format ['<t align="center">
-				<img image="\u\UNITAF\addons\assets\images\signage\unitaf-logo.jpg" with="512" height="251"/><br/>
+				<img image="\u\UNITAF\addons\assets\images\signage\unitaf-logo.jpg" size="7" with="512" height="251"/><br/>
 				<br/>
 				Welcome back <t>%1</t>!<br/>
 				<br/>
 				Loading ORBAT...<br/>
 				<br/>
 				<br/>
-				<t>You can use <t>%2</t> to accesss the UNITAF Menu</t>
-			</t>', profileName, _menuKeybind];
+				<t>You can use <t color="#85703a">%2</t> to accesss the UNITAF Tablet</t>
+			</t>', profileName, ["open_unitaf_tablet"] call EFUNC(main,keybindToString)];
+
 			_loadingLayer = "RespawnLoading" cutText [_loadingText, "BLACK", -1, false, true];
-			_unit enablesimulation false;
+			_player enableSimulationGlobal false;
 
-			[player] call FUNC(getORBAT);
-			waitUntil { (player getVariable [QGVAR(hasUserData), false]) isEqualTo true };
+			[_player] call FUNC(getORBAT);
+			[
+				{
+					params ["_player"];
+					(_player getVariable [QGVAR(hasUserData), false]) isEqualTo true
+				},
+				{
+					params ["_player"];
+					_playerData = _player getVariable [QGVAR(userData), []];
+					_playerData params ["_armaUID", "_playerRank", "_playerAdmin", "_playerPos", "_playerDir", "_operation", "_isMedic", "_isEgnineer", "_unit", "_callsign", "_freq", "_buddy", "_lr_freq", "_armarank", "_role", "_leader", "_isZeus", "_isEOD", "_isLogistics", "_isReporter"];
 
-			sleep 3;
-			_unit enablesimulation true;
-			"RespawnLoading" cutFadeOut 1;
+					// check if TP marker exists
+					if !((_playerPos isEqualTo "") && (getMarkerColor _playerPos isEqualTo "")) then {
+						// get marker position
+						_markerPos = getMarkerPos _playerPos;
+						// find available position within 10m
+						_position = _markerPos findEmptyPosition [0, 10];
+						// make sure it returns a position, otherwise use default
+						if (_position isEqualTo []) then {
+							_position = _markerPos;
+						};
+						// TP player to empty position near marker
+						_player setPos _position;
+					};
+
+					[_player] spawn {
+						params ["_player"];
+						sleep 5;
+						_player enableSimulationGlobal true;
+						"RespawnLoading" cutFadeOut 1;
+					};
+				},
+				[_player],
+				10,
+				{
+					params ["_player"];
+					_loadingText = '<t align="center">
+						Something went wrong with getting data from the ORBAT.<br/>
+						This either means you''re not on the ORBAT, you''re on the reserves list, or something went wrong with the database connection.<br/>
+						<br/>
+						Please contact the Field Leader to get it resolved.
+					</t>';
+
+					_loadingLayer = "RespawnLoading" cutText [_loadingText, "BLACK", -1, false, true];
+					
+					[_player] spawn {
+						params ["_player"];
+						sleep 5;
+						_player enableSimulationGlobal true;
+						"RespawnLoading" cutFadeOut 1;
+					};
+				}
+			] call CBA_fnc_waitUntilAndExecute;
 		};
 	};
 };

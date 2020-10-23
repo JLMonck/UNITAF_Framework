@@ -25,7 +25,7 @@
 }] call CBA_fnc_addEventHandler;
 
 [QEGVAR(ServerEvent,addToCurator), {
-	_this call FUNC(addToCurators);
+	_this call FUNC(makeCurator);
 }] call CBA_fnc_addEventHandler;
 
 

@@ -17,6 +17,13 @@
 params ["_items"];
 
 if (isClass(configFile >> "CfgPatches" >> "ace_arsenal")) then {
+	//waitUntil { player getVariable [QGVAR(defaultInventory), false] };
+	//_loadout = player getVariable [QGVAR(defaultInventory), []];
+
+	//_flat = _loadout call EFUNC(main,arrayFlattenUnordered);
+	//_flat = _flat select { !(_x isEqualTo "") && !(typeName _x isEqualTo "SCALAR") };
+	//_items = _items + _flat;
+
 	_boxes = ["UNITAF_arsenal", 25] call EFUNC(main,fillArrayPrefix);
 	{
 		if !(isNil _x) then {
@@ -27,4 +34,5 @@ if (isClass(configFile >> "CfgPatches" >> "ace_arsenal")) then {
 	} count _boxes;
 	
 	player setVariable [QGVAR(hasArsenal), true, true];
+	hint "Your personal arsenal has been loaded";
 };

@@ -7,7 +7,7 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
          requiredAddons[] = {
-            "unitaf_main",
+            "unitaf_main"
         };
         author = "$STR_unitaf_main_Author";
         url = "$STR_unitaf_main_URL";

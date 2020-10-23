@@ -25,7 +25,7 @@ if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
 	], [_player]] call CBA_fnc_targetEvent;	
 };
 
-_inventory = "extDB3" callExtension format["0:FETCHDATA:SELECT opl.inventory as playerInv FROM operation_layout ol LEFT JOIN roster_view rv ON rv.userid = ol.user LEFT JOIN operation_positions_loadouts opl ON opl.position = ol.position WHERE ol.operation = '%2' AND rv.armauid = '%1' AND opl.faction = 5", _playerUID, _operationID];
+_inventory = "extDB3" callExtension format["0:FETCHDATA:SELECT opl.inventory as playerInv FROM operation_layout ol LEFT JOIN roster_view rv ON rv.userid = ol.user LEFT JOIN operation_positions_loadouts opl ON opl.position = ol.position LEFT JOIN operations op ON op.id = ol.operation WHERE ol.operation = '%2' AND rv.armauid = '%1' AND opl.faction = op.faction", _playerUID, _operationID];
 
 if (!((parseSimpleArray (_inventory) select 0) isEqualTo 1)) exitWith { diag_log "extDB3: Error retrieving player inventory"; };
 

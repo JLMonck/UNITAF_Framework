@@ -1,177 +1,124 @@
-#define CONTAINER_EMPTY(CLASSNAME,NAME,LOAD,MODEL,PREVIEW) \
-	class GVAR(CLASSNAME): ReammoBox_F { \
+// fallback image since Contact DLC still has .ebo files, which can't be unpacked (and is required to pack this file)
+#define PROP_IMG \a3\editorpreviews_f\Data\CfgVehicles\Default\Prop.jpg
+
+#define CONTAINER_EMPTY_BASE(CLASSNAME,NAME,LOAD,MODEL,PREVIEW,SELECTIONS,TEXTURES) \
+	class GVAR(CLASSNAME): GVAR(Container_Base) { \
 		scope = 2; \
 		scopeCurator = 2; \
-		editorCategory = QUOTE(EdCat_UNITAF); \
-		editorSubcategory = QUOTE(EdSubcat_UNITAF_Logistics); \
 		displayName = QUOTE(NAME); \
 		maximumLoad = LOAD; \
 		model = QUOTE(MODEL); \
+		hiddenselections[] = SELECTIONS; \
+		hiddenselectionsTextures[] = TEXTURES; \
 		editorPreview = QUOTE(PREVIEW); \
-		class TransportMagazines {}; \
-		class TransportWeapons {}; \
-		class TransportItems {}; \
-		class TransportBackpacks {}; \
+		dlc = QUOTE(PREFIX); \
 	};
 
 class CfgVehicles {
 	class ReammoBox_F;
+	class GVAR(Container_Base): ReammoBox_F {
+		author = "$STR_unitaf_main_Author";
+		_generalMacro = QUOTE(GVAR(Container_Base));
 
-/*
-	// Small Containers
-	class Land_Cargo20_white_F;
-		// editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Cargo20_white_F.jpg";
-		// model = "\A3\Structures_F\Ind\Cargo\Cargo20_white_F.p3d";
-	class Land_Cargo20_sand_F;
-	class Land_Cargo20_military_green_F;
-	class Land_Cargo20_grey_F;
+		// works for editor
+		editorCategory = QUOTE(EdCat_UNITAF_Logistics);
+		editorSubcategory = QUOTE(EdSubcat_UNITAF_Logistics_Empty);
 
-	// Medium Containers
-	class Land_Cargo10_white_F;
-	class Land_Cargo10_sand_F;
-	class Land_Cargo10_military_green_F;
-	class Land_Cargo10_grey_F;
+		scope = 1;
+		side = 8;
+		editorForceEmpty = 1;
 
-	// Huron Slingload
-	class B_Slingload_01_Cargo_F;
-	class B_Slingload_01_Ammo_F;
-	class B_Slingload_01_Medevac_F;
-	class B_Slingload_01_Repair_F;
-	class B_Slingload_01_Fuel_F;
-
-	// Cargo Boxes
-	class CargoNet_01_box_F;
-	class B_CargoNet_01_ammo_F;
-	class CargoNet_01_barrels_F;
-
-	class Box_NATO_AmmoVeh_F;
-	class B_supplyCrate_F;
-	class C_IDAP_supplyCrate_F;
-	class Land_WoodenBox_02_F;
-	class Land_FoodSacks_01_cargo_brown_F;
-	class Land_Pallet_MilBoxes_F;
-	class Land_waterBottle_01_stack_F;
-
-	class Box_FIA_Ammo_F;
-	class Box_FIA_Support_F;
-	class Box_FIA_Wps_F;
-
-	// Small Crates
-	class Box_NATO_Ammo_F;
-	class Box_NATO_Wps_F;
-	class Box_NATO_Equip_F;
-	class Box_NATO_AmmoOrd_F;
-	class Box_NATO_Grenades_F;
-	class Box_NATO_WpsLaunch_F;
-	class Box_NATO_Wps_Special_F;
-	class Box_NATO_Support_F;
-	class Box_NATO_Uniforms_F;
-*/
-
-// Varient #	Hull Configuration					Weapon System	Pax Cap		Camoflauge
-// 47/190		Medical								-				0			Medical
-// 47/199		Supply, AT light					-				0			-
-// 47/200		Supply, Platoon						-				0			-
-// 47/201		Supply, AT Medium					-				0			-
-// 47/202		Supply, AT Heavy					-				0			-
-// 47/203		Supply, Humanitairian , Food		-				0			-
-// 47/204		Supply, Construction , FOB			-				0			-
-// 47/205		Supply, Humanitarian , Utility		-				0			-
-// 47/206		Supply, Construction , COP			-				0			-
-
-/*
-DEFAULT LOADOUT SINGLE UNIT
-	1 Earplug
-	1 Personal Aid Kit (PAK)
-	2 Cable Ties
-	2 Morphine
-	2 Splint
-	4 Tourniquet
-	15 Elastic Bandage
-	8 Primary Mags (of which 4 are tracer)
-	2-4 Secondary Mags
-	4 White Smoke Grenades
-	2 Fragmentation Grenades
-
-PLATOON SIZE: 30
-SQUAD SIZE: 14
-FIRETEAM SIZE: 6
-*/
-	CONTAINER_EMPTY(Container_Medium_White,Supply Container Medium White (empty),35000,\A3\Structures_F\Ind\Cargo\Cargo20_white_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\Land_Cargo20_white_F.jpg)
-	CONTAINER_EMPTY(Container_Medium_Sand,Supply Container Medium Sand (empty),35000,\A3\Structures_F\Ind\Cargo\Cargo20_sand_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\Land_Cargo20_sand_F.jpg)
-	CONTAINER_EMPTY(Container_Medium_Military_Green,Supply Container Medium Military Green (empty),35000,\A3\Structures_F\Ind\Cargo\Cargo20_military_green_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\Land_Cargo20_military_green_F.jpg)
-	CONTAINER_EMPTY(Container_Medium_Grey,Supply Container Medium Grey (empty),35000,\A3\Structures_F\Ind\Cargo\Cargo20_grey_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\Land_Cargo20_grey_F.jpg)
-
-	CONTAINER_EMPTY(Container_Small_White,Supply Container Small White (empty),35000,\A3\Structures_F_Heli\Ind\Cargo\Cargo10_white_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\Land_Cargo10_white_F.jpg)
-	CONTAINER_EMPTY(Container_Small_Sand,Supply Container Small Sand (empty),35000,\A3\Structures_F_Heli\Ind\Cargo\Cargo10_sand_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\Land_Cargo10_sand_F.jpg)
-	CONTAINER_EMPTY(Container_Small_Military_Green,Supply Container Small Military Green (empty),35000,\A3\Structures_F_Heli\Ind\Cargo\Cargo10_military_green_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\Land_Cargo10_military_green_F.jpg)
-	CONTAINER_EMPTY(Container_Small_Grey,Supply Container Small Grey (empty),35000,\A3\Structures_F_Heli\Ind\Cargo\Cargo10_grey_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\Land_Cargo10_grey_F.jpg)
-
-	CONTAINER_EMPTY(Container_Sling_Ammo,Huron Ammo Container (empty),25000,\A3\Supplies_F_Heli\Slingload\Slingload_01_Ammo_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\B_Slingload_01_Ammo_F.jpg)
-	CONTAINER_EMPTY(Container_Sling_Cargo,Huron Cargo Container (empty),25000,\A3\Supplies_F_Heli\Slingload\Slingload_01_Cargo_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\B_Slingload_01_Cargo_F.jpg)
-	CONTAINER_EMPTY(Container_Sling_Fuel,Huron Fuel Container (empty),25000,\A3\Supplies_F_Heli\Slingload\Slingload_01_Fuel_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\B_Slingload_01_Fuel_F.jpg)
-	CONTAINER_EMPTY(Container_Sling_Medevac,Huron Medevac Container (empty),25000,\A3\Supplies_F_Heli\Slingload\Slingload_01_Medevac_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\B_Slingload_01_Medevac_F.jpg)
-	CONTAINER_EMPTY(Container_Sling_Repair,Huron Repair Container (empty),25000,\A3\Supplies_F_Heli\Slingload\Slingload_01_Repair_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\B_Slingload_01_Repair_F.jpg)
-
-//	CONTAINER_EMPTY(CLASSNAME,NAME,LOAD,MODEL,PREVIEW)
-
-	class GVAR(Container_Medium_Supply_Platoon): ReammoBox_F {
-		editorPreview = "\A3\EditorPreviews_F\Data\CfgVehicles\Land_Cargo20_white_F.jpg";
-		model = "\A3\Structures_F\Ind\Cargo\Cargo20_white_F.p3d";
-		
-		scope = 2;
-		scopeCurator = 2;
-		displayName = "Supply Container Medium - Platoon";
-		editorCategory = QUOTE(EdCat_UNITAF);
-		editorSubcategory = QUOTE(EdSubcat_UNITAF_Logistics);
-		class EventHandlers {
-			init = QUOTE((_this select 0) allowdamage false);
-		};
-		maximumLoad = 35000;
-
-		class TransportMagazines {
-			MACRO_ADDMAGAZINE(rhs_mag_30Rnd_556x45_M855A1_PMAG,120);				// 30rnd M855A1 PMAG
-			MACRO_ADDMAGAZINE(rhs_mag_30Rnd_556x45_M855A1_PMAG_Tracer_Red,120);		// 30rnd M855A1 PMAG Tracer (Red)
-			MACRO_ADDMAGAZINE(rhsusf_mag_17Rnd_9x19_FMJ,60);						// 17rnd 9mm FMJ
-			MACRO_ADDMAGAZINE(1Rnd_HE_Grenade_shell,20);							// M203 1rnd HE Grenade
-		};
-		class TransportWeapons {
-			MACRO_ADDWEAPON(rhs_weap_m27iar,30);							// M27
-			MACRO_ADDWEAPON(rhsusf_weap_glock17g4,30);						// Glock 17 Gen4
-			MACRO_ADDWEAPON(rhs_weap_m249_pip,2);							// M249
-			MACRO_ADDWEAPON(rhs_weap_m4a1_m203,5);							// M4A1-M203
-		};
-		class TransportItems {
-			MACRO_ADDITEM(ACE_CableTie,60);									// Cable Tie
-			MACRO_ADDITEM(ACE_EarPlugs,30);									// Ear Plugs
-			MACRO_ADDITEM(ACE_elasticBandage,450);							// Elastic Bandage
-			MACRO_ADDITEM(ACE_morphine,60);									// Morphine
-			MACRO_ADDITEM(ACE_tourniquet,120);								// Tourniquet
-			MACRO_ADDITEM(ACE_splint,60);									// Splint
-			MACRO_ADDITEM(ACE_personalAidKit,30);							// PAK
-			MACRO_ADDITEM(SmokeShell,120);									// Smoke Grenade (White)
-			MACRO_ADDITEM(SmokeShellOrange,15);								// Smoke Grenade (Orange)
-			MACRO_ADDITEM(SmokeShellBlue,15);								// Smoke Grenade (Blue)
-			MACRO_ADDITEM(SmokeShellRed,15);								// Smoke Grenade (Red)
-			MACRO_ADDITEM(SmokeShellGreen,15);								// Smoke Grenade (Green)
-			MACRO_ADDITEM(SmokeShellPurple,15);								// Smoke Grenade (Green)
-			MACRO_ADDITEM(HandGrenade,120);									// Hand Grenade
-			MACRO_ADDITEM(ACE_EntrenchingTool,30);							// Entrenching Tool
-			MACRO_ADDITEM(ACE_DefusalKit,2);								// Defusal Kit
-			MACRO_ADDITEM(MineDetector,2);									// Mine Detector
-			MACRO_ADDITEM(ToolKit,2);										// Toolkit
-			MACRO_ADDITEM(TFAR_anprc152,30);								// Radio (AN/PRC-152)
-			MACRO_ADDITEM(ItemcTabHCam,5);									// Helmet Cam
-			MACRO_ADDITEM(ItemcTab,3);										// Tablet
-			MACRO_ADDITEM(ItemMap,30);										// Map
-			MACRO_ADDITEM(ItemGPS,30);										// GPS
-			MACRO_ADDITEM(ACE_Vector,5);									// Vector 21
-			MACRO_ADDITEM(Binocular,30);									// Binocular
-			MACRO_ADDITEM(ACE_Banana,30);									// Banana (because why not)
-		};
-		class TransportBackpacks {
-			MACRO_ADDBACKPACK(rhsusf_assault_eagleaiii_coy,30);
-		};
+		class TransportMagazines {};
+		class TransportWeapons {};
+		class TransportItems {};
+		class TransportBackpacks {};
 	};
 
+	// TINY - 150
+	//CONTAINER_EMPTY_BASE(DroneCase_150_White,Drone Case (White),150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Box_I_UAV_06_CO.jpg,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\I_UAV_06_CO.paa"})
+		CONTAINER_EMPTY_BASE(DroneCase_150_White,Drone Case (White),150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,PROP_IMG,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\I_UAV_06_CO.paa"})
+	//CONTAINER_EMPTY_BASE(DroneCase_150_White_Medical,Drone Case (White) [Medical],150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Box_I_UAV_06_medical_CO.jpg,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\I_UAV_06_medical_CO.paa", "A3\Air_F_Orange\UAV_06\Data\I_UAV_06_medical_CO.paa"})
+		CONTAINER_EMPTY_BASE(DroneCase_150_White_Medical,Drone Case (White) [Medical],150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,PROP_IMG,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\I_UAV_06_medical_CO.paa", "A3\Air_F_Orange\UAV_06\Data\I_UAV_06_medical_CO.paa"})
+	//CONTAINER_EMPTY_BASE(DroneCase_150_LightGreen,Drone Case (Light Green),150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Box_O_UAV_06_CO.jpg,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\O_UAV_06_CO.paa"})
+		CONTAINER_EMPTY_BASE(DroneCase_150_LightGreen,Drone Case (Light Green),150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,PROP_IMG,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\O_UAV_06_CO.paa"})
+	//CONTAINER_EMPTY_BASE(DroneCase_150_LightGreen_Medical,Drone Case (Light Green) [Medical],150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Box_O_UAV_06_medical_CO.jpg,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\O_UAV_06_medical_CO.paa", "A3\Air_F_Orange\UAV_06\Data\O_UAV_06_medical_CO.paa"})
+		CONTAINER_EMPTY_BASE(DroneCase_150_LightGreen_Medical,Drone Case (Light Green) [Medical],150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,PROP_IMG,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\O_UAV_06_medical_CO.paa", "A3\Air_F_Orange\UAV_06\Data\O_UAV_06_medical_CO.paa"})
+	//CONTAINER_EMPTY_BASE(DroneCase_150_DarkGrey,Drone Case (Dark Grey),150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Box_I_E_UAV_06_F.jpg,{"Camo", "Medical"},{"A3\Air_F_Enoch\UAV_06\Data\I_E_UAV_06_CO.paa"})
+	//CONTAINER_EMPTY_BASE(DroneCase_150_DarkGrey_Medical,Drone Case (Dark Grey) [Medical],150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Box_I_E_UAV_06_medical_F.jpg,{"Camo", "Medical"},{"A3\Air_F_Enoch\UAV_06\Data\I_E_UAV_06_CO.paa", "A3\Air_F_Enoch\UAV_06\Data\I_E_UAV_06_CO.paa"})
+	//CONTAINER_EMPTY_BASE(DroneCase_150_Olive,Drone Case (Olive),150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Box_B_UAV_06_F.jpg,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\B_UAV_06_CO.paa"})
+		CONTAINER_EMPTY_BASE(DroneCase_150_Olive,Drone Case (Olive),150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,PROP_IMG,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\B_UAV_06_CO.paa"})
+	CONTAINER_EMPTY_BASE(DroneCase_150_Olive_Medical,Drone Case (Olive) [Medical],150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,\A3\EditorPreviews_F_Orange\Data\CfgVehicles\B_UAV_06_medical_F.jpg,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\B_UAV_06_medical_CO.paa", "A3\Air_F_Orange\UAV_06\Data\B_UAV_06_medical_CO.paa"})
+	CONTAINER_EMPTY_BASE(DroneCase_150_Black,Drone Case (Black),150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,\A3\EditorPreviews_F_Orange\Data\CfgVehicles\Box_C_UAV_06_F.jpg,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\C_UAV_06_CO.paa"})
+	//CONTAINER_EMPTY_BASE(DroneCase_150_Yellow_Medical,Drone Case (Yellow) [Medical],150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Box_C_UAV_06_medical_F.jpg,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\C_UAV_06_medical_CO.paa"})
+		CONTAINER_EMPTY_BASE(DroneCase_150_Yellow_Medical,Drone Case (Yellow) [Medical],150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,PROP_IMG,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\C_UAV_06_medical_CO.paa"})
+	//CONTAINER_EMPTY_BASE(DroneCase_150_Red_Medical,Drone Case (Red) [Medical],150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Box_C_IDAP_UAV_06_medical_F.jpg,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\C_IDAP_UAV_06_medical_CO.paa"})
+		CONTAINER_EMPTY_BASE(DroneCase_150_Red_Medical,Drone Case (Red) [Medical],150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,PROP_IMG,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\C_IDAP_UAV_06_medical_CO.paa"})
+	//CONTAINER_EMPTY_BASE(DroneCase_150_Swifd,Drone Case (Swifd),150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Box_C_UAV_06_Swifd_F.jpg,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\UAV_06_swifd_CO.paa"})
+		CONTAINER_EMPTY_BASE(DroneCase_150_Swifd,Drone Case (Swifd),150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,PROP_IMG,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\UAV_06_swifd_CO.paa"})
+	//CONTAINER_EMPTY_BASE(DroneCase_150_IDAP,Drone Case (IDAP),150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Box_C_IDAP_UAV_06_F.jpg,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\C_IDAP_UAV_06_CO.paa"})
+		CONTAINER_EMPTY_BASE(DroneCase_150_IDAP,Drone Case (IDAP),150,\A3\Air_F_Orange\UAV_06\Box_UAV_06_F.p3d,PROP_IMG,{"Camo", "Medical"},{"A3\Air_F_Orange\UAV_06\Data\C_IDAP_UAV_06_CO.paa"})
+
+	// TINY - 300
+	CONTAINER_EMPTY_BASE(MetalCase_300,Metal Case (Small),300,\A3\Structures_F_Heli\Items\Luggage\MetalCase_01_small_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\Land_MetalCase_01_small_F.jpg,{},{})
+	CONTAINER_EMPTY_BASE(PlasticCase_300_Sand,Plastic Case Small (Sand),300,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_small_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\Land_PlasticCase_01_small_F.jpg,{},{})
+	//CONTAINER_EMPTY_BASE(PlasticCase_300_Sand_CBRN,Plastic Case Small (Sand) [CBRN],300,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_small_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Land_PlasticCase_01_small_CBRN_F.jpg,{"Camo", "Camo2"},{"a3\Structures_F_Heli\Items\Luggage\Data\PlasticCase_01_CO", "a3\Props_F_Enoch\Military\Supplies\data\PlasticCase_01_Logo_01_CA"})
+		CONTAINER_EMPTY_BASE(PlasticCase_300_Sand_CBRN,Plastic Case Small (Sand) [CBRN],300,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_small_F.p3d,PROP_IMG,{"Camo", "Camo2"},{"a3\Structures_F_Heli\Items\Luggage\Data\PlasticCase_01_CO", "a3\Props_F_Enoch\Military\Supplies\data\PlasticCase_01_Logo_01_CA"})
+	//CONTAINER_EMPTY_BASE(PlasticCase_300_Black,Plastic Case Small (Black),300,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_small_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Land_PlasticCase_01_small_black_F.jpg,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_black_CO.paa"})
+		CONTAINER_EMPTY_BASE(PlasticCase_300_Black,Plastic Case Small (Black),300,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_small_F.p3d,PROP_IMG,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_black_CO.paa"})
+	//CONTAINER_EMPTY_BASE(PlasticCase_300_Black_CBRN,Plastic Case Small (Black) [CBRN],300,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_small_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Land_PlasticCase_01_small_black_CBRN_F.jpg,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_black_CO.paa", "a3\Props_F_Enoch\Military\Supplies\data\PlasticCase_01_Logo_01_CA"})
+		CONTAINER_EMPTY_BASE(PlasticCase_300_Black_CBRN,Plastic Case Small (Black) [CBRN],300,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_small_F.p3d,PROP_IMG,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_black_CO.paa", "a3\Props_F_Enoch\Military\Supplies\data\PlasticCase_01_Logo_01_CA"})
+	//CONTAINER_EMPTY_BASE(PlasticCase_300_Olive,Plastic Case Small (Olive),300,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_small_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Land_PlasticCase_01_small_olive_F.jpg,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_olive_CO.paa"})
+		CONTAINER_EMPTY_BASE(PlasticCase_300_Olive,Plastic Case Small (Olive),300,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_small_F.p3d,PROP_IMG,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_olive_CO.paa"})
+	//CONTAINER_EMPTY_BASE(PlasticCase_300_Olive_CBRN,Plastic Case Small (Olive) [CBRN],300,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_small_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Land_PlasticCase_01_small_olive_CBRN_F.jpg,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_olive_CO.paa", "a3\Props_F_Enoch\Military\Supplies\data\PlasticCase_01_Logo_01_CA"})
+		CONTAINER_EMPTY_BASE(PlasticCase_300_Olive_CBRN,Plastic Case Small (Olive) [CBRN],300,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_small_F.p3d,PROP_IMG,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_olive_CO.paa", "a3\Props_F_Enoch\Military\Supplies\data\PlasticCase_01_Logo_01_CA"})
+	CONTAINER_EMPTY_BASE(PlasticCase_300_White,Plastic Case Small (White),300,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_small_F.p3d,\A3\EditorPreviews_F_Orange\Data\CfgVehicles\Land_PlasticCase_01_small_gray_F.jpg,{"Camo", "Camo2"},{"a3\Props_F_Orange\Humanitarian\Supplies\Data\PlasticCase_01_gray_CO.paa"})
+	CONTAINER_EMPTY_BASE(PlasticCase_300_White_IPAD,Plastic Case Small (White) [IDAP],300,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_small_F.p3d,\A3\EditorPreviews_F_Orange\Data\CfgVehicles\Land_PlasticCase_01_small_idap_F.jpg,{"Camo", "Camo2"},{"a3\Props_F_Orange\Humanitarian\Supplies\Data\PlasticCase_01_idap_CO.paa"})
+
+	// SMALL - 500
+	CONTAINER_EMPTY_BASE(MetalCase_500,Metal Case Medium,500,\A3\Structures_F_Heli\Items\Luggage\MetalCase_01_medium_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\Land_MetalCase_01_medium_F.jpg,{},{})
+	CONTAINER_EMPTY_BASE(PlasticCase_500_Sand,Plastic Case Medium (Sand),500,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_medium_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\Land_PlasticCase_01_medium_F.jpg,{},{})
+	//CONTAINER_EMPTY_BASE(PlasticCase_500_Sand_CBRN,Plastic Case Medium (Sand) [CBRN],500,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_medium_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Land_PlasticCase_01_medium_CBRN_F.jpg,{"Camo", "Camo2"},{"a3\Structures_F_Heli\Items\Luggage\Data\PlasticCase_01_CO", "a3\Props_F_Enoch\Military\Supplies\data\PlasticCase_01_Logo_01_CA"})
+		CONTAINER_EMPTY_BASE(PlasticCase_500_Sand_CBRN,Plastic Case Medium (Sand) [CBRN],500,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_medium_F.p3d,PROP_IMG,{"Camo", "Camo2"},{"a3\Structures_F_Heli\Items\Luggage\Data\PlasticCase_01_CO", "a3\Props_F_Enoch\Military\Supplies\data\PlasticCase_01_Logo_01_CA"})
+	//CONTAINER_EMPTY_BASE(PlasticCase_500_Black,Plastic Case Medium (Black),500,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_medium_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Land_PlasticCase_01_medium_black_F.jpg,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_black_CO.paa"})
+		CONTAINER_EMPTY_BASE(PlasticCase_500_Black,Plastic Case Medium (Black),500,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_medium_F.p3d,PROP_IMG,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_black_CO.paa"})
+	//CONTAINER_EMPTY_BASE(PlasticCase_500_Black_CBRN,Plastic Case Medium (Black) [CBRN],500,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_medium_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Land_PlasticCase_01_medium_black_CBRN_F.jpg,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_black_CO.paa", "a3\Props_F_Enoch\Military\Supplies\data\PlasticCase_01_Logo_01_CA"})
+		CONTAINER_EMPTY_BASE(PlasticCase_500_Black_CBRN,Plastic Case Medium (Black) [CBRN],500,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_medium_F.p3d,PROP_IMG,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_black_CO.paa", "a3\Props_F_Enoch\Military\Supplies\data\PlasticCase_01_Logo_01_CA"})
+	//CONTAINER_EMPTY_BASE(PlasticCase_500_Olive,Plastic Case Medium (Olive),500,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_medium_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Land_PlasticCase_01_medium_olive_F.jpg,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_olive_CO.paa"})
+		CONTAINER_EMPTY_BASE(PlasticCase_500_Olive,Plastic Case Medium (Olive),500,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_medium_F.p3d,PROP_IMG,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_olive_CO.paa"})
+	//CONTAINER_EMPTY_BASE(PlasticCase_500_Olive_CBRN,Plastic Case Medium (Olive) [CBRN],500,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_medium_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Land_PlasticCase_01_medium_olive_CBRN_F.jpg,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_olive_CO.paa", "a3\Props_F_Enoch\Military\Supplies\data\PlasticCase_01_Logo_01_CA"})
+		CONTAINER_EMPTY_BASE(PlasticCase_500_Olive_CBRN,Plastic Case Medium (Olive) [CBRN],500,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_medium_F.p3d,PROP_IMG,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_olive_CO.paa", "a3\Props_F_Enoch\Military\Supplies\data\PlasticCase_01_Logo_01_CA"})
+	CONTAINER_EMPTY_BASE(PlasticCase_500_White,Plastic Case Medium (White),500,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_medium_F.p3d,\A3\EditorPreviews_F_Orange\Data\CfgVehicles\Land_PlasticCase_01_medium_gray_F.jpg,{"Camo", "Camo2"},{"a3\Props_F_Orange\Humanitarian\Supplies\Data\PlasticCase_01_gray_CO.paa"})
+	CONTAINER_EMPTY_BASE(PlasticCase_500_White_IPAD,Plastic Case Medium (White) [IDAP],500,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_medium_F.p3d,\A3\EditorPreviews_F_Orange\Data\CfgVehicles\Land_PlasticCase_01_medium_idap_F.jpg,{"Camo", "Camo2"},{"a3\Props_F_Orange\Humanitarian\Supplies\Data\PlasticCase_01_idap_CO.paa"})
+
+	// SMALL - 1000
+	CONTAINER_EMPTY_BASE(MetalCase_1000,Metal Case Large,1000,\A3\Structures_F_Heli\Items\Luggage\MetalCase_01_large_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\Land_MetalCase_01_large_F.jpg,{},{})
+	CONTAINER_EMPTY_BASE(PlasticCase_1000_Sand,Plastic Case Large (Sand),1000,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_large_F.p3d,\A3\EditorPreviews_F\Data\CfgVehicles\Land_PlasticCase_01_large_F.jpg,{},{})
+	//CONTAINER_EMPTY_BASE(PlasticCase_1000_Sand_CBRN,Plastic Case Large (Sand) [CBRN],1000,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_large_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Land_PlasticCase_01_large_CBRN_F.jpg,{"Camo", "Camo2"},{"a3\Structures_F_Heli\Items\Luggage\Data\PlasticCase_01_CO", "a3\Props_F_Enoch\Military\Supplies\data\PlasticCase_01_Logo_01_CA"})
+		CONTAINER_EMPTY_BASE(PlasticCase_1000_Sand_CBRN,Plastic Case Large (Sand) [CBRN],1000,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_large_F.p3d,PROP_IMG,{"Camo", "Camo2"},{"a3\Structures_F_Heli\Items\Luggage\Data\PlasticCase_01_CO", "a3\Props_F_Enoch\Military\Supplies\data\PlasticCase_01_Logo_01_CA"})
+	//CONTAINER_EMPTY_BASE(PlasticCase_1000_Black,Plastic Case Large (Black),1000,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_large_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Land_PlasticCase_01_large_black_F.jpg,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_black_CO.paa"})
+		CONTAINER_EMPTY_BASE(PlasticCase_1000_Black,Plastic Case Large (Black),1000,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_large_F.p3d,PROP_IMG,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_black_CO.paa"})
+	//CONTAINER_EMPTY_BASE(PlasticCase_1000_Black_CBRN,Plastic Case Large (Black) [CBRN],1000,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_large_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Land_PlasticCase_01_large_black_CBRN_F.jpg,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_black_CO.paa", "a3\Props_F_Enoch\Military\Supplies\data\PlasticCase_01_Logo_01_CA"})
+		CONTAINER_EMPTY_BASE(PlasticCase_1000_Black_CBRN,Plastic Case Large (Black) [CBRN],1000,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_large_F.p3d,PROP_IMG,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_black_CO.paa", "a3\Props_F_Enoch\Military\Supplies\data\PlasticCase_01_Logo_01_CA"})
+	//CONTAINER_EMPTY_BASE(PlasticCase_1000_Olive,Plastic Case Large (Olive),1000,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_large_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Land_PlasticCase_01_large_olive_F.jpg,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_olive_CO.paa"})
+		CONTAINER_EMPTY_BASE(PlasticCase_1000_Olive,Plastic Case Large (Olive),1000,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_large_F.p3d,PROP_IMG,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_olive_CO.paa"})
+	//CONTAINER_EMPTY_BASE(PlasticCase_1000_Olive_CBRN,Plastic Case Large (Olive) [CBRN],1000,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_large_F.p3d,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Land_PlasticCase_01_large_olive_CBRN_F.jpg,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_olive_CO.paa", "a3\Props_F_Enoch\Military\Supplies\data\PlasticCase_01_Logo_01_CA"})
+		CONTAINER_EMPTY_BASE(PlasticCase_1000_Olive_CBRN,Plastic Case Large (Olive) [CBRN],1000,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_large_F.p3d,PROP_IMG,{"Camo", "Camo2"},{"a3\Props_F_Enoch\Military\Supplies\Data\PlasticCase_01_olive_CO.paa", "a3\Props_F_Enoch\Military\Supplies\data\PlasticCase_01_Logo_01_CA"})
+	CONTAINER_EMPTY_BASE(PlasticCase_1000_White,Plastic Case Large (White),1000,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_large_F.p3d,\A3\EditorPreviews_F_Orange\Data\CfgVehicles\Land_PlasticCase_01_large_gray_F.jpg,{"Camo", "Camo2"},{"a3\Props_F_Orange\Humanitarian\Supplies\Data\PlasticCase_01_gray_CO.paa"})
+	CONTAINER_EMPTY_BASE(PlasticCase_1000_White_IPAD,Plastic Case Large (White) [IDAP],1000,\A3\Structures_F_Heli\Items\Luggage\PlasticCase_01_large_F.p3d,\A3\EditorPreviews_F_Orange\Data\CfgVehicles\Land_PlasticCase_01_large_idap_F.jpg,{"Camo", "Camo2"},{"a3\Props_F_Orange\Humanitarian\Supplies\Data\PlasticCase_01_idap_CO.paa"})
+
+/*
+	// Basic Ammo
+	CONTAINER_EMPTY_BASE(AmmoBox_800_White,Ammo Box (White),800,\A3\weapons_F\AmmoBoxes\AmmoBox_F,\A3\EditorPreviews_F\Data\CfgVehicles\Box_IND_Ammo_F.jpg,{"Camo_Signs", "Camo"},{"A3\Weapons_F\Ammoboxes\data\AmmoBox_signs_CA.paa", "A3\Weapons_F\Ammoboxes\data\AmmoBox_HAF_CO.paa"})
+	CONTAINER_EMPTY_BASE(AmmoBox_800_Green,Ammo Box (Green),800,\A3\weapons_F\AmmoBoxes\AmmoBox_F,\A3\EditorPreviews_F\Data\CfgVehicles\Box_EAST_Ammo_F.jpg,{"Camo_Signs", "Camo"},{"A3\Weapons_F\Ammoboxes\data\AmmoBox_signs_CA.paa", "A3\Weapons_F\Ammoboxes\data\AmmoBox_OPFOR_CO.paa"})
+	CONTAINER_EMPTY_BASE(AmmoBox_800_Olive,Ammo Box (Olive),800,\A3\weapons_F\AmmoBoxes\AmmoBox_F,\A3\EditorPreviews_F\Data\CfgVehicles\AmmoBox_CO.jpg,{"Camo_Signs", "Camo"},{"A3\Weapons_F\Ammoboxes\data\AmmoBox_signs_CA.paa", "A3\Weapons_F\Ammoboxes\data\AmmoBox_CO.paa"})
+	CONTAINER_EMPTY_BASE(AmmoBox_800_Brown,Ammo Box (Brown),800,\A3\weapons_F\AmmoBoxes\AmmoBox_F,\A3\EditorPreviews_F_Exp\Data\CfgVehicles\Box_T_East_Ammo_F.jpg,{"Camo_Signs", "Camo"},{"A3\Weapons_F\Ammoboxes\data\AmmoBox_signs_CA.paa", "\A3\Supplies_F_Exp\Ammoboxes\Data\Box_T_East_Wps_F_co.paa"})
+	//CONTAINER_EMPTY_BASE(AmmoBox_800_Black,Ammo Box (Black),800,\A3\weapons_F\AmmoBoxes\AmmoBox_F,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Box_EAF_Ammo_F.jpg,{"Camo_Signs", "Camo"},{"A3\Supplies_F_Enoch\Ammoboxes\data\AmmoBox_signs_EAF_CA.paa", "A3\Supplies_F_Enoch\Ammoboxes\data\AmmoBox_EAF_CO.paa"})
+	
+	// Basic Weapons
+	CONTAINER_EMPTY_BASE(WeaponBox_800_White,Weapons Box (White),800,\A3\weapons_F\AmmoBoxes\WpnsBox_F,\A3\EditorPreviews_F_Exp\Data\CfgVehicles\Box_IND_Wps_F.jpg,{"Camo_Signs", "Camo"},{"A3\Weapons_F\Ammoboxes\data\AmmoBox_signs_CA.paa", "A3\Weapons_F\Ammoboxes\data\AmmoBox_HAF_CO.paa"})
+	CONTAINER_EMPTY_BASE(WeaponBox_800_Green,Weapons Box (Green),800,\A3\weapons_F\AmmoBoxes\WpnsBox_F,\A3\EditorPreviews_F_Exp\Data\CfgVehicles\Box_East_Wps_F.jpg,{"Camo_Signs", "Camo"},{"A3\Weapons_F\Ammoboxes\data\AmmoBox_signs_CA.paa", "A3\Weapons_F\Ammoboxes\data\AmmoBox_OPFOR_CO.paa"})
+	CONTAINER_EMPTY_BASE(WeaponBox_800_Olive,Weapons Box (Olive),800,\A3\weapons_F\AmmoBoxes\WpnsBox_F,\A3\EditorPreviews_F_Exp\Data\CfgVehicles\Box_T_NATO_Wps_F.jpg,{"Camo_Signs", "Camo"},{"A3\Weapons_F\Ammoboxes\data\AmmoBox_signs_CA.paa", "\A3\Supplies_F_Exp\Ammoboxes\Data\Box_T_NATO_Wps_F_co.paa"})
+	CONTAINER_EMPTY_BASE(WeaponBox_800_Brown,Weapons Box (Brown),800,\A3\weapons_F\AmmoBoxes\WpnsBox_F,\A3\EditorPreviews_F_Exp\Data\CfgVehicles\Box_T_East_Wps_F.jpg,{"Camo_Signs", "Camo"},{"A3\Weapons_F\Ammoboxes\data\AmmoBox_signs_CA.paa", "\A3\Supplies_F_Exp\Ammoboxes\Data\Box_T_East_Wps_F_co.paa"})
+	//CONTAINER_EMPTY_BASE(AWeaponBox_800_Black,Weapons Box (Black),800,\A3\weapons_F\AmmoBoxes\WpnsBox_F,\A3\EditorPreviews_F_Enoch\Data\CfgVehicles\Box_EAF_Ammo_F.jpg,{"Camo_Signs", "Camo"},{"A3\Supplies_F_Enoch\Ammoboxes\data\AmmoBox_signs_EAF_CA.paa", "A3\Supplies_F_Enoch\Ammoboxes\data\AmmoBox_EAF_CO.paa"})
+*/
 };

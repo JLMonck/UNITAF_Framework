@@ -12,5 +12,8 @@ PREP(setTempFreq);
 PREP(getEarplugs);
 PREP(getRadio);
 PREP(getNVG);
+PREP(getGPS);
 
 PREP(callENDEX);
+
+PREP(toggleHUD);

@@ -1,0 +1,1 @@
+#include "\u\unitaf\addons\camera\script_component.hpp"

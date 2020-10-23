@@ -1,0 +1,1 @@
+#include "\u\unitaf\addons\tablet\script_component.hpp"

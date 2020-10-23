@@ -27,3 +27,5 @@
     backpack = #BACKPACK; \
     count = COUNT; \
 }
+
+#define SQUOTE(var1) 'var1'

@@ -21,11 +21,12 @@ _playerUID = str (getPlayerUID _player);
 
 if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
 	[QEGVAR(ClientEvent,PlayerData), [
-		(parseSimpleArray "[1, [""Pvt"",1,0,0,2,1,""MONTY"",42,""GREEN"",100,""PRIVATE""]]")  select 1
+		// armauid, playerRank, playerAdmin, playerPos, playerDir, operation, is_medic_level, is_engineer_level, unit, callsign, freq, buddy, lr_freq, armarank, role, leader, is_zeus, is_eod, is_logistics, is_reporter
+		(parseSimpleArray "[1, [12345678,"""",0,""rp1"",0,0,2,1,1,""REAPER"",251,""RED"",50,""PRIVATE"",""Fireteam Leader"",""Capt James"",0,0,1,1]]")  select 1
 	], [_player]] call CBA_fnc_targetEvent;	
 };
 
-_playerData = "extDB3" callExtension format["0:FETCHDATA:SELECT playerRank,playerAdmin,playerPos,playerDir,is_medic_level,is_engineer_level,callsign,freq,buddy,lr_freq,armarank FROM operation_players WHERE armauid = '%1' AND operation = '%2' GROUP BY armauid", _playerUID, _operationID];
+_playerData = "extDB3" callExtension format["0:FETCHDATA:SELECT armauid, playerRank, playerAdmin, playerPos, playerDir, operation, is_medic_level, is_engineer_level, unit, callsign, freq, buddy, lr_freq, armarank, role, leader, is_zeus, is_eod, is_logistics, is_reporter FROM operation_players WHERE armauid = '%1' AND operation = '%2' GROUP BY armauid", _playerUID, _operationID];
 
 if (!((parseSimpleArray (_playerData) select 0) isEqualTo 1)) exitWith { diag_log "extDB3: Error retrieving player data"; };
 

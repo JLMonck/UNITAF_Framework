@@ -32,7 +32,7 @@ _ORBAT = [
 	]
 ];
  */
-
+/*
 _ORBAT = [
 	["Capt James", "Capt", "", "Squad Leader", "PHANTOM 1", "WHITE", 250.0, null],
 	["2Lt Kevin", "2Lt", "", "Squad Medic", "PHANTOM 1", "WHITE", 250.0, null],
@@ -51,5 +51,6 @@ _ORBAT = [
 
 	["Cpl J. ""Willy"" Wilson", "Cpl", "", "Fixed Wing Pilot (CAS)", "LIGHTNING 9", "", 70.0, null]
 ];
-
-missionNamespace setVariable ["UNITAF_ORBAT", _ORBAT, true];
+*/
+//missionNamespace setVariable ["UNITAF_ORBAT", _ORBAT, true];
+missionNamespace setVariable ["UNITAF_ORBAT", [], true];

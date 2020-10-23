@@ -17,3 +17,4 @@ class CfgPatches {
 
 #include "macros_tfar.hpp"
 #include "CfgVehicles.hpp"
+#include "CfgAmmo.hpp"
