@@ -12,10 +12,9 @@
  * Public: No
  */
 
-params ["_inventory"];
-// _inventory = setUnitLoadout array
+params ["_inventoryData"];
 
-[_inventory] spawn {
+[_inventoryData] spawn {
 	params ["_inventory"];
 
 	// set loadout

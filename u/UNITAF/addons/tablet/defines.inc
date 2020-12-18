@@ -181,6 +181,10 @@
 #define IDC_Tablet_Main_Button_Admin            455309
 #define IDC_Tablet_Main_Button_Logistics        455310
 #define IDC_Tablet_Main_Button_Reporter         455311
+#define IDC_Tablet_Main_Button_GetRadio         455312
+#define IDC_Tablet_Main_Button_GetNVG           455313
+#define IDC_Tablet_Main_Button_GetEarplugs      455314
+#define IDC_Tablet_Main_Button_GetGPS           455315
 
 // Admin 4554xx
 #define IDC_Tablet_Admin                        455400

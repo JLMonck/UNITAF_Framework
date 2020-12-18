@@ -21,8 +21,11 @@ if (isClass(configFile >> "CfgPatches" >> "tfar_core")) then {
 	_hasSW = call TFAR_fnc_haveSWRadio;
 
 	if !(_hasSW) then {
-		_defaultSWRadio = [side _player, 1] call TFAR_fnc_getSideRadio;		// (0 - LR, 1 - SW, 2 - Rifleman)
-		_player linkItem _defaultSWRadio;
+		//_defaultSWRadio = [side _player, 1] call TFAR_fnc_getSideRadio;		// (0 - LR, 1 - SW, 2 - Rifleman)
+		//_player linkItem _defaultSWRadio;
+
+		_radioObject = QGVAR(Oops_Radio_Classname) call CBA_settings_fnc_get;
+		_player linkItem _radioObject;
 
 		// TODO: add option to get different radio's based on SIDE and ORBAT/Position/Rank (?)
 

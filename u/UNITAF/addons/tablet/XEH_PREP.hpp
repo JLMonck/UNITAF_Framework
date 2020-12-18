@@ -6,6 +6,7 @@ PREP(tabletOnUnload);
 PREP(hideAll);
 
 PREP(canAccessORBAT);
+PREP(canOOPS);
 
 PREP(openTabletMap);
 PREP(openTabletMain);

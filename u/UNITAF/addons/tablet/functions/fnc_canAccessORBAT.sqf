@@ -15,6 +15,8 @@
 
 params ["_player"];
 
+_maxRange = QGVAR(ORBAT_Range) call CBA_settings_fnc_get;
+
 _return = false;
 
 _markers = ["UNITAF_base", 10] call EFUNC(main,fillArrayPrefix);
@@ -37,7 +39,7 @@ if !(_return) then {
 		// check if marker exists
 		if !(getMarkerColor _x isEqualTo "") then {
 			// check distance between player and marker
-			if (_player distance (getMarkerPos _x) < 50) then {
+			if (_player distance (getMarkerPos _x) < _maxRange) then {
 				_return = true;
 			};
 		};
@@ -53,7 +55,7 @@ if !(_return) then {
 		if !(isNil _x) then {
 			_box = missionNamespace getVariable _x;
 			// check distance between player and object
-			if (_player distance _box < 50) then {
+			if (_player distance _box < _maxRange) then {
 				_return = true;
 			};
 		};

@@ -11,7 +11,8 @@ ADDON = true;
 
 // Add Custom modules is ZEN is available
 if (isClass(configFile >> "CfgPatches" >> "zen_custom_modules")) then {
-	call FUNC(moduleRequestLogistics);
-	call FUNC(moduleHackTerminal);
+	//call FUNC(moduleRequestLogistics);
+	//call FUNC(moduleHackTerminal);
+
 	//call FUNC(moduleExportToSQM);
 };

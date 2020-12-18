@@ -34,6 +34,24 @@ GET_IN_MAIN(IDC_Tablet_Main_Button_LoadORBAT) ctrlEnable false;
 GET_IN_MAIN(IDC_Tablet_Main_Button_ORBAT) ctrlEnable false;
 GET_IN_MAIN(IDC_Tablet_Main_Button_OPORD) ctrlEnable false;
 
+// Disable OOPS buttons by default
+GET_IN_MAIN(IDC_Tablet_Main_Button_GetRadio) ctrlEnable false;
+GET_IN_MAIN(IDC_Tablet_Main_Button_GetNVG) ctrlEnable false;
+GET_IN_MAIN(IDC_Tablet_Main_Button_GetEarplugs) ctrlEnable false;
+GET_IN_MAIN(IDC_Tablet_Main_Button_GetGPS) ctrlEnable false;
+
+if ([player, "radio"] call FUNC(canOOPS)) then {
+	GET_IN_MAIN(IDC_Tablet_Main_Button_GetRadio) ctrlEnable true;
+};
+if ([player, "nvg"] call FUNC(canOOPS)) then {
+	GET_IN_MAIN(IDC_Tablet_Main_Button_GetNVG) ctrlEnable true;
+};
+if ([player, "earplugs"] call FUNC(canOOPS)) then {
+	GET_IN_MAIN(IDC_Tablet_Main_Button_GetEarplugs) ctrlEnable true;
+};
+if ([player, "gps"] call FUNC(canOOPS)) then {
+	GET_IN_MAIN(IDC_Tablet_Main_Button_GetGPS) ctrlEnable true;
+};
 
 if (
 	(missionNamespace getVariable ['UNITAF_useORBAT', false])

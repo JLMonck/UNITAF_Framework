@@ -18,10 +18,10 @@
 }] call CBA_fnc_addEventHandler;
 
 [QEGVAR(ServerEvent,getFullORBAT), {
-	_this call FUNC(queryFullORBAT);
+	//_this call FUNC(queryFullORBAT);
 }] call CBA_fnc_addEventHandler;
 [QEGVAR(ServerEvent,setFullORBAT), {
-	_this call FUNC(setFullORBAT);
+	//_this call FUNC(setFullORBAT);
 }] call CBA_fnc_addEventHandler;
 
 [QEGVAR(ServerEvent,addToCurator), {
@@ -54,7 +54,8 @@ if ((getMissionConfigValue ["UNITAF_runDatabase", 0]) isEqualTo 1) then {
 	if ((getMissionConfigValue ["UNITAF_useORBAT", 0]) isEqualTo 1) then {
 		missionNamespace setVariable ['UNITAF_useORBAT', true, true];
 		// get Full ORBAT
-		[_operationId] call FUNC(queryFullORBAT);
+		// [_operationId] call FUNC(queryFullORBAT);
+		
 		// get/set callsigns from ORBAT
 		[_operationId] call FUNC(queryORBATGroups);
 	};

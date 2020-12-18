@@ -17,10 +17,12 @@ class GVAR(GUI_Control_Map): GVAR(GUI_Control_Base) {
 			type 				= CT_MAP_MAIN;
 			style 				= ST_PICTURE;
 
-			x 					= CALC_X(10.1);
-			y 					= CALC_Y(3.8);
-			w 					= CALC_W(24);
-			h 					= CALC_H(17.6);
+			//x 					= 0;		//CALC_X(10.1);
+			//y 					= 0; 							//CALC_Y(3.8);
+			//w 					= 1;
+			//h 					= 1; 				//CALC_H(17.6);
+
+			GRID_FRAME
 
 			maxSatelliteAlpha	= 0;
 			alphaFadeStartScale	= 0;
@@ -42,7 +44,7 @@ class GVAR(GUI_Control_Map): GVAR(GUI_Control_Base) {
 			//onMouseMoving = "cTabCursorOnMap = _this select 3; cTabMapCursorPos = _this select 0 ctrlMapScreenToWorld [_this select 1, _this select 2];";
 			//onMouseMoving = QUOTE(this call FUNC(tabletMap_onMouseMoving));
 		};
-
+/*
 		class GVAR(MapInfo_Background) {
 			idc 				= -1;
 			type				= CT_STATIC;
@@ -114,5 +116,6 @@ class GVAR(GUI_Control_Map): GVAR(GUI_Control_Base) {
 			idc 				= IDC_Tablet_MapInfo_HookDir;
 			y 					= (0 + CALC_Y(11));
 		};
+	*/
 	};
 };

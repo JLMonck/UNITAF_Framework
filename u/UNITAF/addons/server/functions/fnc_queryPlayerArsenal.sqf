@@ -16,17 +16,30 @@
  */
  
 params ["_player"];
+_operationID = missionNamespace getVariable ['UNITAF_operationID', 0];
+_playerUID = getPlayerUID _player;
 
 if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
-	[QEGVAR(ClientEvent,PlayerArsenal), [
-		(parseSimpleArray "[1, [""ACE_EarPlugs"",""TFAR_anprc152"", ""ItemGPS""]]")  select 1
-	], [_player]] call CBA_fnc_targetEvent;
+	_query = "[1, [[""ACE_EarPlugs"",""TFAR_anprc152"",""ItemGPS"",""ACE_Flashlight_Maglite_ML300L"",""ACE_IR_Strobe_Item""]]]";
+	_result = (parseSimpleArray _query);
+	[QEGVAR(ClientEvent,PlayerArsenal), (_result select 1), [_player]] call CBA_fnc_targetEvent;
 };
 
-_playerID = getPlayerUID _player;
-// return flat array with items allowed in ACE Arsenal for this specific player
-_playerArsenal = "extDB3" callExtension format ["0:FETCHDATA:SELECT * FROM table", _playerID];
+// @TODO: query must be updated to support personal arsenals based on ORBAT role
+_query = "extDB3" callExtension "0:FETCHDATA:SELECT inventory FROM arsenals WHERE faction = 1";
+_result = (parseSimpleArray _query);
 
-if (!(parseSimpleArray (_playerArsenal) select 0 isEqualTo 1)) exitWith { diag_log "extDB3: Error retrieving Player Arsenal"; };
-
-[QEGVAR(ClientEvent,PlayerArsenal), [parseSimpleArray (_playerArsenal) select 1], [_player]] call CBA_fnc_targetEvent;
+switch (_result select 0) do {
+	case 0: {
+		 diag_log "extDB3: Error retrieving Player Arsenal";
+		 diag_log format["Database Error: %1", (_result select 1)];
+	};
+	case 1: {
+		// only get the first result
+		[QEGVAR(ClientEvent,PlayerArsenal), (_result select 1 select 0), [_player]] call CBA_fnc_targetEvent;
+	};
+	default {
+		diag_log "extDB3: Something went wrong with Player Arsenal";
+		diag_log format["Database Result: %1", _result];
+	};
+};

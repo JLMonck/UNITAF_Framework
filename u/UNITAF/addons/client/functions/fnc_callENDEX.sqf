@@ -29,6 +29,6 @@ if (isClass(configFile >> "CfgPatches" >> "ace_medical_treatment")) then {
 		true,
 		true
 	];
-	sleep 5;
+	sleep 10;
 	"ENDEX" cutFadeOut 1;
 };

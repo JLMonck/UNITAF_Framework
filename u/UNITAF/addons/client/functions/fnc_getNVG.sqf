@@ -27,7 +27,10 @@ _hasNVG = false;
 
 
 if !(_hasNVG) then {
+	_nvgObject = QGVAR(Oops_NVG_Classname) call CBA_settings_fnc_get;
+	_player linkItem _nvgObject;
+
 	//_player linkItem "rhsusf_ANPVS_15";
-	_player linkItem "NVGoggles";
+	//_player linkItem "NVGoggles";
 	hint "Now you can finally see in the dark, you chicken";
 };

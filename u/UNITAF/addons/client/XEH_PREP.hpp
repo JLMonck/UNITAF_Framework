@@ -4,6 +4,8 @@ PREP(setArsenal);
 PREP(setInventory);
 PREP(setPlayerData);
 
+PREP(setRoleHacks);
+
 PREP(getORBAT);
 PREP(setGroup);
 PREP(setRadioFreq);
@@ -17,3 +19,5 @@ PREP(getGPS);
 PREP(callENDEX);
 
 PREP(toggleHUD);
+
+PREP(godMode);

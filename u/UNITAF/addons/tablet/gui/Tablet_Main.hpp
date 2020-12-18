@@ -131,6 +131,7 @@ class GVAR(GUI_Control_Main): GVAR(GUI_Control_Base) {
 
 		// OOPS BUTTONS
 		class GVAR(GUI_Button_GetRadio): GVAR(GUI_Button_Base) {
+			idc 						= IDC_Tablet_Main_Button_GetRadio;
 			x 							= GRID_OFFSET_COL2;
 			y 							= CALC_Y(1);
 			text 						= "Get SW Radio";
@@ -138,6 +139,7 @@ class GVAR(GUI_Control_Main): GVAR(GUI_Control_Base) {
 			toolTip 					= "Forgot your radio? Grab one here";
 		};
 		class GVAR(GUI_Button_GetNVG): GVAR(GUI_Button_Base) {
+			idc 						= IDC_Tablet_Main_Button_GetNVG;
 			x 							= GRID_OFFSET_COL2;
 			y 							= CALC_Y(4);
 			text 						= "Get NVG's";
@@ -145,6 +147,7 @@ class GVAR(GUI_Control_Main): GVAR(GUI_Control_Base) {
 			toolTip 					= "Forgot some NVG's? Grab one here";
 		};
 		class GVAR(GUI_Button_GetEarplugs): GVAR(GUI_Button_Base) {
+			idc 						= IDC_Tablet_Main_Button_GetEarplugs;
 			x 							= GRID_OFFSET_COL2;
 			y 							= CALC_Y(7);
 			text 						= "Get Earplugs";
@@ -152,6 +155,7 @@ class GVAR(GUI_Control_Main): GVAR(GUI_Control_Base) {
 			toolTip 					= "Forgot some earplugs? Grab one here";
 		};
 		class GVAR(GUI_Button_GetGPS): GVAR(GUI_Button_Base) {
+			idc 						= IDC_Tablet_Main_Button_GetGPS;
 			x 							= GRID_OFFSET_COL2;
 			y 							= CALC_Y(10);
 			text 						= "Get GPS";

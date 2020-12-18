@@ -14,7 +14,7 @@
 
 params ["_playerData"];
 // _playerData = [armauid, playerRank, playerAdmin, playerPos, playerDir, operation, is_medic_level, is_engineer_level, unit, callsign, freq, buddy, lr_freq, armarank, role, leader, is_zeus, is_eod, is_logistics, is_reporter];
-_playerData params ["_armaUID", "_playerRank", "_playerAdmin", "_playerPos", "_playerDir", "_operation", "_isMedic", "_isEgnineer", "_unit", "_callsign", "_freq", "_buddy", "_lr_freq", "_armarank", "_role", "_leader", "_isZeus", "_isEOD", "_isLogistics", "_isReporter"];
+_playerData params ["_armaUID", "_playerRank", "_playerAdmin", "_playerPos", "_playerDir", "_operation", "_isMedic", "_isEngineer", "_unit", "_callsign", "_freq", "_buddy", "_lr_freq", "_armarank", "_role", "_leader", "_isZeus", "_isEOD", "_isLogistics", "_isReporter"];
 
 // set tank
 player setUnitRank _armarank;
@@ -23,13 +23,15 @@ player setUnitRank _armarank;
 player setUnitTrait ["medic", (_isMedic > 0)];
 player setVariable ["ace_medical_medicClass", _isMedic, true];
 
-player setUnitTrait ["engineer", (_isEgnineer > 0)];
-player setVariable ["ACE_IsEngineer", _isEgnineer, true];
+player setUnitTrait ["engineer", (_isEngineer > 0)];
+player setVariable ["ACE_IsEngineer", _isEngineer, true];
 
 player setUnitTrait ["explosiveSpecialist", false];
 player setVariable ["ACE_isEOD", _isEOD, true];
 
 player setUnitTrait ["UAVHacker", false];
+
+[_role] call FUNC(setRoleHacks);
 
 // set insignia
 [player, ""] call BIS_fnc_setUnitInsignia;

@@ -16,7 +16,7 @@
  * Set Event Handlers
  */
 [QEGVAR(ClientEvent,PlayerInventory), {
-	_this call FUNC(setInventory);
+	_this call FUNC(setInventory);	
 }] call CBA_fnc_addEventHandler;
 
 [QEGVAR(ClientEvent,PlayerData), {

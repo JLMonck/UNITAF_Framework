@@ -24,9 +24,20 @@ if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
 };
 
 // Must return: <ID>, <CALLSIGN>, <SIDE>
-_ORBAT = "extDB3" callExtension format["0:FETCHDATA:SELECT * FROM table WHERE 1 = %1", _operationID];
+_query = "[0, [""not implemented""]]"; //"extDB3" callExtension format["0:FETCHDATA:SELECT * FROM test", _operationID];
+_result = parseSimpleArray (_query);
 
-if (!(parseSimpleArray (_ORBAT)  select 0 isEqualTo 1)) exitWith { diag_log "extDB3: Error retrieving ORBAT"; };
-
-[QEGVAR(ServerEvent,setFullORBAT), [parseSimpleArray (_ORBAT) select 1]] call CBA_fnc_serverEvent;
+switch (_result select 0) do {
+	case 0: {
+		 diag_log "extDB3: Error retrieving ORBAT";
+		 diag_log format["Database Error: %1", (_result select 1)];
+	};
+	case 1: {
+		//[QEGVAR(ServerEvent,setFullORBAT), (_result select 1 select 0)] call CBA_fnc_serverEvent;
+	};
+	default {
+		diag_log "extDB3: Something went wrong with ORBAT";
+		diag_log format["Database Result: %1", _result];
+	};
+};
 

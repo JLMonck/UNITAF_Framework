@@ -20,8 +20,6 @@ if (_display isEqualTo displayNull) exitWith {};
 [GET_OPORD] call FUNC(hideAll);
 GET_OPORD ctrlShow true;
 
-diag_log '>> open OPORD';
-
 _operationId = getMissionConfigValue ["UNITAF_operationId", 0];
 if (_operationId isEqualTo 0) then {
 	_operationId = missionName;
@@ -43,7 +41,4 @@ if (_operationId isEqualTo 0) then {
 	if (!_htmlLoaded) then {
 		_ctrlHTML htmlLoad _OPORDOffline;
 	};
-
-	diag_log format ['>> loaded: %1', (str _htmlLoaded)];
-	diag_log format ['>> file: %1', (_OPORDOffline)];
 };

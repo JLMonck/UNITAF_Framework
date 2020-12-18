@@ -4,18 +4,22 @@ disableSerialization;
 
 params ["_player", "_corpse", ["_arsenal", false, [true]]];
 
-if ((getMissionConfigValue ["UNITAF_autoORBAT", 0]) isEqualTo 1) then {
-	// run through spawn to fix timing issues (because scripts can't run on same frame as unit creation)
-	[_player, _corpse, _arsenal] spawn {
-		params ["_player", "_corpse", "_arsenal"];
+// run through spawn to fix timing issues (because scripts can't run on same frame as unit creation)
+[_player, _corpse, _arsenal] spawn {
+	params ["_player", "_corpse", "_arsenal"];
 
-		//XEH should only be called on local units
-		if (!local _player) exitWith {false};
-		if(!hasInterface) exitWith {false};
-		if(isDedicated) exitWith {false};
-		waitUntil {!isNull _player};
-		waitUntil {isPlayer _player};
+	//XEH should only be called on local units
+	if (!local _player) exitWith {false};
+	if(!hasInterface) exitWith {false};
+	if(isDedicated) exitWith {false};
+	waitUntil {!isNull _player};
+	waitUntil {isPlayer _player};
 
+	// not really needed anymore, since ACE fixed this issue themselves
+	// people can now still die, but won't bleed out instantly when there's no heart rate
+	[_player] call FUNC(godMode);
+
+	if ((getMissionConfigValue ["UNITAF_autoORBAT", 0]) isEqualTo 1) then {
 		// check if spawned object is a "humanoid" and if it doesn't have userData yet
 		if (_player isKindOf "CAManBase" && (_player getVariable [QGVAR(hasUserData), false]) isEqualTo false) then {
 			_loadingText = format ['<t align="center">
@@ -33,6 +37,8 @@ if ((getMissionConfigValue ["UNITAF_autoORBAT", 0]) isEqualTo 1) then {
 			_player enableSimulationGlobal false;
 
 			[_player] call FUNC(getORBAT);
+			sleep 3;
+
 			[
 				{
 					params ["_player"];
@@ -59,7 +65,7 @@ if ((getMissionConfigValue ["UNITAF_autoORBAT", 0]) isEqualTo 1) then {
 
 					[_player] spawn {
 						params ["_player"];
-						sleep 5;
+						sleep 2;
 						_player enableSimulationGlobal true;
 						"RespawnLoading" cutFadeOut 1;
 					};
@@ -79,7 +85,7 @@ if ((getMissionConfigValue ["UNITAF_autoORBAT", 0]) isEqualTo 1) then {
 					
 					[_player] spawn {
 						params ["_player"];
-						sleep 5;
+						sleep 2;
 						_player enableSimulationGlobal true;
 						"RespawnLoading" cutFadeOut 1;
 					};

@@ -41,8 +41,8 @@ class CfgUnitInsignia
     UNITAF_INSIGNIA(Major_OD,O-4 Major,OD,O4.Major.OD.paa)
     
     // Roles
-    UNITAF_INSIGNIA(Medic1_OD,Medic #1,OD,role.Medic.OD.paa)
-    UNITAF_INSIGNIA(Medic2_OD,Medic #2,OD,role.Medic2.OD.paa)
+    UNITAF_INSIGNIA(Medic1_OD,Medic,OD,role.Medic.OD.paa)
+    UNITAF_INSIGNIA(Medic2_OD,Medic (Cross),OD,role.Medic2.OD.paa)
     UNITAF_INSIGNIA(EOD_OD,EOD,OD,role.EOD.OD.paa)
     UNITAF_INSIGNIA(JTAC_OD,JTAC,OD,role.JTAC.OD.paa)
     UNITAF_INSIGNIA(UAV_OD,UAV Operator,OD,role.UAV.OD.paa)
@@ -81,8 +81,8 @@ class CfgUnitInsignia
     UNITAF_INSIGNIA(Major_Tan,O-4 Major,Tan,O4.Major.Tan.paa)
     
     // Roles
-    UNITAF_INSIGNIA(Medic1_Tan,Medic #1,Tan,role.Medic.Tan.paa)
-    UNITAF_INSIGNIA(Medic2_Tan,Medic #2,Tan,role.Medic2.Tan.paa)
+    UNITAF_INSIGNIA(Medic1_Tan,Medic,Tan,role.Medic.Tan.paa)
+    UNITAF_INSIGNIA(Medic2_Tan,Medic (Cross),Tan,role.Medic2.Tan.paa)
     UNITAF_INSIGNIA(EOD_Tan,EOD,Tan,role.EOD.Tan.paa)
     UNITAF_INSIGNIA(JTAC_Tan,JTAC,Tan,role.JTAC.Tan.paa)
     UNITAF_INSIGNIA(UAV_Tan,UAV Operator,Tan,role.UAV.Tan.paa)
@@ -122,8 +122,8 @@ class CfgUnitInsignia
     UNITAF_INSIGNIA(Major_MC,O-4 Major,MC,O4.Major.MC.paa)
     
     // Roles
-    UNITAF_INSIGNIA(Medic1_MC,Medic #1,MC,role.Medic.MC.paa)
-    UNITAF_INSIGNIA(Medic2_MC,Medic #2,MC,role.Medic2.MC.paa)
+    UNITAF_INSIGNIA(Medic1_MC,Medic,MC,role.Medic.MC.paa)
+    UNITAF_INSIGNIA(Medic2_MC,Medic (Cross),MC,role.Medic2.MC.paa)
     UNITAF_INSIGNIA(EOD_MC,EOD,MC,role.EOD.MC.paa)
     UNITAF_INSIGNIA(JTAC_MC,JTAC,MC,role.JTAC.MC.paa)
     UNITAF_INSIGNIA(UAV_MC,UAV Operator,MC,role.UAV.MC.paa)
@@ -162,8 +162,8 @@ class CfgUnitInsignia
     UNITAF_INSIGNIA(Major_Bl,O-4 Major,Black,O4.Major.Bl.paa)
     
     // Roles
-    UNITAF_INSIGNIA(Medic1_Bl,Medic #1,Black,role.Medic.Bl.paa)
-    UNITAF_INSIGNIA(Medic2_Bl,Medic #2,Black,role.Medic2.Bl.paa)
+    UNITAF_INSIGNIA(Medic1_Bl,Medic,Black,role.Medic.Bl.paa)
+    UNITAF_INSIGNIA(Medic2_Bl,Medic (Cross),Black,role.Medic2.Bl.paa)
     UNITAF_INSIGNIA(EOD_Bl,EOD,Black,role.EOD.Bl.paa)
     UNITAF_INSIGNIA(JTAC_Bl,JTAC,Black,role.JTAC.Bl.paa)
     UNITAF_INSIGNIA(UAV_Bl,UAV Operator,Black,role.UAV.Bl.paa)

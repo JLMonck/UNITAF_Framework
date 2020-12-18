@@ -25,3 +25,15 @@ if (!hasInterface) then {
 		_this call FUNC(callENDEX);
 	}] call CBA_fnc_addEventHandler;
 };
+
+if (isServer) then {
+	// Run on server only
+	if (QGVAR(HCBalancer) call CBA_settings_fnc_get) then {
+		[] spawn {
+			while {true} do {
+				sleep 10;
+				call FUNC(darc_aiToHc);
+			};
+		};
+	};
+};

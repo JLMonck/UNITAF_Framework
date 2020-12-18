@@ -10,6 +10,7 @@ class CfgPatches {
             "A3_Data_F_Oldman_Loadorder",
             "cba_main",
             "cba_xeh",
+            "cba_settings",
             "cba_keybinding"
         };
         author = "$STR_unitaf_main_Author";

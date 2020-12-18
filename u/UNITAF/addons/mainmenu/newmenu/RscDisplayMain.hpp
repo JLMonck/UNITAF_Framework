@@ -437,6 +437,7 @@ class RscDisplayMain: RscStandardDisplay
 
 		// UNITAF Logo
 		// Quick Join Main Server
+		/*
 		class SpotlightJoinMain: RscControlsGroupNoScrollbars
 		{
 			//fade=1;
@@ -483,8 +484,8 @@ class RscDisplayMain: RscStandardDisplay
 					w = "8 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
 					h = "8 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 
-					//onMouseEnter = "diag_log 'onMouseEnter'; (_this select 0) ctrlsetfade 0; (_this select 0) ctrlcommit 0.1;";
-					//onMouseExit = "diag_log 'onMouseExit'; (_this select 0) ctrlsetfade 1; (_this select 0) ctrlcommit 0.1;";
+					//onMouseEnter = "(_this select 0) ctrlsetfade 0; (_this select 0) ctrlcommit 0.1;";
+					//onMouseExit = "(_this select 0) ctrlsetfade 1; (_this select 0) ctrlcommit 0.1;";
 
 					class Controls
 					{
@@ -605,8 +606,8 @@ class RscDisplayMain: RscStandardDisplay
 					w = "8 * 			(			((safezoneW / safezoneH) min 1.2) / 40)";
 					h = "8 * 			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 
-					onMouseEnter = "diag_log 'onMouseEnter'; (_this select 0) ctrlsetfade 0; (_this select 0) ctrlcommit 0.1;";
-					onMouseExit = "diag_log 'onMouseExit'; (_this select 0) ctrlsetfade 1; (_this select 0) ctrlcommit 0.1;";
+					onMouseEnter = "(_this select 0) ctrlsetfade 0; (_this select 0) ctrlcommit 0.1;";
+					onMouseExit = "(_this select 0) ctrlsetfade 1; (_this select 0) ctrlcommit 0.1;";
 
 					class Controls
 					{
@@ -680,7 +681,7 @@ class RscDisplayMain: RscStandardDisplay
 				};
 			};
 		};
-
+		*/
 
 		//class GameLogo: RscPicture
 		class GameLogo: RscPictureKeepAspect
