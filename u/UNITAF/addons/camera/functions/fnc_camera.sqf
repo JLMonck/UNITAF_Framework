@@ -1045,6 +1045,8 @@ switch _mode do {
 				};
 			};
 
+			// Don't teleport player when pressing SPACEBAR
+			/*
 			case (_key == DIK_SPACE): {
 				_cam = missionnamespace getvariable [QFUNC(camera_cam),objnull];
 				_vehicle = vehicle player;
@@ -1055,6 +1057,7 @@ switch _mode do {
 				_vehicle setposatl [_worldPos select 0,_worldPos select 1,_alt];
 				_vehicle setvelocity [0,0,0];
 			};
+			*/
 
 			case (_key == DIK_ESCAPE): {
 

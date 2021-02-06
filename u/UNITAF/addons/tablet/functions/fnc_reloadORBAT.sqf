@@ -14,6 +14,6 @@
  */
 
  // get Full ORBAT
-_operationId = missionNamespace getVariable ['UNITAF_operationID', 0];
+private _operationId = missionNamespace getVariable ['UNITAF_operationID', 0];
 
 [QEGVAR(ServerEvent,getFullORBAT), [_operationId]] call CBA_fnc_serverEvent;

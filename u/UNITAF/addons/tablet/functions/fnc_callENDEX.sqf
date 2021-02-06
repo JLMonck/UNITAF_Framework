@@ -14,9 +14,9 @@
  */
 
 [] spawn {
-	_display = GET_TABLET;
+	private _display = GET_TABLET;
 
-	_result = ["Are you sure?", "Call ENDEX", "Yes, do it!", "Nope!", _display, false] call BIS_fnc_guiMessage;
+	private _result = ["Are you sure?", "Call ENDEX", "Yes, do it!", "Nope!", _display, false] call BIS_fnc_guiMessage;
 	if (_result) then {
 		// disable all AI (on Server AND HC)
 		[QEGVAR(HeadlessEvent,callENDEX), [(allUnits - allPlayers)], (allUnits - allPlayers)] call CBA_fnc_targetEvent;

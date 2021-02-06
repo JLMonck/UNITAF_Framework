@@ -29,3 +29,9 @@
 
 #define GET_ORBAT				(GET_TABLET displayCtrl IDC_Tablet_ORBAT)
 #define GET_IN_ORBAT(IDC)		(GET_ORBAT controlsGroupCtrl IDC)
+
+#define GET_LOGISTICS			(GET_TABLET displayCtrl IDC_Tablet_Logistics)
+#define GET_IN_LOGISTICS(IDC)	(GET_LOGISTICS controlsGroupCtrl IDC)
+
+
+#define GET_MAPBG				(GET_TABLET displayCtrl IDC_Tablet_MapInfo_Control)

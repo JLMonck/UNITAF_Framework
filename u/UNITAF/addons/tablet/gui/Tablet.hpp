@@ -25,6 +25,20 @@ class GVAR(Tablet) {
 			font 				= "PuristaLight";
 			sizeEx 				= GUI_TEXT_SIZE_MEDIUM;
 		};
+
+		class GVAR(MapFlat): RscMapControl {
+			idc 				= IDC_Tablet_MapFlat_Control;
+			type 				= CT_MAP_MAIN;
+			style 				= ST_PICTURE;
+
+			GRID_FRAME
+
+			maxSatelliteAlpha	= 0;
+			alphaFadeStartScale	= 0;
+			alphaFadeEndScale	= 0;
+
+			//onMouseMoving = QUOTE(_this call FUNC(tabletMap_onMouseMoving));
+		};
 	};
 
 	class Controls {
@@ -65,5 +79,9 @@ class GVAR(Tablet) {
 		#include "Tablet_Main.hpp"
 		#include "Tablet_Admin.hpp"
 		#include "Tablet_Orbat.hpp"
+		#include "Tablet_Logistics.hpp"
 	};
 };
+
+// needs to be outside of Dialog
+#include "Tablet_Logistics_Inventory.hpp"

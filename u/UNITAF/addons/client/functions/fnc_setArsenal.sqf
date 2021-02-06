@@ -15,7 +15,7 @@
  * Public: No
  */
 params ["_arsenalData"];
-//_arsenalData = parseSimpleArray format ["%1", _arsenalData];	// ugly hack to make an array out of a string
+_arsenalData params ["_faction", "_rankid", "_inventory"];
 
 if (isClass(configFile >> "CfgPatches" >> "ace_arsenal")) then {
 	[
@@ -25,17 +25,18 @@ if (isClass(configFile >> "CfgPatches" >> "ace_arsenal")) then {
 		},
 		{
 			params ["_player", "_arsenal"];
-			_loadout = _player getVariable [QGVAR(defaultInventory), []];
+			private _loadout = _player getVariable [QGVAR(defaultInventory), []];
 
-			_flat = _loadout call EFUNC(main,arrayFlattenUnordered);
+			private _flat = _loadout call EFUNC(main,arrayFlattenUnordered);
 			_flat = _flat select { !(_x isEqualTo "") && !(typeName _x isEqualTo "SCALAR") };
+
 			_arsenal = _arsenal + _flat;
 
-			_boxes = ["UNITAF_arsenal", 25] call EFUNC(main,fillArrayPrefix);
+			private _boxes = ["UNITAF_arsenal", 25] call EFUNC(main,fillArrayPrefix);
 
 			{
 				if !(isNil _x) then {
-					_box = missionNamespace getVariable _x;
+					private _box = missionNamespace getVariable _x;
 					[_box, true, false] call ace_arsenal_fnc_removeVirtualItems;
 					[_box, _arsenal, false] call ace_arsenal_fnc_initBox;
 				};
@@ -44,8 +45,8 @@ if (isClass(configFile >> "CfgPatches" >> "ace_arsenal")) then {
 			_player setVariable [QGVAR(hasArsenal), true, true];
 			hint "Your personal arsenal has been loaded";
 		},
-		[player, _arsenalData],
+		[player, _inventory],
 		10,
-		{}
+		{ hint "Something went wrong loading the arsenal..."; }
 	] call CBA_fnc_waitUntilAndExecute;
 };

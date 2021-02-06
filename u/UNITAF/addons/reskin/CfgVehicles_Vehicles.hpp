@@ -170,3 +170,34 @@ class GVAR(Training_Offroad_KhakiCI): Offroad_01_military_covered_base_F {
 	};
 	dlc = QUOTE(PREFIX);
 };
+
+class Plane_Civil_01_base_F;
+class GVAR(Training_Cessna): Plane_Civil_01_base_F {
+	side = 1;
+	scope = 2;
+	scopeCurator = 2;
+	faction = "Faction_UNITAF";
+	editorSubcategory = "EdSubcat_UNITAF_Training";
+	displayName = "[UNITAF] Training Cessna TTx";
+	author = "UNITAF";
+	crew = "B_GEN_Soldier_F";
+	typicalCargo[] = {
+		"B_GEN_Soldier_F"
+	};
+	hiddenSelections[] = {
+		"camo1",
+		"camo2",
+		"camo3",
+		"camo4"
+	};
+	hiddenSelectionsTextures[] = {
+		"\u\unitaf\addons\reskin\assets\vehicles\training\unitaf_training_plane_body.paa",
+		"\u\unitaf\addons\reskin\assets\vehicles\training\unitaf_training_plane_wings.paa",
+		"A3\Air_F_Exp\Plane_Civil_01\Data\btt_int_01_co.paa",
+		"A3\Air_F_Exp\Plane_Civil_01\Data\btt_int_02_co.paa"
+	};
+	dlc = QUOTE(PREFIX);
+	class EventHandlers {
+		init="if (local (_this select 0)) then {[(_this select 0), nil, nil] call bis_fnc_initVehicle;};";
+	};
+};

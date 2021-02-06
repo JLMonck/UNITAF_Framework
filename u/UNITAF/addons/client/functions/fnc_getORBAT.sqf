@@ -16,6 +16,13 @@
  */
 params ["_player"];
 
+// lets reset everything just to be sure
+_player setVariable [QGVAR(hasInventory), false, true];
+_player setVariable [QGVAR(defaultInventory), [], true];
+_player setVariable [QGVAR(hasUserData), false, true];
+_player setVariable [QGVAR(userData), [], true];
+_player setVariable [QGVAR(hasGroup), false, true];
+
 [QEGVAR(ServerEvent,queryPlayerData), [_player]] call CBA_fnc_serverEvent;
 [QEGVAR(ServerEvent,queryPlayerInventory), [_player]] call CBA_fnc_serverEvent;
 [QEGVAR(ServerEvent,queryPlayerArsenal), [_player]] call CBA_fnc_serverEvent;

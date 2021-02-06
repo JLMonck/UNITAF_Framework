@@ -13,5 +13,5 @@
 // 	_hcList = call fn_get_hcList;
 //----------------------------------------------------------------
 
-_hcList = allPlayers - (allPlayers - entities "HeadlessClient_F");
+private _hcList = allPlayers - (allPlayers - entities "HeadlessClient_F");
 _hcList

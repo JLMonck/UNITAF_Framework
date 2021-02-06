@@ -20,7 +20,7 @@ params ["_ORBATGroups"];
 // Create groups based on ORBAT
 {
     _x params ["_id", "_callsign", "_side"];
-	_group = groupNull;
+	private _group = groupNull;
 	switch (toupper _side) do {
 		case 'EAST': { _group = createGroup [east, false]; };
 		case 'GUER': { _group = createGroup [resistance, false]; };

@@ -151,12 +151,15 @@ class GVAR(GUI_List_Base) {
   	idcRight 					= -1;
 	drawSideArrows				= 0;
 	class ListScrollBar {
-		color[] 					= COLOR_SUBTEXT;
+		//color[] 					= COLOR_TEXT;
 		thumb 						= "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
 		arrowFull 					= "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa";
 		arrowEmpty 					= "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";
 		border 						= "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa";
 	};
+	colorPicture[] 				= {1,1,1,1};
+	colorPictureSelected[] 		= {1,1,1,1};
+	colorPictureDisabled[] 		= {1,1,1,1};
 };
 class GVAR(GUI_Button_Table_Freq): GVAR(GUI_Button_Base) {
 	x 							= 0;
@@ -166,4 +169,48 @@ class GVAR(GUI_Button_Table_Freq): GVAR(GUI_Button_Base) {
 	sizeEx 						= (GUI_GRID_H * 0.8);
 	colorBackground[] 			= COLOR_SUBTEXT;
 	toolTip						= "Set this frequency to Ch. 3";
+};
+
+class GVAR(GUI_Combo_Base) {
+	deletable					= 0;
+	fade						= 0;
+	access 						= 0;
+	type 						= CT_COMBO;
+	colorSelect[] 				= {0,0,0,1};
+	colorText[] 				= {1,1,1,1};
+	colorBackground[] 			= {0,0,0,1};
+	colorScrollbar[] 			= {1,0,0,1};
+	colorDisabled[] 			= {1,1,1,0.25};
+	colorPicture[] 				= {1,1,1,1};
+	colorPictureSelected[] 		= {1,1,1,1};
+	colorPictureDisabled[] 		= {1,1,1,0.25};
+	colorPictureRight[] 		= {1,1,1,1};
+	colorPictureRightSelected[] = {1,1,1,1};
+	colorPictureRightDisabled[] = {1,1,1,0.25};
+	colorTextRight[] 			= {1,1,1,1};
+	colorSelectRight[] 			= {0,0,0,1};
+	colorSelect2Right[] 		= {0,0,0,1};
+	tooltipColorText[] 			= {1,1,1,1};
+	tooltipColorBox[] 			= {1,1,1,1};
+	tooltipColorShade[] 		= {0,0,0,0.65};
+	soundSelect[] 				= {};
+	soundExpand[] 				= {};
+	soundCollapse[] 			= {};
+	maxHistoryDelay 			= 1;
+	class ComboScrollBar {
+		color[] 					= COLOR_SUBTEXT;
+	};
+	style 						= ST_MULTI + ST_NO_RECT;
+	font 						= "RobotoCondensed";
+	sizeEx 						= GUI_TEXT_SIZE_SMALL;
+	shadow 						= 0;
+	x 							= 0;
+	y 							= 0;
+	w 							= GRID_BUTTON_W;
+	h 							= GRID_BUTTON_H;
+	colorSelectBackground[] 	= {1,1,1,0.7};
+	arrowEmpty 					= "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_ca.paa";
+	arrowFull 					= "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_active_ca.paa";
+	wholeHeight 				= GRID_BUTTON_H * 5;
+	colorActive[] 				= {1,0,0,1};
 };

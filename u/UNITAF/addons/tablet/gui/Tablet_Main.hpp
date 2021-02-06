@@ -5,58 +5,73 @@ class GVAR(GUI_Control_Main): GVAR(GUI_Control_Base) {
 	class Controls {
 		// ORBAT Items
 		class GVAR(GUI_Title_Callsign): GVAR(GUI_Title_Base) {
-			x 					= GRID_OFFSET_COL4;
+			x 					= GRID_OFFSET_COL3;
+			w 					= GRID_BUTTON_WIDE_W;
 			y 					= CALC_Y(1);
 			text 				= "Callsign";
 		};
 		class GVAR(GUI_Text_Callsign): GVAR(GUI_Text_Base) {
 			idc 				= IDC_Tablet_Main_Callsign;
-			x 					= GRID_OFFSET_COL4;
+			x 					= GRID_OFFSET_COL3;
+			w 					= GRID_BUTTON_WIDE_W;
 			y 					= CALC_Y(2);
+			colorBackground[] 	= {0,0,0,0.5};
 		};
 
 		class GVAR(GUI_Title_Report): GVAR(GUI_Title_Base) {
-			x 					= GRID_OFFSET_COL4;
+			x 					= GRID_OFFSET_COL3;
+			w 					= GRID_BUTTON_WIDE_W;
 			y 					= CALC_Y(3);
 			text 				= "Report To";
 		};
 		class GVAR(GUI_Text_Report): GVAR(GUI_Text_Base) {
 			idc 				= IDC_Tablet_Main_Report;
-			x 					= GRID_OFFSET_COL4;
+			x 					= GRID_OFFSET_COL3;
+			w 					= GRID_BUTTON_WIDE_W;
 			y 					= CALC_Y(4);
+			colorBackground[] 	= {0,0,0,0.5};
 		};
 
 		class GVAR(GUI_Title_Role): GVAR(GUI_Title_Base) {
-			x 					= GRID_OFFSET_COL4;
+			x 					= GRID_OFFSET_COL3;
+			w 					= GRID_BUTTON_WIDE_W;
 			y 					= CALC_Y(5);
 			text 				= "Role";
 		};
 		class GVAR(GUI_Text_Role): GVAR(GUI_Text_Base) {
 			idc 				= IDC_Tablet_Main_Role;
-			x 					= GRID_OFFSET_COL4;
+			x 					= GRID_OFFSET_COL3;
+			w 					= GRID_BUTTON_WIDE_W;
 			y 					= CALC_Y(6);
+			colorBackground[] 	= {0,0,0,0.5};
 		};
 
 		class GVAR(GUI_Title_Color): GVAR(GUI_Title_Base) {
-			x 					= GRID_OFFSET_COL4;
+			x 					= GRID_OFFSET_COL3;
+			w 					= GRID_BUTTON_WIDE_W;
 			y 					= CALC_Y(7);
 			text 				= "Buddy Color";
 		};
 		class GVAR(GUI_Text_Color): GVAR(GUI_Text_Base) {
 			idc 				= IDC_Tablet_Main_Color;
-			x 					= GRID_OFFSET_COL4;
+			x 					= GRID_OFFSET_COL3;
+			w 					= GRID_BUTTON_WIDE_W;
 			y 					= CALC_Y(8);
+			colorBackground[] 	= {0,0,0,0.5};
 		};
 
 		class GVAR(GUI_Title_Team): GVAR(GUI_Title_Base) {
-			x 					= GRID_OFFSET_COL4;
+			x 					= GRID_OFFSET_COL3;
+			w 					= GRID_BUTTON_WIDE_W;
 			y 					= CALC_Y(9);
 			text 				= "Current Team";
 		};
 		class GVAR(GUI_List_Team): GVAR(GUI_List_Base) {
 			idc 				= IDC_Tablet_Main_Team;
-			x 					= GRID_OFFSET_COL4;
+			x 					= GRID_OFFSET_COL3;
+			w 					= GRID_BUTTON_WIDE_W;
 			y 					= CALC_Y(10);
+			colorBackground[] 	= {0,0,0,0.5};
 		};
 		
 		// MISSION BUTTONS
@@ -102,7 +117,6 @@ class GVAR(GUI_Control_Main): GVAR(GUI_Control_Base) {
 			action 						= QUOTE(call FUNC(openTabletAdmin));
 			toolTip 					= "Functions only accessable for Admins";
 		};
-		/*
 		class GVAR(GUI_Button_Logistics): GVAR(GUI_Button_Base) {
 			idc 						= IDC_Tablet_Main_Button_Logistics;
 			x 							= GRID_OFFSET_COL2;
@@ -111,10 +125,9 @@ class GVAR(GUI_Control_Main): GVAR(GUI_Control_Base) {
 			colorBackground[] 			= COLOR_BUTTON_ADMIN;
 			colorBackgroundActive[] 	= COLOR_BUTTON_ADMIN;
 			colorFocused[] 				= COLOR_BUTTON_ADMIN;
-			//action 						= QUOTE(['init'] call FUNC(openLOGISTICS));
+			//action 						= QUOTE(['init'] call FUNC(openTabletLogistics));
 			//toolTip 					= "Functions only accessable for Admins";
 		};
-		*/
 
 		// REPORTER CAMERA BUTTON
 		class GVAR(GUI_Button_REPORTER): GVAR(GUI_Button_Base) {

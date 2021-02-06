@@ -1,6 +1,5 @@
-private ["_res", "_fnc"];
-_res = [];
-_fnc = {
+private _res = [];
+private _fnc = {
 	{
 		if (typeName _x isEqualTo "ARRAY") then [
 			{_x call _fnc; false},

@@ -26,3 +26,6 @@ HIDE_NOT_CURRENT(GET_MAIN,_current)
 HIDE_NOT_CURRENT(GET_ADMIN,_current)
 HIDE_NOT_CURRENT(GET_OPORD,_current)
 HIDE_NOT_CURRENT(GET_ORBAT,_current)
+HIDE_NOT_CURRENT(GET_LOGISTICS,_current)
+
+ctrlShow [IDC_Tablet_MapFlat_Control, false];

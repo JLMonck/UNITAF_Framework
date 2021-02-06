@@ -13,7 +13,9 @@
  * No
  */
 
-_display = GET_TABLET;
+disableSerialization;	// to fix #adminLogged issue
+
+private _display = GET_TABLET;
 
 if (_display isEqualTo displayNull) exitWith {};
 
@@ -72,14 +74,14 @@ if (
 		//GET_IN_MAIN(IDC_Tablet_Main_Role) ctrlSetStructuredText parseText "";
 		//GET_IN_MAIN(IDC_Tablet_Main_Color) ctrlSetStructuredText parseText "";
 
-		_ctrlTeam = GET_IN_MAIN(IDC_Tablet_Main_Team);
+		private _ctrlTeam = GET_IN_MAIN(IDC_Tablet_Main_Team);
 		lnbClear _ctrlTeam; // empty list first!
 
 		// TODO: Use 'waitUntil' or simply 'exitWith' ?
 		waitUntil { player getVariable [QEGVAR(client,hasUserData), false] };
 
 		// if ORBAT is loaded, show team stuff
-		_playerData = player getVariable [QEGVAR(client,userData), []];
+		private _playerData = player getVariable [QEGVAR(client,userData), []];
 		if !(count _playerData isEqualTo 0) then {
 			_playerData params ["_armaUID", "_playerRank", "_playerAdmin", "_playerPos", "_playerDir", "_operation", "_isMedic", "_isEgnineer", "_unit", "_callsign", "_freq", "_buddy", "_lr_freq", "_armarank", "_role", "_leader", "_isZeus", "_isEOD", "_isLogistics", "_isReporter"];
 
@@ -91,10 +93,12 @@ if (
 				GET_IN_MAIN(IDC_Tablet_Main_Button_Admin) ctrlShow true;
 			};
 			// isLogi ?
+			/*
 			if (_isAdmin || _isLogistics isEqualTo 1) then {
 				GET_IN_MAIN(IDC_Tablet_Main_Button_Logistics) ctrlEnable true;
 				GET_IN_MAIN(IDC_Tablet_Main_Button_Logistics) ctrlShow true;
 			};
+			*/
 			// isReporter ?
 			if (_isAdmin || _isReporter isEqualTo 1) then {
 				GET_IN_MAIN(IDC_Tablet_Main_Button_Reporter) ctrlEnable true;
@@ -105,7 +109,7 @@ if (
 			GET_IN_MAIN(IDC_Tablet_Main_Report) ctrlSetStructuredText parseText _leader;			// Report To (aka PltL / SL / FTL)
 			GET_IN_MAIN(IDC_Tablet_Main_Role) ctrlSetStructuredText parseText _role;				// Role
 
-			_color = "#ffffff";
+			private _color = "#ffffff";
 			switch (_buddy) do {
 				case 'RED': {		_color = "#ff0000"; };
 				case 'GREEN': {		_color = "#00ff00"; };
@@ -117,9 +121,9 @@ if (
 			GET_IN_MAIN(IDC_Tablet_Main_Color) ctrlSetStructuredText parseText format ["<t color='%1'>%2</t>", _color, _buddy];			// Buddy Color
 
 			// TEST DATA
-			_fullORBAT = missionNamespace getVariable ["UNITAF_ORBAT",[]];
+			private _fullORBAT = missionNamespace getVariable ["UNITAF_ORBAT", []];
 			if !(_fullORBAT isEqualTo []) then {
-				_ctrlTeam = GET_IN_MAIN(IDC_Tablet_Main_Team);
+				private _ctrlTeam = GET_IN_MAIN(IDC_Tablet_Main_Team);
 				lnbClear _ctrlTeam; // empty list first!
 				{
 					if ((_x select 4) isEqualTo _callsign) then {

@@ -15,11 +15,11 @@
 
 params ["_player"];
 
-_maxRange = QGVAR(ORBAT_Range) call CBA_settings_fnc_get;
+private _maxRange = QGVAR(ORBAT_Range) call CBA_settings_fnc_get;
 
-_return = false;
+private _return = false;
 
-_markers = ["UNITAF_base", 10] call EFUNC(main,fillArrayPrefix);
+private _markers = ["UNITAF_base", 10] call EFUNC(main,fillArrayPrefix);
 
 // check if player is inside marker area
 {
@@ -48,7 +48,7 @@ if !(_return) then {
 
 // above failed?
 if !(_return) then {
-	_boxes = ["UNITAF_arsenal", 25] call EFUNC(main,fillArrayPrefix);
+	private _boxes = ["UNITAF_arsenal", 25] call EFUNC(main,fillArrayPrefix);
 	// check if player is within 50m range of ORBAT Arsenal
 	{
 		// check if variable exists

@@ -14,8 +14,8 @@
 // 	[] spawn fnc_countAIonHC; 
 //----------------------------------------------------------------
 params [["_hc", ""]];
-_hc_owner = owner _hc;
+private _hc_owner = owner _hc;
 
-_c = 0;
+private _c = 0;
 _c = count ((allUnits - allPlayers) select {(owner _x == _hc_owner)});
 _c 

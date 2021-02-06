@@ -13,14 +13,21 @@
  * No
  */
 
-_display = GET_TABLET;
+private _display = GET_TABLET;
 
 if (_display isEqualTo displayNull) exitWith {};
 
 [GET_MAP] call FUNC(hideAll);
 GET_MAP ctrlShow true;
 
-addMissionEventHandler ["Draw3D",{
+ctrlShow [IDC_Tablet_MapFlat_Control, true];
+
+//_control = GET_IN_MAP(IDC_Tablet_Map_Control);
+//private _control = GET_IN_MAP(IDC_Tablet_MapFlat_Control);
+private _control = GET_MAPBG;
+
+_control ctrlAddEventHandler ["Draw", {
+//addMissionEventHandler ["Draw3D",{
 	//_ctrlMapInfo = GET_IN_MAP(IDC_Tablet_MapInfo_Control);
 
 	_veh = vehicle player;
@@ -48,35 +55,39 @@ addMissionEventHandler ["Draw3D",{
 	GET_IN_MAP(IDC_Tablet_MapInfo_Elevation) ctrlSetText format ["%1m",[round (_playerPos select 2),4] call CBA_fnc_formatNumber];
 }];
 
-//_control = GET_IN_MAP(IDC_Tablet_Map_Control);
-_control = GET_IN_MAP(IDC_Tablet_MapFlat_Control);
-
+/*
 GVAR(mousePosition) = [];
 
 _control ctrlAddEventHandler ["MouseMoving", {
-
 	params ["_control", "_xPos", "_yPos", "_mouseOver"];
 
-	_pos = position player;
-	_secondPos = _control ctrlMapScreenToWorld [_xPos, _yPos];
+	if (_mouseOver) then {
+		_control ctrlMapScreenToWorld [_xPos, _yPos];
 
-	GVAR(mousePosition) = _secondPos;
+		_pos = getPosASL player;
+		//_secondPos = _control ctrlMapScreenToWorld [_xPos, _yPos];
+		_secondPos = _control ctrlMapScreenToWorld [_xPos, _yPos];
 
-	_dirToSecondPos = [_pos, _secondPos] call BIS_fnc_dirTo;
-	_dstToSecondPos = [_pos, _secondPos] call BIS_fnc_distance2D;
+		GVAR(mousePosition) = _secondPos;
 
-	_dir = round (_dirToSecondPos / 45);
-	_octant = ["N ","NE","E ","SE","S ","SW","W ","NW","N "] select _dir;
+		_dirToSecondPos = [_pos, _secondPos] call BIS_fnc_dirTo;
+		_dstToSecondPos = [_pos, _secondPos] call BIS_fnc_distance2D;
 
-	GET_IN_MAP(IDC_Tablet_MapInfo_HookGrid) ctrlSetText format ["%1", mapGridPosition _secondPos];
-	GET_IN_MAP(IDC_Tablet_MapInfo_hookElevation) ctrlSetText format ["%1m", round getTerrainHeightASL _secondPos];
-	GET_IN_MAP(IDC_Tablet_MapInfo_HookDst) ctrlSetText format ["%1° %2", [_dirToSecondPos,3] call CBA_fnc_formatNumber, _octant];
-	GET_IN_MAP(IDC_Tablet_MapInfo_HookDir) ctrlSetText format ["%1km", [_dstToSecondPos / 1000, 1, 2] call CBA_fnc_formatNumber];
+		_dir = round (_dirToSecondPos / 45);
+		_octant = ["N ","NE","E ","SE","S ","SW","W ","NW","N "] select _dir;
+
+		GET_IN_MAP(IDC_Tablet_MapInfo_HookGrid) ctrlSetText format ["%1", mapGridPosition _secondPos];
+		GET_IN_MAP(IDC_Tablet_MapInfo_hookElevation) ctrlSetText format ["%1m", round getTerrainHeightASL _secondPos];
+		GET_IN_MAP(IDC_Tablet_MapInfo_HookDst) ctrlSetText format ["%1° %2", [_dirToSecondPos,3] call CBA_fnc_formatNumber, _octant];
+		GET_IN_MAP(IDC_Tablet_MapInfo_HookDir) ctrlSetText format ["%1km", [_dstToSecondPos / 1000, 1, 2] call CBA_fnc_formatNumber];
+	};
 }];
+*/
+
 _control ctrlAddEventHandler ["Draw", {
 	params ["_control"];
 
-	_pos = position player;
+	_pos = getPosASL player;
 	_secondPos = GVAR(mousePosition);
 
 	if !(_secondPos isEqualTo []) then {
@@ -84,6 +95,7 @@ _control ctrlAddEventHandler ["Draw", {
 		_control drawArrow [_pos, _secondPos, [1,0,0,1]];
 	};
 }];
+
 
 /*
 _ctrlMap 	 = GET_IN_MAP(IDC_Tablet_Map_Control);

@@ -12,7 +12,7 @@
  * Public:
  * No
  */
-_display = GET_TABLET;
+private _display = GET_TABLET;
 
 if (_display isEqualTo displayNull) exitWith {};
 
@@ -22,27 +22,27 @@ GET_ORBAT ctrlShow true;
 // Clear table when opening (again)
 ctClear GET_IN_ORBAT(IDC_Tablet_ORBAT_Table);
 
-_ORBAT = missionNamespace getVariable ["UNITAF_ORBAT", []];
+private _ORBAT = missionNamespace getVariable ["UNITAF_ORBAT", []];
 if (count _ORBAT isEqualTo 0) exitWith {};
 
-_totalHeight = 0;
+private _totalHeight = 0;
 
-_prevCallsign = "";
+private _prevCallsign = "";
 {
 	if !(_prevCallsign isEqualTo (_x select 4)) then {
-		_headerCtrls = ctAddHeader GET_IN_ORBAT(IDC_Tablet_ORBAT_Table);
+		private _headerCtrls = ctAddHeader GET_IN_ORBAT(IDC_Tablet_ORBAT_Table);
 		(_headerCtrls select 1) params ["_HBack", "_HCol1", "_HCol2"];
-		_HCol1 ctrlSetText (_x select 4);
-		_HCol2 ctrlSetText format ["%1 Mhz", (_x select 6)];
+		private _HCol1 ctrlSetText (_x select 4);
+		private _HCol2 ctrlSetText format ["%1 Mhz", (_x select 6)];
 		buttonSetAction [_HCol2, QUOTE([(_x select 6)] call EFUNC(client,setTempFreq))];
-		_HBack ctrlSetBackgroundColor [0,0,0,1];
+		private _HBack ctrlSetBackgroundColor [0,0,0,1];
 
 		_prevCallsign = (_x select 4);
 		_totalHeight = _totalHeight + 1.2;
 	};
 	
 
-	_color = [0,0,0,0];	// default transparent
+	private _color = [0,0,0,0];	// default transparent
 	switch (_x select 5) do {
 		case "WHITE": { _color = [1,1,1,1] };
 		case "RED": { _color = [1,0,0,1] };
@@ -50,7 +50,7 @@ _prevCallsign = "";
 		case "BLUE": { _color = [0,0,1,1] };
 		case "YELLOW": { _color = [1,1,0,1] };
 	};
-	_rank = "";
+	private _rank = "";
 	switch (toUpper (_x select 1)) do {
 		case "REC": {};
 		case "PVT": { _rank = "a3\ui_f\data\GUI\Cfg\Ranks\private_gs.paa"; };
@@ -71,7 +71,7 @@ _prevCallsign = "";
 		case "COL": { _rank = "a3\ui_f\data\GUI\Cfg\Ranks\colonel_gs.paa"; };
 	};
 
-	_rowCtrls = ctAddRow GET_IN_ORBAT(IDC_Tablet_ORBAT_Table);
+	private _rowCtrls = ctAddRow GET_IN_ORBAT(IDC_Tablet_ORBAT_Table);
 	(_rowCtrls select 1) params ["_RBack", "_RCol1", "_RCol2", "_RCol3", "_RCol4"];
 	_RCol1 ctrlSetText " ";
 	_RCol1 ctrlSetBackgroundColor _color;

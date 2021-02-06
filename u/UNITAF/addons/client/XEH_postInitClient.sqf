@@ -37,8 +37,8 @@ if (hasInterface) then {
     [
 		{time > 0 && !(isNull player)},
         {
-			_startTime = [serverTime, "ARRAY"] call BIS_fnc_timeToString;
-			_detail = serverName;
+			private _startTime = [serverTime, "ARRAY"] call BIS_fnc_timeToString;
+			private _detail = serverName;
 			switch (true) do {
 				case !(briefingName isEqualTo ""): {
 					_detail = briefingName;
@@ -60,4 +60,13 @@ if (hasInterface) then {
 			] call (missionNameSpace getVariable ["DiscordRichPresence_fnc_update",{}]);
 		}
     ] call CBA_fnc_waitUntilAndExecute;
+
+	private _update = QGVAR(FPSUpdate) call CBA_settings_fnc_get;
+	if (_update) then {
+		private _interval = QGVAR(FPSUpdateInterval) call CBA_settings_fnc_get;
+		// let each client update their FPS into a public variable based on a fixed update interval
+		[{
+			player setVariable [QGVAR(PlayerFPS), floor diag_fps, true];
+		}, _interval] call CBA_fnc_addPerFrameHandler;
+	};
 };
