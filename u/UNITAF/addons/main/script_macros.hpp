@@ -32,6 +32,8 @@
 
 #define QMAIN_ADDON QUOTE(MAIN_ADDON)
 
+#define ACEFUNC(var1,var2) TRIPLES(DOUBLES(ace,var1),fnc,var2)
+
 #define GETVAR_SYS(var1,var2) getVariable [ARR_2(QUOTE(var1),var2)]
 #define GETMVAR(var1,var2) (missionNamespace GETVAR_SYS(var1,var2))
 

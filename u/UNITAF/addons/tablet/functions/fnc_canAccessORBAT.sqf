@@ -10,6 +10,9 @@
  * Return Value:
  * <BOOLEAN>
  *
+ * Example:
+ * [player] call UNITAF_tablet_fnc_canAccessORBAT;
+ *
  * Public: No
  */
 
