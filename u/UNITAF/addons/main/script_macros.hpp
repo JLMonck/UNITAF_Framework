@@ -31,3 +31,5 @@
 #define SQUOTE(var1) 'var1'
 
 #define QMAIN_ADDON QUOTE(MAIN_ADDON)
+
+#define ACEFUNC(var1,var2) TRIPLES(DOUBLES(ace,var1),fnc,var2)
