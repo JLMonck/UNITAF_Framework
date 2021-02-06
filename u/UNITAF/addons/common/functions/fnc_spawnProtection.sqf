@@ -16,6 +16,8 @@
  * Public: Yes
  */
 
+if !(GVAR(spawnProtectionEnabled)) exitWith {};
+
 [typeOf player, "Fired", {
     params ["_unit", "_weapon", "", "", "", "_magazine", "_projectile"];
 
