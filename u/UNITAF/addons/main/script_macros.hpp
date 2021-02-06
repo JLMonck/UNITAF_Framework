@@ -31,3 +31,9 @@
 #define SQUOTE(var1) 'var1'
 
 #define QMAIN_ADDON QUOTE(MAIN_ADDON)
+
+#define GETVAR_SYS(var1,var2) getVariable [ARR_2(QUOTE(var1),var2)]
+#define GETMVAR(var1,var2) (missionNamespace GETVAR_SYS(var1,var2))
+
+#define SETVAR_SYS(var1,var2) setVariable [ARR_2(QUOTE(var1),var2)]
+#define SETMVAR(var1,var2) (missionNamespace SETVAR_SYS(var1,var2))
