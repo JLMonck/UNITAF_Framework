@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 /**
- * Author: Dedmen
- * Source: https://gist.github.com/dedmen/3fa5f648631dd14a4173edea7580045e
+ * Author: Katalam
+ * Source: https://github.com/Katalam/KAT_Template/blob/master/kat_ttt_template.malden/functions/admintools/fn_createZeus.sqf
  * Give player Zeus access
  *
  * Arguments:
@@ -18,6 +18,75 @@ params ["_player"];
 [_player] spawn {
 	params ["_player"];
 
+	 if (isNull (getAssignedCuratorLogic _player)) exitWith {
+        private _grp = createGroup sideLogic;
+        private _curator = _grp createUnit ["ModuleCurator_F", [0, 0, 0], [], 0, "NONE"];
+
+		// set Curator settings
+		_curator setVariable ["showNotification", false];
+		_curator setVariable ["birdType", "", true];
+		_curator setCuratorWaypointCost 0;
+		_curator setcuratorcoef ["place", 0];
+		_curator setcuratorcoef ["edit", 0];
+		_curator setcuratorcoef ["delete", 0];
+		_curator setcuratorcoef ["destroy", 0];
+		_curator setcuratorcoef ["group", 0];
+		_curator setcuratorcoef ["synchronize", 0];
+
+		//--- All (including unofficial ones)
+        _curator setVariable ["Addons", 3, true];
+
+        _curator addCuratorEditableObjects [vehicles, true];
+        _curator addCuratorEditableObjects [(allMissionObjects "Man"), false];
+        _curator addCuratorEditableObjects [(allMissionObjects "Air"), true];
+        _curator addCuratorEditableObjects [(allMissionObjects "Ammo"), false];
+
+        [_curator, [-1, -2, 2]] call BIS_fnc_setCuratorVisionModes;
+
+        _curator addEventHandler ["CuratorPinged", {
+			params ["_curator", "_unit"];
+            private _zeus = getAssignedCuratorUnit _curator;
+            if (isNull _zeus) then {
+				// if GM doesn't exist anymore, remove the module
+                unassignCurator _curator;
+                deleteVehicle _curator;
+            } else {
+				// Send a hint to the curators with the name of the client who pinged
+				[
+					[_zeus, _unit],
+					{
+						params ["_zeus", "_unit"];
+						hint format ["%1 has pinged Zeus!", name _unit];
+					}
+				] remoteExecCall ["call", _zeus]; 
+			};
+        }];
+
+		_player assignCurator _curator;
+
+		// remove Curator rights when unit gets killed
+		/*
+		// temp disabled, for now
+		private _eh_id = _player addEventHandler ["killed", {
+			params ["_player"];
+			
+			private _curObject = getAssignedCuratorLogic _player;
+
+			if (!isNull _curObject) then {
+				(group _curObject) deleteGroupWhenEmpty true;
+				unassignCurator _player;
+				deleteVehicle _curObject;
+			};
+			_player removeEventHandler ["killed", _player getVariable QGVAR(curatorKEH)];
+		}];
+		_player setVariable [QGVAR(curatorKEH), _eh_id];
+		*/
+    };
+
+	/**
+	 * Author: Dedmen
+ 	 * Source: https://gist.github.com/dedmen/3fa5f648631dd14a4173edea7580045e
+	 *
 	private _curVarName = (str _player)+"Cur";
 
 	// delete any curator modules for this unit if already existing
@@ -62,10 +131,13 @@ params ["_player"];
 			_curObject addCuratorAddons _newAddons;
 		};
 
-		// add all current objects to Curator
-		[_curObject] spawn {
-			params ["_curObject"];
-			_curObject addCuratorEditableObjects[(allMissionObjects "All"), true];
+		private _addZeusObjects = QGVAR(Zeus_addObjects) call CBA_settings_fnc_get;
+		if (_addZeusObjects) then {
+			// add all current objects to Curator
+			[_curObject] spawn {
+				params ["_curObject"];
+				_curObject addCuratorEditableObjects[(allMissionObjects "All"), true];
+			};
 		};
 
 		private _curObject = missionNamespace getVariable [_curVarName, objNull];
@@ -87,4 +159,5 @@ params ["_player"];
 		}];
 		_player setVariable [QGVAR(curatorKEH), _eh_id];
 	};
+	*/
 };

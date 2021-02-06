@@ -127,6 +127,9 @@
 #define GRID_BUTTON_W   CALC_W(5.75)           // (28 - 1) / (columns + (columns + 1)
 #define GRID_BUTTON_H   CALC_H(1.5)
 
+#define GRID_BUTTON_WIDE_W   CALC_W(5.75) + CALC_W(5.75) + CALC_X(1);
+#define GRID_BUTTON_DOUBLE_W   CALC_W(5.75) + CALC_W(5.75) + CALC_X(2);
+
 #define GRID_OFFSET_COL1    (GRID_FRAME_X + CALC_X(1))
 #define GRID_OFFSET_COL2    (GRID_FRAME_X + CALC_X(2) + CALC_W(5.75))
 #define GRID_OFFSET_COL3    (GRID_FRAME_X + CALC_X(3) + (CALC_W(5.75) * 2))
@@ -193,6 +196,15 @@
 #define IDC_Tablet_Admin_Button_Zeus            455403
 #define IDC_Tablet_Admin_Button_Arsenal         455404
 
+#define IDC_Tablet_Admin_FPS_local              455405
+#define IDC_Tablet_Admin_FPS_Server             455406
+#define IDC_Tablet_Admin_FPS_HC1                455407
+#define IDC_Tablet_Admin_FPS_HC2                455408
+#define IDC_Tablet_Admin_FPS_HC3                455409
+#define IDC_Tablet_Admin_FPS_HC4                455410
+#define IDC_Tablet_Admin_FPS_HC5                455411
+#define IDC_Tablet_Admin_FPS_HC6                455412
+
 // OPORD 4555xx
 #define IDC_Tablet_OPORD                        455500
 #define IDC_Tablet_OPORD_HTML                   455501
@@ -202,3 +214,113 @@
 #define IDC_Tablet_ORBAT_Table                  455601
 #define IDC_Tablet_ORBAT_Table_First            455601000
 #define IDC_Tablet_ORBAT_Table_Last             455601999
+
+// LOGISTICS 4557xx
+#define IDC_Tablet_Logistics                    455700
+#define IDC_Tablet_Logistics_CATEGORY           455701
+#define IDC_Tablet_Logistics_LIST               455702
+#define IDC_Tablet_Logistics_BTN_REMOVE         455703
+#define IDC_Tablet_Logistics_BTN_ADD            455704
+#define IDC_Tablet_Logistics_BTN_SEARCH         455705
+#define IDC_Tablet_Logistics_SEARCH_BAR         455706
+#define IDC_Tablet_Logistics_LOAD               455707
+#define IDC_Tablet_Logistics_BTN_RESET          455708
+#define IDC_Tablet_Logistics_BTN_CLEAR          455709
+
+#define IDC_Tablet_Logistics_Combo_Type         455710
+#define IDC_Tablet_Logistics_Combo_Preset       455711
+#define IDC_Tablet_Logistics_Combo_Container    455712
+#define IDC_Tablet_Logistics_Preview            455713
+
+
+#define POS_X(N) ((N) * GUI_GRID_W + GUI_GRID_CENTER_X)
+#define POS_Y(N) ((N) * GUI_GRID_H + GUI_GRID_CENTER_Y)
+#define POS_W(N) ((N) * GUI_GRID_W)
+#define POS_H(N) ((N) * GUI_GRID_H)
+
+#define IDC_TITLE 10
+#define IDC_BACKGROUND 20
+#define IDC_CONTENT 30
+#define IDC_CATEGORY   1510
+#define IDC_LIST       1520
+#define IDC_BTN_REMOVE 1530
+#define IDC_BTN_ADD    1540
+#define IDC_BTN_SEARCH 1550
+#define IDC_SEARCH_BAR 1560
+#define IDC_LOAD       1570
+#define IDC_BTN_RESET  1580
+#define IDC_BTN_CLEAR  1590
+
+
+
+// Weapon types
+#define TYPE_WEAPON_PRIMARY 1
+#define TYPE_WEAPON_HANDGUN 2
+#define TYPE_WEAPON_SECONDARY 4
+
+// Magazine types
+#define TYPE_MAGAZINE_HANDGUN_AND_GL 16 // mainly
+#define TYPE_MAGAZINE_PRIMARY_AND_THROW 256
+#define TYPE_MAGAZINE_SECONDARY_AND_PUT 512 // mainly
+#define TYPE_MAGAZINE_MISSILE 768
+
+// More types
+#define TYPE_BINOCULAR_AND_NVG 4096
+#define TYPE_WEAPON_VEHICLE 65536
+#define TYPE_ITEM 131072
+
+// Item types
+#define TYPE_DEFAULT 0
+#define TYPE_MUZZLE 101
+#define TYPE_OPTICS 201
+#define TYPE_FLASHLIGHT 301
+#define TYPE_BIPOD 302
+#define TYPE_FIRST_AID_KIT 401
+#define TYPE_FINS 501 // not implemented
+#define TYPE_BREATHING_BOMB 601 // not implemented
+#define TYPE_NVG 602
+#define TYPE_GOGGLE 603
+#define TYPE_SCUBA 604 // not implemented
+#define TYPE_HEADGEAR 605
+#define TYPE_FACTOR 607
+#define TYPE_RADIO 611
+#define TYPE_HMD 616
+#define TYPE_BINOCULAR 617
+#define TYPE_MEDIKIT 619
+#define TYPE_TOOLKIT 620
+#define TYPE_UAV_TERMINAL 621
+#define TYPE_VEST 701
+#define TYPE_UNIFORM 801
+
+// Master Items List
+#define ITEMS_PRIMARY    0
+#define ITEMS_SECONDARY  1
+#define ITEMS_HANDGUN    2
+#define ITEMS_OPTIC      3
+#define ITEMS_SIDE       4
+#define ITEMS_MUZZLE     5
+#define ITEMS_BIPOD      6
+#define ITEMS_MAGAZINES  7
+#define ITEMS_HEADGEAR   8
+#define ITEMS_UNIFORMS   9
+#define ITEMS_VESTS      10
+#define ITEMS_BACKPACKS  11
+#define ITEMS_GOGGLES    12
+#define ITEMS_NVGS       13
+#define ITEMS_BINOCULARS 14
+#define ITEMS_MAP        15
+#define ITEMS_COMPASS    16
+#define ITEMS_RADIO      17
+#define ITEMS_WATCH      18
+#define ITEMS_COMMS      19
+#define ITEMS_THROW      20
+#define ITEMS_PUT        21
+#define ITEMS_MISC       22
+
+// Object Cargo Array
+#define CARGO_ITEMS     0
+#define CARGO_WEAPONS   1
+#define CARGO_MAGAZINES 2
+#define CARGO_BACKPACKS 3
+
+#define EMPTY_CARGO [[[], []], [[], []], [[], []], [[], []]]

@@ -14,7 +14,7 @@
 
 params ["_count"];
 
-_array = [];
+private _array = [];
 _array resize _count;
 {
 	_array set [_forEachIndex, format["%1", (_forEachIndex + 1)]];

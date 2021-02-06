@@ -18,8 +18,8 @@
 // showHUD [hud, info, radar, compass, direction, menu, group, cursors, panels, kills]
 // shownHUD
 
-_showHUD = uiNamespace getVariable [QGVAR(HUDshow), true];
-_shownHUD = uiNamespace getVariable [QGVAR(HUDshown), shownHUD];
+private _showHUD = uiNamespace getVariable [QGVAR(HUDshow), true];
+private _shownHUD = uiNamespace getVariable [QGVAR(HUDshown), shownHUD];
 
 if (_showHUD) then {
 	// hide HUD

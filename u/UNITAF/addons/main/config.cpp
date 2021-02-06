@@ -79,6 +79,9 @@ class CfgEditorSubcategories {
 	class EdSubcat_UNITAF_Training {
 		displayName = "Training";
 	};
+    class EdSubcat_UNITAF_Liberation {
+        displayName = "Liberation";
+    };
     class EdSubcat_UNITAF_Logistics_Empty {
 		displayName = "Containers (Empty)";
 	};

@@ -20,3 +20,8 @@ if ("marksman" in _role) then {
 if ("sniper" in _role || "spotter" in _role) then {
 	player setUnitTrait ["camouflageCoef", 0.3];
 };
+
+// set UAV Hacker for UAV operators
+if ("uav" in _role) then {
+	player setUnitTrait ["UAVHacker", true];
+};

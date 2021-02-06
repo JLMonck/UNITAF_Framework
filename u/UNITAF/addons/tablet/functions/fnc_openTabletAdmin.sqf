@@ -13,9 +13,11 @@
  * No
  */
 
-_display = GET_TABLET;
+private _display = GET_TABLET;
 
 if (_display isEqualTo displayNull) exitWith {};
 
 [GET_ADMIN] call FUNC(hideAll);
 GET_ADMIN ctrlShow true;
+
+//GET_IN_ADMIN(IDC_Tablet_Admin_FPS_local) ctrlSetStructuredText parseText format ["Local FPS: %1 fps", ];

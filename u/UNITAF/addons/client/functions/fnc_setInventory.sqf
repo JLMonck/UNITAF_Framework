@@ -12,10 +12,10 @@
  * Public: No
  */
 
-params ["_inventoryData"];
+params [["_inventoryData", [], [[]]]];
 
 [_inventoryData] spawn {
-	params ["_inventory"];
+	params [["_inventory", [], [[]]]];
 
 	// set loadout
 	player setUnitLoadout (configFile >> "EmptyLoadout"); // first, remove everything!

@@ -17,8 +17,8 @@
 
 params ["_player"];
 
-_items = (assignedItems _player) + (items _player);
-_hasNVG = false;
+private _items = (assignedItems _player) + (items _player);
+private _hasNVG = false;
 {
 	if (_x isKindOf  "NVGoggles") then {
 		_hasNVG = true;
@@ -27,10 +27,15 @@ _hasNVG = false;
 
 
 if !(_hasNVG) then {
-	_nvgObject = QGVAR(Oops_NVG_Classname) call CBA_settings_fnc_get;
-	_player linkItem _nvgObject;
-
-	//_player linkItem "rhsusf_ANPVS_15";
-	//_player linkItem "NVGoggles";
+	private _nvgObject = QEGVAR(tablet,Oops_NVG_Classname) call CBA_settings_fnc_get;
+	if (typeName _nvgObject isEqualTo "STRING") then {
+		_player linkItem _nvgObject;
+	} else {
+		if (isClass(configFile >> "CfgPatches" >> "ace_nightvision")) then {
+			_player linkItem "ACE_NVG_Wide";
+		} else {
+			_player linkItem "NVGoggles";
+		}
+	};
 	hint "Now you can finally see in the dark, you chicken";
 };

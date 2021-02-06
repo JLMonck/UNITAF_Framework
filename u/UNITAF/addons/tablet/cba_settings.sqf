@@ -146,7 +146,7 @@
     "EDITBOX",
     ["NVG Classname", "Classname of NVG object which will be given when using the OOPS button"],
     [QUOTE(PREFIX), "UNITAB - OOPS"],
-    "NVGoggles",
+    "ACE_NVG_Wide",
     1,
     {},
 	false

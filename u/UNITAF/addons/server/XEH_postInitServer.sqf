@@ -36,7 +36,7 @@
 // Only run on missions which require the database
 if ((getMissionConfigValue ["UNITAF_runDatabase", 0]) isEqualTo 1) then {
 	// ensure database is available
-	_hasDB = call FUNC(initDatabase);
+	private _hasDB = call FUNC(initDatabase);
 	missionNamespace setVariable ['UNITAF_databaseAvailable', _hasDB, true];
 
 	// stop doing everything when DB Is not available
@@ -45,7 +45,7 @@ if ((getMissionConfigValue ["UNITAF_runDatabase", 0]) isEqualTo 1) then {
 		missionNamespace setVariable ['UNITAF_useORBAT', false, true];
 	};
 
-	_operationId = getMissionConfigValue ["UNITAF_operationId", 0];
+	private _operationId = getMissionConfigValue ["UNITAF_operationId", 0];
 	if (_operationId isEqualTo 0) then {
 		_operationId = missionName;
 	};
@@ -60,3 +60,8 @@ if ((getMissionConfigValue ["UNITAF_runDatabase", 0]) isEqualTo 1) then {
 		[_operationId] call FUNC(queryORBATGroups);
 	};
 };
+
+// let server update its FPS into a public variable based on a fixed update interval (5sec)
+[{
+	missionNameSpace setVariable [QGVAR(ServerFPS), floor diag_fps, true];
+}, 5] call CBA_fnc_addPerFrameHandler;

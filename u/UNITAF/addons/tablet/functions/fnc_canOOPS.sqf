@@ -23,7 +23,7 @@ private _isAdmin = false;
 /**
  * Should also work without an ORBAT, or better said, ignore it
  */
-_playerData = _player getVariable [QEGVAR(client,userData), []];
+private _playerData = _player getVariable [QEGVAR(client,userData), []];
 if !(count _playerData isEqualTo 0) then {
 	_playerData params ["_armaUID", "_playerRank", "_playerAdmin", "_playerPos", "_playerDir", "_operation", "_isMedic", "_isEgnineer", "_unit", "_callsign", "_freq", "_buddy", "_lr_freq", "_armarank", "_role", "_leader", "_isZeus", "_isEOD", "_isLogistics", "_isReporter"];
 	_isAdmin = (_playerAdmin isEqualTo 1);

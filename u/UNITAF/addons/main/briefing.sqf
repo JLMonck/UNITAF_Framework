@@ -10,7 +10,7 @@ _player createDiarySubject [
 ];
 
 // Add Tablet
-_tabletText = [];
+private _tabletText = [];
 
 _tabletText pushBack "The UNTIAF Tablet, or UNITAB, is the core of each operation.<br/>";
 _tabletText pushBack format ["To access the tablet, simply press <font color='#c48214'>%1</font><br/>", (["open_unitaf_tablet"] call FUNC(keybindToString))];

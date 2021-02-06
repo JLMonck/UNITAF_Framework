@@ -95,6 +95,16 @@ UNITAF_Class(Billboard_Base_Exercise,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base
 UNITAF_Class(Billboard_Base_Earplugs,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Training,Billboard Earplugs,images\signage\billboards\8-earplugs.jpg)
 UNITAF_Class(Billboard_Base_BigRed,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Training,Billboard BigRed,images\signage\billboards\9-bigred.jpg)
 
+UNITAF_Class(Billboard_Lib_Info,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Liberation,Billboard Liberation (Information),images\signage\liberation\lib_info.jpg)
+UNITAF_Class(Billboard_Lib_Welcome,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Liberation,Billboard Liberation (Welcome),images\signage\liberation\lib_welcome.jpg)
+UNITAF_Class(Billboard_Lib_Logo,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Liberation,Billboard Liberation (UNITAF Logo),images\signage\liberation\unitaf_logo.jpg)
+UNITAF_Class(Billboard_Lib_LogoLink,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Liberation,Billboard Liberation (UNITAF Logo + Link),images\signage\liberation\unitaf_logo_link.jpg)
+UNITAF_Class(Billboard_Lib_LogoLinkPublic,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Liberation,Billboard Liberation (UNITAF Logo + Link + Public),images\signage\liberation\unitaf_logo_link_public.jpg)
+UNITAF_Class(Billboard_Lib_Slogan1,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Liberation,Billboard Liberation (Slogan 1),images\signage\liberation\unitaf_slogan1.jpg)
+UNITAF_Class(Billboard_Lib_Slogan2,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Liberation,Billboard Liberation (Slogan 2),images\signage\liberation\unitaf_slogan2.jpg)
+UNITAF_Class(Billboard_Lib_AT,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Liberation,Billboard Liberation (AT),images\signage\liberation\unitaf_at.jpg)
+UNITAF_Class(Billboard_Lib_Apply,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Liberation,Billboard Liberation (Apply),images\signage\liberation\unitaf_apply.jpg)
+
 // Banners
 class Banner_01_F;
 UNITAF_Class(Banner_Base_UTF,Banner_01_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Base_Flags,Banner UTF,images\signage\ops_center\utf-banner.jpg)

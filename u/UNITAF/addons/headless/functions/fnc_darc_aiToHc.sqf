@@ -13,36 +13,36 @@
 //----------------------------------------------------------------
 
 //Parameters
-_timeout = 20;
-_group_cnt_to_send = 4;
+private _timeout = 20;
+private _group_cnt_to_send = 4;
 
 //---------------
 
-_hcList = call FUNC(darc_getHcList);
-_ai_groups = call FUNC(darc_aiGroups);
+private _hcList = call FUNC(darc_getHcList);
+private _ai_groups = call FUNC(darc_aiGroups);
 diag_log format ["@darcAiMover: Headless client process running. (%1)", _hcList];
 
 if ( count _hcList > 0) then {
 	//Count AI on HCs
-	_hcAIcount = call FUNC(darc_countAIonAllHC);
+	private _hcAIcount = call FUNC(darc_countAIonAllHC);
 
 	//Find the HC with lowest amount AI
-	_small_idx = 0;
-	_smallest = _hcAIcount select _small_idx;
+	private _small_idx = 0;
+	private _smallest = _hcAIcount select _small_idx;
 	{
 		if (_x < _smallest) then {
 			_small_idx = _foreachindex;
 		};
 	} forEach _hcAIcount;
 	
-	_HC = owner (_hcList select _small_idx);
+	private _HC = owner (_hcList select _small_idx);
 	diag_log format ["@darcAiMover: AI on HC: %1 . Sending to %2.", _hcAIcount, (_hcList select _small_idx)];
 	// diag_log format ["@darcAiMover: (%1) is smallest %2", _small_idx, _hcAIcount];
 
 	// Check if chosen HC is ready
 	if (_HC > 0) then {	
-		_g_fr = [];
-		_g_nonfr = [];
+		private _g_fr = [];
+		private _g_nonfr = [];
 		{
 			// Read timeBorn from groups
 			private _timeBorn = _x getVariable ["timeBorn", -1];

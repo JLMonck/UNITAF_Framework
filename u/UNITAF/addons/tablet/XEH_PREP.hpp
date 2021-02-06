@@ -13,6 +13,7 @@ PREP(openTabletMain);
 PREP(openTabletAdmin);
 PREP(openTabletORBAT);
 PREP(openTabletOPORD);
+PREP(openTabletLogistics);
 
 PREP(openReporter);
 
@@ -33,3 +34,18 @@ PREP(openLOGISTICS);
 */
 
 PREP(tabletMap_onMouseMoving);
+
+PREP(logisticsConfigure);
+PREP(logisticsInitDisplayPositioning);
+PREP(logisticsRefreshList);
+PREP(logisticsCalculateLoad);
+PREP(logisticsUpdateLoadBar);
+PREP(logisticsModify);
+PREP(logisticsGetItemMass);
+PREP(logisticsUpdateButtons);
+PREP(logisticsGetCargo);
+PREP(logisticsKeyDown);
+PREP(logisticsGetDefaultInventory);
+PREP(logisticsClear);
+PREP(logisticsConfirm);
+PREP(logisticsPreload);

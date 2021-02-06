@@ -2,7 +2,7 @@
 
 params ["_config"];
 
-_containers = [
+private _containers = [
 	["47/190", [["ACE_Splint", 10], ["ACE_Morphine", 10]]],
 	["47/200", [["ACE_Splint", 10], ["ACE_Morphine", 10]]],
 	["47/201", [["ACE_Splint", 10], ["ACE_Morphine", 10]]],

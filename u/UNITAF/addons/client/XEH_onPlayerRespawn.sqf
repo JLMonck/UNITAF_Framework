@@ -22,7 +22,7 @@ params ["_player", "_corpse", ["_arsenal", false, [true]]];
 	if ((getMissionConfigValue ["UNITAF_autoORBAT", 0]) isEqualTo 1) then {
 		// check if spawned object is a "humanoid" and if it doesn't have userData yet
 		if (_player isKindOf "CAManBase" && (_player getVariable [QGVAR(hasUserData), false]) isEqualTo false) then {
-			_loadingText = format ['<t align="center">
+			private _loadingText = format ['<t align="center">
 				<img image="\u\UNITAF\addons\assets\images\signage\unitaf-logo.jpg" size="7" with="512" height="251"/><br/>
 				<br/>
 				Welcome back <t>%1</t>!<br/>
@@ -33,7 +33,7 @@ params ["_player", "_corpse", ["_arsenal", false, [true]]];
 				<t>You can use <t color="#85703a">%2</t> to accesss the UNITAF Tablet</t>
 			</t>', profileName, ["open_unitaf_tablet"] call EFUNC(main,keybindToString)];
 
-			_loadingLayer = "RespawnLoading" cutText [_loadingText, "BLACK", -1, false, true];
+			private _loadingLayer = "RespawnLoading" cutText [_loadingText, "BLACK", -1, false, true];
 			_player enableSimulationGlobal false;
 
 			[_player] call FUNC(getORBAT);
@@ -52,9 +52,9 @@ params ["_player", "_corpse", ["_arsenal", false, [true]]];
 					// check if TP marker exists
 					if !((_playerPos isEqualTo "") && (getMarkerColor _playerPos isEqualTo "")) then {
 						// get marker position
-						_markerPos = getMarkerPos _playerPos;
+						private _markerPos = getMarkerPos _playerPos;
 						// find available position within 10m
-						_position = _markerPos findEmptyPosition [0, 10];
+						private _position = _markerPos findEmptyPosition [0, 10];
 						// make sure it returns a position, otherwise use default
 						if (_position isEqualTo []) then {
 							_position = _markerPos;
@@ -74,18 +74,18 @@ params ["_player", "_corpse", ["_arsenal", false, [true]]];
 				10,
 				{
 					params ["_player"];
-					_loadingText = '<t align="center">
+					private _loadingText = '<t align="center">
 						Something went wrong with getting data from the ORBAT.<br/>
 						This either means you''re not on the ORBAT, you''re on the reserves list, or something went wrong with the database connection.<br/>
 						<br/>
 						Please contact the Field Leader to get it resolved.
 					</t>';
 
-					_loadingLayer = "RespawnLoading" cutText [_loadingText, "BLACK", -1, false, true];
+					private _loadingLayer = "RespawnLoading" cutText [_loadingText, "BLACK", -1, false, true];
 					
 					[_player] spawn {
 						params ["_player"];
-						sleep 2;
+						sleep 7;
 						_player enableSimulationGlobal true;
 						"RespawnLoading" cutFadeOut 1;
 					};

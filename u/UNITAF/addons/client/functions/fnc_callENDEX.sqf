@@ -19,6 +19,7 @@ if (isClass(configFile >> "CfgPatches" >> "ace_medical_treatment")) then {
 } else {
 	player setDamage 0;
 };
+[player, currentWeapon player, true] call ace_safemode_fnc_setWeaponSafety;
 
 // Show ENDEX message
 [] spawn {

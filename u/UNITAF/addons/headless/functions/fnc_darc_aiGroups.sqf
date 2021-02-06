@@ -13,5 +13,5 @@ private _plr_grp = [];
 {
 	_plr_grp pushBackUnique group _x
 } forEach allPlayers;
-_ai_grp = allGroups - _plr_grp;
+private _ai_grp = allGroups - _plr_grp;
 _ai_grp

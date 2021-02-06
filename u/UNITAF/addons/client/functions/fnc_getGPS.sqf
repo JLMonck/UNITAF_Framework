@@ -17,8 +17,8 @@
 
 params ["_player"];
 
-_items = (assignedItems _player) + (items _player);
-_hasGPS = false;
+private _items = (assignedItems _player) + (items _player);
+private _hasGPS = false;
 {
 	if (_x isKindOf  "ItemGPS") then {
 		_hasGPS = true;

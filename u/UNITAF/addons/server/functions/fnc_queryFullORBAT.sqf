@@ -24,8 +24,8 @@ if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
 };
 
 // Must return: <ID>, <CALLSIGN>, <SIDE>
-_query = "[0, [""not implemented""]]"; //"extDB3" callExtension format["0:FETCHDATA:SELECT * FROM test", _operationID];
-_result = parseSimpleArray (_query);
+private _query = "[0, [""not implemented""]]"; //"extDB3" callExtension format["0:FETCHDATA:SELECT * FROM test", _operationID];
+private _result = parseSimpleArray (_query);
 
 switch (_result select 0) do {
 	case 0: {
