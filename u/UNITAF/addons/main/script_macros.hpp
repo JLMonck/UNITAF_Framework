@@ -29,3 +29,5 @@
 }
 
 #define SQUOTE(var1) 'var1'
+
+#define QMAIN_ADDON QUOTE(MAIN_ADDON)
