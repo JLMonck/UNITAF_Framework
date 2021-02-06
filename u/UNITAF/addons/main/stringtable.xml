@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project name="unitaf">
     <Package name="main">
-        <Key ID="STR_unitaf_main_Author">
+        <Key ID="STR_unitaf_main_author">
             <English>Grezvany13</English>
             <German>Grezvany13</German>
             <Japanese>Grezvany13</Japanese>
@@ -14,7 +14,7 @@
             <Turkish>Grezvany13</Turkish>
             <Italian>Grezvany13</Italian>
         </Key>
-        <Key ID="STR_unitaf_main_URL">
+        <Key ID="STR_unitaf_main_url">
             <English>https://discord.gg/QPEjKvV</English>
             <French>https://discord.gg/QPEjKvV</French>
             <Spanish>https://discord.gg/QPEjKvV</Spanish>

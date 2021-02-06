@@ -7,10 +7,10 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "unitaf_main"
+            QMAIN_ADDON
         };
-        author = "$STR_unitaf_main_Author";
-        url = "$STR_unitaf_main_URL";
+        author = ECSTRING(main,author);
+        url = ECSTRING(main,url);
         VERSION_CONFIG;
     };
 };

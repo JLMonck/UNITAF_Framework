@@ -13,8 +13,8 @@ class CfgPatches {
             "cba_settings",
             "cba_keybinding"
         };
-        author = "$STR_unitaf_main_Author";
-        url = "$STR_unitaf_main_URL";
+        author = ECSTRING(main,author);
+        url = ECSTRING(main,url);
         VERSION_CONFIG;
     };
 };
@@ -23,13 +23,13 @@ class CfgMods {
     class PREFIX {
         dir = "@UNITAF_Framework";
         appID = 2214983660;
-
+        author = ECSTRING(main,author);
+        url = ECSTRING(main,url);
         name = "UNITAF - Framework";
-        author = "$STR_unitaf_main_Author";
         hidePicture = 0;
         hideName = 1;
         actionName = "Website";
-        action = "$STR_unitaf_main_URL";
+
 
         description = "This work is licensed under ARMA PUBLIC LICENSE SHARE ALIKE (APL-SA)";
 
@@ -118,7 +118,7 @@ class CfgVehicles {
 class CfgDiscordRichPresence {
     applicationID           = "753242663616249906";         // Provided by discord
     defaultDetails          = "UNITAF Operation";           // Upper text
-    defaultState            = "unitedtaskforce.net";        // Lower text  
+    defaultState            = "unitedtaskforce.net";        // Lower text
     defaultLargeImageKey    = "unitaf";                     // Large image
     defaultLargeImageText   = "";                           // Large image hover text
     defaultSmallImageKey    = "arma3-logo";                 // Small image
