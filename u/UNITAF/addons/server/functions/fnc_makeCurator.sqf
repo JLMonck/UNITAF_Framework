@@ -50,16 +50,7 @@ params ["_player"];
 				// if GM doesn't exist anymore, remove the module
                 unassignCurator _curator;
                 deleteVehicle _curator;
-            } else {
-				// Send a hint to the curators with the name of the client who pinged
-				[
-					[_zeus, _unit],
-					{
-						params ["_zeus", "_unit"];
-						hint format ["%1 has pinged Zeus!", name _unit];
-					}
-				] remoteExecCall ["call", _zeus]; 
-			};
+            };
         }];
 
 		_player assignCurator _curator;

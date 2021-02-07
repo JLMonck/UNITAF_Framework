@@ -41,7 +41,7 @@ class GVAR(GUI_Control_ADMIN): GVAR(GUI_Control_Base) {
 		class GVAR(GUI_ADMIN_FPS_Local): GVAR(GUI_Text_Base) {
 			idc 				= IDC_Tablet_Admin_FPS_local;
 			x 					= GRID_OFFSET_COL3;
-			w 					= GRID_BUTTON_WIDE_W;
+			w 					= GRID_BUTTON_DOUBLE_W;
 			y 					= CALC_Y(1);
 			colorBackground[] 	= {0,0,0,0.5};
 			text 				= "";
@@ -50,7 +50,7 @@ class GVAR(GUI_Control_ADMIN): GVAR(GUI_Control_Base) {
 		class GVAR(GUI_ADMIN_FPS_Server): GVAR(GUI_Text_Base) {
 			idc 				= IDC_Tablet_Admin_FPS_Server;
 			x 					= GRID_OFFSET_COL3;
-			w 					= GRID_BUTTON_WIDE_W;
+			w 					= GRID_BUTTON_DOUBLE_W;
 			y 					= CALC_Y(2);
 			colorBackground[] 	= {0,0,0,0.5};
 			text 				= "";
@@ -59,7 +59,7 @@ class GVAR(GUI_Control_ADMIN): GVAR(GUI_Control_Base) {
 		class GVAR(GUI_ADMIN_FPS_HC1): GVAR(GUI_Text_Base) {
 			idc 				= IDC_Tablet_Admin_FPS_HC1;
 			x 					= GRID_OFFSET_COL3;
-			w 					= GRID_BUTTON_WIDE_W;
+			w 					= GRID_BUTTON_DOUBLE_W;
 			y 					= CALC_Y(3);
 			colorBackground[] 	= {0,0,0,0.5};
 			text 				= "";
@@ -67,7 +67,7 @@ class GVAR(GUI_Control_ADMIN): GVAR(GUI_Control_Base) {
 		class GVAR(GUI_ADMIN_FPS_HC2): GVAR(GUI_Text_Base) {
 			idc 				= IDC_Tablet_Admin_FPS_HC2;
 			x 					= GRID_OFFSET_COL3;
-			w 					= GRID_BUTTON_WIDE_W;
+			w 					= GRID_BUTTON_DOUBLE_W;
 			y 					= CALC_Y(4);
 			colorBackground[] 	= {0,0,0,0.5};
 			text 				= "";
@@ -75,7 +75,7 @@ class GVAR(GUI_Control_ADMIN): GVAR(GUI_Control_Base) {
 		class GVAR(GUI_ADMIN_FPS_HC3): GVAR(GUI_Text_Base) {
 			idc 				= IDC_Tablet_Admin_FPS_HC3;
 			x 					= GRID_OFFSET_COL3;
-			w 					= GRID_BUTTON_WIDE_W;
+			w 					= GRID_BUTTON_DOUBLE_W;
 			y 					= CALC_Y(5);
 			colorBackground[] 	= {0,0,0,0.5};
 			text 				= "";
@@ -83,7 +83,7 @@ class GVAR(GUI_Control_ADMIN): GVAR(GUI_Control_Base) {
 		class GVAR(GUI_ADMIN_FPS_HC4): GVAR(GUI_Text_Base) {
 			idc 				= IDC_Tablet_Admin_FPS_HC4;
 			x 					= GRID_OFFSET_COL3;
-			w 					= GRID_BUTTON_WIDE_W;
+			w 					= GRID_BUTTON_DOUBLE_W;
 			y 					= CALC_Y(6);
 			colorBackground[] 	= {0,0,0,0.5};
 			text 				= "";
@@ -91,7 +91,7 @@ class GVAR(GUI_Control_ADMIN): GVAR(GUI_Control_Base) {
 		class GVAR(GUI_ADMIN_FPS_HC5): GVAR(GUI_Text_Base) {
 			idc 				= IDC_Tablet_Admin_FPS_HC5;
 			x 					= GRID_OFFSET_COL3;
-			w 					= GRID_BUTTON_WIDE_W;
+			w 					= GRID_BUTTON_DOUBLE_W;
 			y 					= CALC_Y(7);
 			colorBackground[] 	= {0,0,0,0.5};
 			text 				= "";
@@ -99,7 +99,7 @@ class GVAR(GUI_Control_ADMIN): GVAR(GUI_Control_Base) {
 		class GVAR(GUI_ADMIN_FPS_HC6): GVAR(GUI_Text_Base) {
 			idc 				= IDC_Tablet_Admin_FPS_HC6;
 			x 					= GRID_OFFSET_COL3;
-			w 					= GRID_BUTTON_WIDE_W;
+			w 					= GRID_BUTTON_DOUBLE_W;
 			y 					= CALC_Y(8);
 			colorBackground[] 	= {0,0,0,0.5};
 			text 				= "";
