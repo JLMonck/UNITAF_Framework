@@ -17,5 +17,11 @@ params [["_hc", ""]];
 private _hc_owner = owner _hc;
 
 private _c = 0;
+private _g = 0;
 _c = count ((allUnits - allPlayers) select {(owner _x == _hc_owner)});
+_g = count (allGroups select {(groupOwner _x == _hc_owner)});
+
+missionNameSpace setVariable [format ["%1_%2", QGVAR(HCUnits), (name _hc)], _c, true];
+missionNameSpace setVariable [format ["%1_%2", QGVAR(HCGroups), (name _hc)], _g, true];
+
 _c 
