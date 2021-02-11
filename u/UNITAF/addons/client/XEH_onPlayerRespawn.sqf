@@ -82,7 +82,11 @@ params ["_player", "_corpse", ["_arsenal", false, [true]]];
 					</t>';
 
 					private _loadingLayer = "RespawnLoading" cutText [_loadingText, "BLACK", -1, false, true];
-					
+
+					private _name = name _player;
+
+					[format ["%1 has no data from the ORBAT", _name]] call EFUNC(common,messageAdmin);
+
 					[_player] spawn {
 						params ["_player"];
 						sleep 7;
