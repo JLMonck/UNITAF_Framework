@@ -20,7 +20,7 @@
 		editorCategory = QUOTE(CATEGORY); \
 		editorSubcategory = QUOTE(SUBCATEGORY); \
 		class EventHandlers { \
-			init = QUOTE((_this select 0) allowdamage false; (_this select 0) setObjectTextureGlobal [0,QUOTE(QUOTE(PATHTOF_SYS(PREFIX,assets,TEXTURE)))]); \
+			init = QUOTE((_this select 0) allowdamage false; (_this select 0) setObjectTextureGlobal [ARR_2(0,QUOTE(QUOTE(PATHTOF_SYS(PREFIX,assets,TEXTURE))))]); \
 		}; \
 		dlc = QUOTE(PREFIX); \
 	};
@@ -32,7 +32,7 @@
 		editorCategory = QUOTE(CATEGORY); \
 		editorSubcategory = QUOTE(SUBCATEGORY); \
 		class EventHandlers { \
-			init = QUOTE((_this select 0) allowdamage false; (_this select 0) setObjectTextureGlobal [1,QUOTE(QUOTE(PATHTOF_SYS(PREFIX,assets,TEXTURE)))]); \
+			init = QUOTE((_this select 0) allowdamage false; (_this select 0) setObjectTextureGlobal [ARR_2(1,QUOTE(QUOTE(PATHTOF_SYS(PREFIX,assets,TEXTURE))))]); \
 		}; \
 		dlc = QUOTE(PREFIX); \
 	};
