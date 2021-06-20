@@ -22,7 +22,6 @@ class CfgPatches {
 class CfgMods {
     class PREFIX {
         dir = "@UNITAF_Framework";
-        appID = 2214983660;
         author = ECSTRING(main,author);
         url = ECSTRING(main,url);
         name = "UNITAF - Framework";
