@@ -1,4 +1,4 @@
-#include "\a3\ui_f\hpp\defineCommonGrids.inc"
+#include "\a3\ui_f\hpp\definecommongrids.inc"
 // #include "\a3\ui_f\hpp\defineresincl.inc"
 
 // Control Types
@@ -99,7 +99,7 @@
 #define COLOR_BUTTON_LOAD       { 0.5216, 0.4392, 0.2275, 1 }
 #define COLOR_BUTTON_ADMIN      { 0, 0.2, 0.2, 1 }
 
-#define COLOR_BUTTON_REPORTER   { 0.157, 0, 0.843, 1 }
+#define COLOR_BUTTON_REPORTER   { 0.157, 0, 0.843, 1 };
 
 
 #define CALC_X(COL) (GUI_GRID_CENTER_X + COL * GUI_GRID_CENTER_W)		// max 40
@@ -127,8 +127,8 @@
 #define GRID_BUTTON_W   CALC_W(5.75)           // (28 - 1) / (columns + (columns + 1)
 #define GRID_BUTTON_H   CALC_H(1.5)
 
-#define GRID_BUTTON_WIDE_W   (CALC_W(5.75) + CALC_W(5.75) + CALC_X(1))
-#define GRID_BUTTON_DOUBLE_W   (CALC_W(5.75) + CALC_W(5.75) + CALC_X(2))
+#define GRID_BUTTON_WIDE_W   CALC_W(5.75) + CALC_W(5.75) + CALC_X(1);
+#define GRID_BUTTON_DOUBLE_W   CALC_W(5.75) + CALC_W(5.75) + CALC_X(2);
 
 #define GRID_OFFSET_COL1    (GRID_FRAME_X + CALC_X(1))
 #define GRID_OFFSET_COL2    (GRID_FRAME_X + CALC_X(2) + CALC_W(5.75))

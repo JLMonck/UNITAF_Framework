@@ -1,2 +1,1 @@
-PREP(messageAdmin);
 PREP(spawnProtection);
