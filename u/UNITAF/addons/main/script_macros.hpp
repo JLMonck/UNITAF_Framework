@@ -33,4 +33,3 @@
 #define QMAIN_ADDON QUOTE(MAIN_ADDON)
 
 #define ACEFUNC(var1,var2) TRIPLES(DOUBLES(ace,var1),fnc,var2)
-#define QACEFUNC(var1,var2) QUOTE(TRIPLES(DOUBLES(ace,var1),fnc,var2))

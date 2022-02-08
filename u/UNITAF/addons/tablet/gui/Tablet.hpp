@@ -78,7 +78,7 @@ class GVAR(Tablet) {
 		#include "Tablet_Map.hpp"
 		#include "Tablet_Main.hpp"
 		#include "Tablet_Admin.hpp"
-		#include "Tablet_ORBAT.hpp"
+		#include "Tablet_Orbat.hpp"
 		#include "Tablet_Logistics.hpp"
 	};
 };

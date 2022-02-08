@@ -38,4 +38,6 @@ if !(_hasNVG) then {
 		}
 	};
 	hint "Now you can finally see in the dark, you chicken";
+
+	[QEGVAR(Statistics,getTabletItem), [_player, "nvg"]] call CBA_fnc_serverEvent;
 };

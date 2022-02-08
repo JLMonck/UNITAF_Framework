@@ -1,0 +1,12 @@
+UNITAF_runDatabase 		= 1;		// 1 = use database
+UNITAF_operationId 		= 42;		// set to any ID (other than 0) to use a custom Operation ID
+UNITAF_useORBAT 		= 1;		// 1 = get data from ORBAT (groups, teams, radio freqs, etc.)
+UNITAF_autoORBAT 		= 1;		// 1 = automatically load ORBAT on (first) spawn (WIP)
+
+UNITAF_noDBTest 		= 1;		// TEST WITHOUT DB ACCESS, must be 0 on live OP's
+
+UNITAF_RPHeight         = "";		// default "", otherwise Z-axis in PositionAGL (from ground or water level)
+
+
+// CBA Settings
+UNITAF_client_BleedOut
