@@ -1,1 +1,2 @@
+PREP(messageAdmin);
 PREP(spawnProtection);

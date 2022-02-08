@@ -1,4 +1,4 @@
-#include "\u\UNITAF\addons\main\dikCodes.inc"
+#include "\u\unitaf\addons\main\dikCodes.inc"
 
 [
 	QUOTE(PREFIX),										// Mod name

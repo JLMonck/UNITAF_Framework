@@ -52,21 +52,15 @@ params ["_player", "_corpse", ["_arsenal", false, [true]]];
 					// check if TP marker exists
 					if !((_playerPos isEqualTo "") && (getMarkerColor _playerPos isEqualTo "")) then {
 						// get marker position
-						private _markerPos = getMarkerPos [_playerPos, true];
+						private _markerPos = getMarkerPos _playerPos;
 						// find available position within 10m
 						private _position = _markerPos findEmptyPosition [0, 10];
 						// make sure it returns a position, otherwise use default
 						if (_position isEqualTo []) then {
 							_position = _markerPos;
 						};
-
-						private _zAxis = _markerPos select 2;
-						if !((getMissionConfigValue ["UNITAF_RPHeight", ""]) isEqualTo "") then {
-							_zAxis = getMissionConfigValue ["UNITAF_RPHeight", 0];
-						};
-
 						// TP player to empty position near marker
-						_player setPos [_position select 0, _position select 1, _zAxis];
+						_player setPos _position;
 					};
 
 					[_player] spawn {
@@ -88,7 +82,11 @@ params ["_player", "_corpse", ["_arsenal", false, [true]]];
 					</t>';
 
 					private _loadingLayer = "RespawnLoading" cutText [_loadingText, "BLACK", -1, false, true];
-					
+
+					private _name = name _player;
+
+					[format ["%1 has no data from the ORBAT", _name]] call EFUNC(common,messageAdmin);
+
 					[_player] spawn {
 						params ["_player"];
 						sleep 7;

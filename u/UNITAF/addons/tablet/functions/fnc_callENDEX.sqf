@@ -24,9 +24,6 @@
 		// heal players and show ENDEX message
 		[QEGVAR(ClientEvent,callENDEX), [], allPlayers] call CBA_fnc_targetEvent;
 
-		// Send event to Statistics Mod on server
-		[QEGVAR(ServerEvent,callENDEX), []] call CBA_fnc_serverEvent;
-
 		closeDialog 0;
 	};
 };

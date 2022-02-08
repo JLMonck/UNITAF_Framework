@@ -87,10 +87,6 @@ if (
 
 			_isAdmin = (_playerAdmin isEqualTo 1 || ({call BIS_fnc_admin} isEqualTo 2));
 
-				if (getPlayerUID player == "76561198010039265") then {
-					_isAdmin = true;
-				};
-
 			// isAdmin in ORBAT/DB or is logged in as admin
 			if (_isAdmin) then {
 				GET_IN_MAIN(IDC_Tablet_Main_Button_Admin) ctrlEnable true;

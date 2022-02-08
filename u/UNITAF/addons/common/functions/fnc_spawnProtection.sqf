@@ -16,7 +16,7 @@
  * Public: Yes
  */
 
-if !(QGVAR(spawnProtectionEnabled) call CBA_settings_fnc_get) exitWith {};
+if !(QGVAR(HCBalancer) call CBA_settings_fnc_get) exitWith {};
 
 [typeOf player, "Fired", {
     params ["_unit", "_weapon", "", "", "", "_magazine", "_projectile"];

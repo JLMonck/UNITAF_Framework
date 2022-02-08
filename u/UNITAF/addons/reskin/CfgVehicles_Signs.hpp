@@ -20,7 +20,7 @@
 		editorCategory = QUOTE(CATEGORY); \
 		editorSubcategory = QUOTE(SUBCATEGORY); \
 		class EventHandlers { \
-			init = QUOTE((_this select 0) allowdamage false; (_this select 0) setObjectTextureGlobal [0,QUOTE(QUOTE(PATHTOF_SYS(PREFIX,assets,TEXTURE)))]); \
+			init = QUOTE((_this select 0) allowdamage false; (_this select 0) setObjectTextureGlobal [ARR_2(0,QUOTE(QUOTE(PATHTOF_SYS(PREFIX,assets,TEXTURE))))]); \
 		}; \
 		dlc = QUOTE(PREFIX); \
 	};
@@ -32,7 +32,7 @@
 		editorCategory = QUOTE(CATEGORY); \
 		editorSubcategory = QUOTE(SUBCATEGORY); \
 		class EventHandlers { \
-			init = QUOTE((_this select 0) allowdamage false; (_this select 0) setObjectTextureGlobal [1,QUOTE(QUOTE(PATHTOF_SYS(PREFIX,assets,TEXTURE)))]); \
+			init = QUOTE((_this select 0) allowdamage false; (_this select 0) setObjectTextureGlobal [ARR_2(1,QUOTE(QUOTE(PATHTOF_SYS(PREFIX,assets,TEXTURE))))]); \
 		}; \
 		dlc = QUOTE(PREFIX); \
 	};
@@ -151,17 +151,3 @@ UNITAF_Class(Texture_10m_Base_TextXS,UserTexture10m_F,EdCat_UNITAF_Base,EdSubcat
 // Boards
 class Land_MapBoard_01_Wall_Altis_F;
 UNITAF_Class(MapBoard_Wall_Base_Notice5,Land_MapBoard_01_Wall_Altis_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Base_Signs,Map Board Wall Notice 5,images\signage\ops_center\notice5.paa)
-
-// Vehicle Identification
-UNITAF_Class(Billboard_Training_Identification_BMP_notext,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Training,Billboard Identification (BMP notext),images\signage\training\identification\BMP_notext.jpg)
-UNITAF_Class(Billboard_Training_Identification_BMP,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Training,Billboard Identification (BMP),images\signage\training\identification\BMP.jpg)
-UNITAF_Class(Billboard_Training_Identification_BRDM_notext,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Training,Billboard Identification (BRDM notext),images\signage\training\identification\BRDM_notext.jpg)
-UNITAF_Class(Billboard_Training_Identification_BRDM,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Training,Billboard Identification (BRDM),images\signage\training\identification\BRDM.jpg)
-UNITAF_Class(Billboard_Training_Identification_BTR_notext,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Training,Billboard Identification (BTR notext),images\signage\training\identification\BTR_notext.jpg)
-UNITAF_Class(Billboard_Training_Identification_BTR,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Training,Billboard Identification (BTR),images\signage\training\identification\BTR.jpg)
-UNITAF_Class(Billboard_Training_Identification_IFV_notext,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Training,Billboard Identification (IFV notext),images\signage\training\identification\IFV_notext.jpg)
-UNITAF_Class(Billboard_Training_Identification_IFV,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Training,Billboard Identification (IFV),images\signage\training\identification\IFV.jpg)
-UNITAF_Class(Billboard_Training_Identification_MBT_notext,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Training,Billboard Identification (MBT notext),images\signage\training\identification\MBT_notext.jpg)
-UNITAF_Class(Billboard_Training_Identification_MBT,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Training,Billboard Identification (MBT),images\signage\training\identification\MBT.jpg)
-UNITAF_Class(Billboard_Training_Identification_SHILKA_notext,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Training,Billboard Identification (SHILKA notext),images\signage\training\identification\SHILKA_notext.jpg)
-UNITAF_Class(Billboard_Training_Identification_SHILKA,Land_Billboard_03_ygont_F,EdCat_UNITAF_Base,EdSubcat_UNITAF_Training,Billboard Identification (SHILKA),images\signage\training\identification\SHILKA.jpg)

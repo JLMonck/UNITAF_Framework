@@ -33,7 +33,5 @@ if (isClass(configFile >> "CfgPatches" >> "tfar_core")) then {
 		};
 
 		hint "Good, a radio, now you can finally hear your buddy screaming at you";
-
-		[QEGVAR(Statistics,getTabletItem), [_player, "radio"]] call CBA_fnc_serverEvent;
 	};
 };
