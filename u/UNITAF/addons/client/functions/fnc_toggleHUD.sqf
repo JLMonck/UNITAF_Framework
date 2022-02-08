@@ -15,19 +15,17 @@
  * Public: Yes
  */
 
+// showHUD [hud, info, radar, compass, direction, menu, group, cursors, panels, kills]
+// shownHUD
+
 private _showHUD = uiNamespace getVariable [QGVAR(HUDshow), true];
 private _shownHUD = uiNamespace getVariable [QGVAR(HUDshown), shownHUD];
-private _shownChat = uiNamespace getVariable [QGVAR(ChatShown), shownChat];
 
 if (_showHUD) then {
 	// hide HUD
 	uiNamespace setVariable [QGVAR(HUDshown), shownHUD];
 	uiNamespace setVariable [QGVAR(HUDshow), false];
-	// showHUD [hud, info, radar, compass, direction, menu, group, cursors, panels, kills]
 	showHUD [false, false, false, false, false, false, false, false, false, false];
-
-	uiNamespace getVariable [QGVAR(ChatShown), shownChat];
-	showChat false;
 
 	// FIX DUI - SQUAD RADAR
 	diwako_dui_main_toggled_off = true;
@@ -37,7 +35,6 @@ if (_showHUD) then {
 	// show HUD
 	uiNamespace setVariable [QGVAR(HUDshow), true];
 	showHUD _shownHUD;
-	showChat _shownChat;
 
 	// FIX DUI - SQUAD RADAR
 	diwako_dui_main_toggled_off = false;

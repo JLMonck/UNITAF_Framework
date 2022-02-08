@@ -29,6 +29,4 @@ private _hasGPS = false;
 if !(_hasGPS) then {
 	_player linkItem "ItemGPS";
 	hint "Let the satellites do the hard work for you";
-
-	[QEGVAR(Statistics,getTabletItem), [_player, "gps"]] call CBA_fnc_serverEvent;
 };

@@ -198,6 +198,6 @@ class GVAR(Training_Cessna): Plane_Civil_01_base_F {
 	};
 	dlc = QUOTE(PREFIX);
 	class EventHandlers {
-		init = "if (local (_this select 0)) then {[(_this select 0), nil, nil] call bis_fnc_initVehicle;};";
+		init="if (local (_this select 0)) then {[(_this select 0), nil, nil] call bis_fnc_initVehicle;};";
 	};
 };

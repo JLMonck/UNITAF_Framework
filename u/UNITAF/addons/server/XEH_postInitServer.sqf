@@ -64,5 +64,4 @@ if ((getMissionConfigValue ["UNITAF_runDatabase", 0]) isEqualTo 1) then {
 // let server update its FPS into a public variable based on a fixed update interval (5sec)
 [{
 	missionNameSpace setVariable [QGVAR(ServerFPS), floor diag_fps, true];
-	missionNameSpace setVariable [QGVAR(ServerUnits), (count ((allUnits - allPlayers) select {(owner _x == clientOwner)})), true];
 }, 5] call CBA_fnc_addPerFrameHandler;

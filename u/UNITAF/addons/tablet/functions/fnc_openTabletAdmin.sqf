@@ -28,8 +28,7 @@ GET_ADMIN ctrlShow true;
 		GET_IN_ADMIN(IDC_Tablet_Admin_FPS_local) ctrlSetStructuredText parseText format ["Local FPS: %1 fps", _playerFPS];
 
 		private _serverFPS = missionNamespace getVariable [QEGVAR(server,ServerFPS), -1];
-		private _serverUnits = missionNamespace getVariable [QEGVAR(server,ServerUnits), -1];
-		//private _serverUnits = count ((allUnits - allPlayers) select {(owner _x == 2)});
+		private _serverUnits = count ((allUnits - allPlayers) select {(owner _x == 2)});
 
 		_serverFPS = format ["<t color='%2'>%1</t>", _serverFPS, ["", "#ff0000"] select {_serverFPS < 20}];
 
