@@ -15,8 +15,7 @@ jobs:
     - name: Build with HEMTT
       uses: gruppe-adler/action-release-with-hemtt@2.1.2
       id: build
-      with:
-        cwd: u/UNITAF
+      
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
