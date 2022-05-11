@@ -13,7 +13,7 @@ jobs:
         submodules: 'recursive'
 
     - name: Build with HEMTT
-      uses: gruppe-adler/action-release-with-hemtt@2.1.2
+      uses: gruppe-adler/action-release-with-hemtt@master
       id: build
       
 
