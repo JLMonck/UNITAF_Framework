@@ -21,7 +21,12 @@ addMissionEventHandler ["Draw3D", {
         if !(_isCurator) exitWith {};
 
 		private _update = QEGVAR(client,FPSUpdate) call CBA_settings_fnc_get;
-		if (_update) then {
+        private _show = GVAR(toggle_zeus_fps_counter);
+		private _inCuratorInterface = GVAR(inCuratorInterface);
+
+		//diag_log format ["_update: %1 - _show: %2 - _inCuratorInterface: %3", _update, _show, _inCuratorInterface];
+
+		if (_update && _show && _inCuratorInterface) then {
 			private _distance = (ATLToASL (positionCameraToWorld [0,0,0])) distance _x;
         	// if camera is farther than 500 meters away from the targets the text will not display
 			if (_distance < 500) then {

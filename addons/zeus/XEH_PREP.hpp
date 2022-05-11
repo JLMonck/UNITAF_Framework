@@ -11,3 +11,4 @@
 // PREP(replaceString);
 
 PREP(initClientFPS);
+PREP(onCuratorInterface);
