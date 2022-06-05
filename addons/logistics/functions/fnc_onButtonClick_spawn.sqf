@@ -64,7 +64,8 @@ switch (_state) do {
                 };
             };
         } forEach _allItems;
-
+        //Add crate to players hands
+        [player, _smallBox] call ace_dragging_fnc_startCarry;
         closeDialog 1;
      };
 	case "crates": { 
@@ -93,7 +94,8 @@ switch (_state) do {
 
         } forEach _contentArray;
 
-
+        //Add crate to players hands
+        [player, _smallBox] call ace_dragging_fnc_startCarry;
 
 
         closeDialog 1;
