@@ -18,6 +18,7 @@
 	};
 
 class CfgVehicles {
+	class B_Slingload_01_Ammo_F;
 	class ReammoBox_F;
 	class GVAR(Container_Base): ReammoBox_F {
 		author = "$STR_unitaf_main_Author";
@@ -56,6 +57,13 @@ class CfgVehicles {
 		class TransportWeapons {};
 		class TransportItems {};
 		class TransportBackpacks {};
+	};
+	class GVAR(logistics_depot_master): B_Slingload_01_Ammo_F {
+		author = "Chris";
+		displayName = QUOTE(Logistics Depot Master);
+		editorCategory = QUOTE(EdCat_UNITAF_Logistics);
+		editorSubcategory = QUOTE(EdSubcat_UNITAF_Logistics_Depot);
+		
 	};
 
 	// TINY - 150

@@ -26,3 +26,6 @@ class CfgPatches {
 #include "CfgEventHandlers.hpp"
 #include "CfgVehicles.hpp"
 #include "CfgSupplies.hpp"
+
+#include "gui.hpp"
+#include "test_gui.hpp"

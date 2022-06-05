@@ -26,3 +26,4 @@ private _resultPROT = "extDB3" callExtension "9:ADD_DATABASE_PROTOCOL:UTFN:SQL:F
 if (!(parseSimpleArray (_resultPROT) select 0 isEqualTo 1)) exitWith { diag_log "extDB3: Error with Protocol Connection"; diag_log format ["%1", _resultPROT]; false };
 
 true
+

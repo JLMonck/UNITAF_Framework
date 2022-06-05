@@ -84,6 +84,9 @@ class CfgEditorSubcategories {
     class EdSubcat_UNITAF_Logistics_Empty {
 		displayName = "Containers (Empty)";
 	};
+    class EdSubcat_UNITAF_Logistics_Depot {
+		displayName = "Logistics Depot";
+	};
     class EdSubcat_UNITAF_Logistics_Prebuild {
 		displayName = "Containers (Prebuild)";
 	};

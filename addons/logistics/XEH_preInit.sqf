@@ -4,6 +4,10 @@ ADDON = false;
 
 PREP_RECOMPILE_START;
 #include "XEH_PREP.hpp"
-PREP_RECOMPILE_END;
+GVAR(items) = [];
+GVAR(vehicles) = [];
+GVAR(crates) = [];
 
+PREP_RECOMPILE_END;
+#include "cba_settings.sqf"
 ADDON = true;
