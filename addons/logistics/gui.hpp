@@ -339,6 +339,7 @@ class unitaf_logisticsMenu_main
 		};
 		class ButtonLeft: unitaf_logisticsMenu_RscButton
 		{
+			idc = IDC_BUTTON_LEFT;
 			onButtonClick = QUOTE(_this call FUNC(onButtonClick_left));
 			text = "<";
 			x = safezoneW / 2 - 15 * GRID_W + safezoneX;
@@ -349,6 +350,7 @@ class unitaf_logisticsMenu_main
 		};
 		class ButtonRight: ButtonLeft
 		{
+			idc = IDC_BUTTON_RIGHT;
 			onButtonClick = QUOTE(_this call FUNC(onButtonClick_right));
 			text = ">";
 			x = safezoneW / 2 + 10 * GRID_W + safezoneX;

@@ -8,5 +8,5 @@ private _index = -1;
         _index = _forEachIndex;
     };
 } forEach _array;
-
+hint str _index;
 _index

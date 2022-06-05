@@ -74,13 +74,13 @@ Distributed under the APL-ND License. See `LICENSE.md` for more information.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/Grezvany13/UNITAF_Framework.svg?style=flat-square
-[contributors-url]: https://github.com/Grezvany13/UNITAF_Framework/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Grezvany13/UNITAF_Framework.svg?style=flat-square
-[forks-url]: https://github.com/Grezvany13/UNITAF_Framework/network/members
-[stars-shield]: https://img.shields.io/github/stars/Grezvany13/UNITAF_Framework.svg?style=flat-square
-[stars-url]: https://github.com/Grezvany13/UNITAF_Framework/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Grezvany13/UNITAF_Framework.svg?style=flat-square
-[issues-url]: https://github.com/Grezvany13/UNITAF_Framework/issues
+[contributors-shield]: https://img.shields.io/github/contributors/JLMonck/UNITAF_Framework.svg?style=flat-square
+[contributors-url]: https://github.com/JLMonck/UNITAF_Framework/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/JLMonck/UNITAF_Framework.svg?style=flat-square
+[forks-url]: https://github.com/JLMonck/UNITAF_Framework/network/members
+[stars-shield]: https://img.shields.io/github/stars/JLMonck/UNITAF_Framework.svg?style=flat-square
+[stars-url]: https://github.com/JLMonck/UNITAF_Framework/stargazers
+[issues-shield]: https://img.shields.io/github/issues/JLMonck/UNITAF_Framework.svg?style=flat-square
+[issues-url]: https://github.com/JLMonck/UNITAF_Framework/issues
 [license-shield]: https://img.shields.io/badge/license-APL--ND-lightgrey?style=flat-square
-[license-url]: https://github.com/Grezvany13/UNITAF_Framework/LICENSE.md
+[license-url]: https://github.com/JLMonck/UNITAF_Framework/LICENSE.md

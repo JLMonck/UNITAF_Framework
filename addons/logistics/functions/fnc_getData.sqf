@@ -8,21 +8,25 @@ _x params ["_tableID","_displayName","_classnameBox","_contentsArray"];
 if !(GVAR(enable)) exitWith {
 	systemChat "Server:UNILOG Not enabled";
 };
-private _operationID = missionNamespace getVariable ['UNITAF_operationID', 0];
+//private _operationID = missionNamespace getVariable ['UNITAF_operationID', 0];
+private _operationID = getMissionConfigValue ['UNITAF_operationID', 0];
 //Query crates
-
-
 private _query = "extDB3" callExtension format ["0:FETCHDATA:SELECT * FROM assets WHERE op_id=%1",_operationID];
 private _array = parseSimpleArray _query; 
 _array params ["_dbID","_tableArray"];
-
-
 {
 	unitaf_logistics_crates pushBack _x;
 
 } forEach _tableArray;
 
+//Vehicles
+_queryVehicles = "extDB3" callExtension format ["0:FETCHDATA:SELECT * FROM vehicles WHERE op_id=%1",_operationID];
+_data = parseSimpleArray _queryVehicles;
+_data params ["_ID","_vehicleArrays"]; 
 
+{
+	unitaf_logistics_vehicles pushBack _x;
+} forEach _vehicleArrays;
 
 //Data structure test "items" state
 
@@ -71,7 +75,7 @@ _finArray_items = [
 	["rhs_mag_20Rnd_SCAR_762x51_m118_special",50],
 	["rhs_mag_20Rnd_SCAR_762x51_mk316_special",50]
 ];
-
+/*
 //Data structure test "vehicles" state
 
 _fin_array_vic = [
@@ -84,13 +88,20 @@ _fin_array_vic = [
 	["RHS_UH1Y_FFAR",10]
 
 ];
+*/
 //Sort mags into item array
 {
 	if (_x select 0 isKindOf ["CA_Magazine", configFile >> "CfgMagazines"]) then {
 		unitaf_logistics_items pushBack [_x select 0,_x select 1];
 	};
 } forEach _finArray_items;
+
+/*
+OLD Static data sorter for vehicles
+
+
 //Sort vics into vic array
 {
 	unitaf_logistics_vehicles pushBack [_x select 0,_x select 1];
 } forEach _fin_array_vic;
+*/

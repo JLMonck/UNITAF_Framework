@@ -15,6 +15,8 @@ switch (_state) do {
 						];
 						ctrlShow [IDC_spawned_crate,true];
 						ctrlShow [IDC_AMOUNT,true];
+						ctrlShow [IDC_BUTTON_RIGHT,true];
+		                ctrlShow [IDC_BUTTON_LEFT,true];
 						lbClear (_dialog displayCtrl IDC_spawned_crate);
 
 					{
@@ -76,7 +78,8 @@ switch (_state) do {
 		
 		ctrlShow [IDC_spawned_crate,false];
 		ctrlShow [IDC_SMALLBOX,false];
-
+		ctrlShow [IDC_BUTTON_RIGHT,false];
+		ctrlShow [IDC_BUTTON_LEFT,false];
 		{
 			_x params ["_tableID","_displayName","_classnameBox","_contentsArray"];
 			_row = (_dialog displayCtrl IDC_BIGBOX) lnbAddRow [_displayName];
@@ -90,7 +93,23 @@ switch (_state) do {
 		
 		ctrlShow [IDC_spawned_crate,false];
 		ctrlShow [IDC_AMOUNT,false];
+		ctrlShow [IDC_BUTTON_RIGHT,false];
+		ctrlShow [IDC_BUTTON_LEFT,false];
+		{
+			_x params ["_tableID","_name","_classname","_amount","_op_id"];
 
+			private _displayName = [(configFile >> "CfgVehicles"  >> _classname),"displayName"] call BIS_fnc_returnConfigEntry;
+
+			private _icon =  [(configFile >> "CfgVehicles"  >> _classname),"picture"] call BIS_fnc_returnConfigEntry;
+
+			private _row = (_dialog displayCtrl IDC_BIGBOX) lnbAddRow [str _amount, "", _displayName];
+
+			(_dialog displayCtrl IDC_BIGBOX) lnbSetPicture [[_row, 1], _icon];
+
+			(_dialog displayCtrl IDC_BIGBOX) lnbSetData [[_row, 0], _classname];
+		} forEach unitaf_logistics_vehicles;
+
+/*
 		{
 		private _itemClass = _x select 0;
 		private _amount = _x select 1;
@@ -101,7 +120,7 @@ switch (_state) do {
 		(_dialog displayCtrl IDC_BIGBOX) lnbSetPicture [[_row, 1], _icon];
 		(_dialog displayCtrl IDC_BIGBOX) lnbSetData [[_row, 0], _itemClass];
 		} forEach unitaf_logistics_vehicles;
-
+*/
 
 	 };
 	default { };

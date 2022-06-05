@@ -15,3 +15,5 @@
 #define IDC_CRATES 10
 #define IDC_VEHICLES 11
 #define IDC_ITEMS 12
+#define IDC_BUTTON_RIGHT 40
+#define IDC_BUTTON_LEFT 41

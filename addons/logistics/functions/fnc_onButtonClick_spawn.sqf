@@ -109,11 +109,10 @@ switch (_state) do {
         _vehicle = createVehicle [_selData, getPos unitaf_logisticsMenu_bigBox, [], 2, "NONE"];
         [_vehicle] call FUNC(vehicle_Init);
         //Remove from "inventory"
-        private _itemClass = (_dialog displayCtrl IDC_BIGBOX) lnbData [lnbCurSelRow (_dialog displayCtrl IDC_BIGBOX),0];
-        private _bigIndex = [unitaf_logistics_vehicles,_itemClass] call uni_log_logistics_fnc_findInTriplets;
-        (unitaf_logistics_vehicles select _bigIndex) set [1, ((unitaf_logistics_vehicles select _bigIndex) select 1) - 1];
+      
+        private _bigIndex = [unitaf_logistics_vehicles,_selData] call FUNC(findInTriplets);
+        (unitaf_logistics_vehicles select _bigIndex) set [3, ((unitaf_logistics_vehicles select _bigIndex) select 3) - 1];
 
         closeDialog 1;
 	 };
 };
-
