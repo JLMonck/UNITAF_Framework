@@ -95,6 +95,7 @@ switch (_state) do {
 		ctrlShow [IDC_AMOUNT,false];
 		ctrlShow [IDC_BUTTON_RIGHT,false];
 		ctrlShow [IDC_BUTTON_LEFT,false];
+		
 		{
 			_x params ["_tableID","_name","_classname","_amount","_op_id"];
 

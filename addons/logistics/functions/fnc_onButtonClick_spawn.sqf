@@ -108,7 +108,8 @@ switch (_state) do {
         _curSel = lnbCurSelRow _ctrl_vic;
         _selData = _ctrl_vic lnbData [_curSel,0];
 
-        _vehicle = createVehicle [_selData, getPos unitaf_logisticsMenu_bigBox, [], 2, "NONE"];
+        _vehicle = createVehicle [_selData, getPos unitaf_logistics_vehicle_spawn, [], 2, "NONE"];
+        _vehicle setDir getDir unitaf_logistics_vehicle_spawn;
         [_vehicle] call FUNC(vehicle_Init);
         //Remove from "inventory"
       

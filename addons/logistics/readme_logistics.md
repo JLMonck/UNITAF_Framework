@@ -6,6 +6,8 @@ It works by assigning a master depot that has an ace interact which brings up a 
 ### How To Setup
 + Enable Logistics in the cba settings under unitaf - Logistics
 + Place master supply depot, found under Empty - [UNITAF] Logistics
++ Name the depot in init field of the depot object : unilog_master_supply_depot
++ Place a parachute jump target (found under: X) and name it : unitaf_logistics_vehicle_spawn 
 + Set your UNITAF_operationId to what number you are using, this is to point the data grabbing function to get all the assets tied to the orbat.
 + Start your mission and ace interact with the depot to bring up the menu.
 ***
