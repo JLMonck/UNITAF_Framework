@@ -13,11 +13,14 @@
  */
 
 params ["_playerData"];
-// _playerData = [armauid, playerRank, playerAdmin, playerPos, playerDir, operation, is_medic_level, is_engineer_level, unit, callsign, freq, buddy, lr_freq, armarank, role, leader, is_zeus, is_eod, is_logistics, is_reporter];
-_playerData params ["_armaUID", "_playerRank", "_playerAdmin", "_playerPos", "_playerDir", "_operation", "_isMedic", "_isEngineer", "_unit", "_callsign", "_freq", "_buddy", "_lr_freq", "_armarank", "_role", "_leader", "_isZeus", "_isEOD", "_isLogistics", "_isReporter"];
+_playerData params ["_nickname","_armaUID", "_playerRank", "_playerAdmin", "_playerPos", "_playerDir", "_operation", "_isMedic", "_isEngineer", "_unit", "_callsign", "_freq", "_buddy", "_lr_freq", "_armarank", "_role", "_leader", "_isZeus", "_isEOD", "_isLogistics", "_isReporter"];
 
-// set tank
+// set rank
 player setUnitRank _armarank;
+
+//check if name is correct
+_msg = profileName + " profile name error - change to: " + _nickname;
+_msg remoteExec ["systemchat", 0];  
 
 // set ACE traits
 if !((_isMedic call BIS_fnc_parseNumber) > -1) then {
