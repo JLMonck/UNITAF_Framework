@@ -47,7 +47,7 @@ params ["_player", "_corpse", ["_arsenal", false, [true]]];
 				{
 					params ["_player"];
 					_playerData = _player getVariable [QGVAR(userData), []];
-					_playerData params ["_armaUID", "_playerRank", "_playerAdmin", "_playerPos", "_playerDir", "_operation", "_isMedic", "_isEgnineer", "_unit", "_callsign", "_freq", "_buddy", "_lr_freq", "_armarank", "_role", "_leader", "_isZeus", "_isEOD", "_isLogistics", "_isReporter"];
+					_playerData params ["_nickname", "_armaUID", "_playerRank", "_playerAdmin", "_playerPos", "_playerDir", "_operation", "_isMedic", "_isEgnineer", "_unit", "_callsign", "_freq", "_buddy", "_lr_freq", "_armarank", "_role", "_leader", "_isZeus", "_isEOD", "_isLogistics", "_isReporter"];
 
 					// check if TP marker exists
 					if !((_playerPos isEqualTo "") && (getMarkerColor _playerPos isEqualTo "")) then {
