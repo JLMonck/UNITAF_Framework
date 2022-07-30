@@ -1,0 +1,16 @@
+name = "United Task Force Framework"
+prefix = "unitaf"
+author = "United Task Force"
+files = [
+    "*.dll",
+    "*.so",
+    "mod.cpp",
+    "README.md",
+    "docs/README_DE.md",
+    "docs/README_PL.md",
+    "docs/README.zh-TW.md",
+    "AUTHORS.txt",
+    "LICENSE",
+    "logo_uni_log_ca.paa",
+    "meta.cpp"
+]
