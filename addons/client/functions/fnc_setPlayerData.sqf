@@ -68,6 +68,15 @@ player setVariable [QGVAR(userData), _playerData, true];
 private _autoZeus = QEGVAR(server,Zeus_autoZeus) call CBA_settings_fnc_get;
 if (_autoZeus && _isZeus isEqualTo 1) then {
 	[QEGVAR(ServerEvent,addToCurator), [player]] call CBA_fnc_serverEvent;
+
+	// check if CrowsZA is loaded
+	private _hasCrows = isClass (configFile >> "CfgPatches" >> "CrowsZA");
+	if (_hasCrows) then {
+		// Wait till Server has assigned the player as Zeus
+		waitUntil {!isNull (getAssignedCuratorLogic player)};
+		// Run (crappy implemented) registration script for Crows
+		[] call crowsZA_fnc_zeusRegister;
+	};
 };
 
 [QEGVAR(localEvent,playerData), _playerData] call CBA_fnc_localEvent;
