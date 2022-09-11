@@ -25,7 +25,7 @@ if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
 	[QEGVAR(ClientEvent,PlayerInventory), (_result select 1), [_player]] call CBA_fnc_targetEvent;
 };
 
-private _query = "extDB3" callExtension format["0:FETCHDATA:SELECT opl.inventory as playerInv FROM operation_layout ol LEFT JOIN roster_view rv ON rv.userid = ol.user LEFT JOIN operation_positions_loadouts opl ON opl.position = ol.position LEFT JOIN operations op ON op.id = ol.operation WHERE ol.operation IN ('%2') AND rv.armauid = '%1' AND opl.faction = op.faction", _playerUID, _operationID];
+private _query = "extDB3" callExtension format["0:FETCHDATA:SELECT opl.inventory as playerInv FROM operation_layout ol LEFT JOIN roster_view rv ON rv.userid = ol.user LEFT JOIN operation_positions_loadouts opl ON opl.position = ol.position LEFT JOIN operations op ON op.id = ol.operation WHERE (ol.operation = '%2' OR ol.operation = (SELECT conflicts FROM operations WHERE id = '%2')) AND rv.armauid = '%1' AND opl.faction = op.faction", _playerUID, _operationID];
 //private _query = "extDB3" callExtension format["0:FETCHDATA:SELECT inventory FROM operation_layout WHERE operation = '%2' AND armauid = '%1'", _playerUID, _operationID];
 private _result = (parseSimpleArray _query);
 
