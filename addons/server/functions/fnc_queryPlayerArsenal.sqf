@@ -26,7 +26,7 @@ if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
 };
 
 // @TODO: query must be updated to support personal arsenals based on ORBAT role
-private _query = "extDB3" callExtension format ["0:FETCHDATA:SELECT faction, rankid, CONCAT('[',inventory,']') as inv FROM arsenals WHERE faction = (SELECT faction FROM operations WHERE id IN ('%1')) LIMIT 1", _operationID];
+private _query = "extDB3" callExtension format ["0:FETCHDATA:SELECT faction, rankid, CONCAT('[',inventory,']') as inv FROM arsenals WHERE faction = (SELECT faction FROM operations WHERE id = '%1') LIMIT 1", _operationID];
 //private _query = "extDB3" callExtension "0:FETCHDATA:SELECT faction, rankid, CONCAT('[',inventory,']') as inv FROM arsenals WHERE faction = 1 LIMIT 1";
 private _result = (parseSimpleArray _query);
 

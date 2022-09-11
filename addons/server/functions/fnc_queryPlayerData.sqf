@@ -25,8 +25,8 @@ if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
 	[QEGVAR(ClientEvent,PlayerData), (_result select 1), [_player]] call CBA_fnc_targetEvent;
 };
 
-private _query = "extDB3" callExtension format["0:FETCHDATA:SELECT nickname, armauid, playerRank, playerAdmin, playerPos, playerDir, operation, is_medic_level, is_engineer_level, unit, callsign, freq, buddy, lr_freq, armarank, role, leader, is_zeus, is_eod, is_logistics, is_reporter FROM operation_players WHERE armauid = '%1' AND (operation = '%2' OR operation = (SELECT conflicts FROM operations WHERE id = '%2')) GROUP BY armauid", _playerUID, _operationID];
-
+private _query = "extDB3" callExtension format["0:FETCHDATA:SELECT armauid, playerRank, playerAdmin, playerPos, playerDir, operation, is_medic_level, is_engineer_level, unit, callsign, freq, buddy, lr_freq, armarank, role, leader, is_zeus, is_eod, is_logistics, is_reporter FROM operation_players WHERE armauid = '%1' AND operation = '%2' GROUP BY armauid", _playerUID, _operationID];
+//private _query = "extDB3" callExtension format["0:FETCHDATA:SELECT armauid, playerRank, playerAdmin, playerPos, playerDir, operation, is_medic_level, is_engineer_level, unit, callsign, freq, buddy, lr_freq, armarank, role, leader, is_zeus, is_eod, is_logistics, is_reporter FROM `utfn`.operation_players WHERE armauid = '%1' AND operation = '%2' GROUP BY armauid;", _playerUID, _operationID];
 private _result = (parseSimpleArray _query);
 
 switch (_result select 0) do {

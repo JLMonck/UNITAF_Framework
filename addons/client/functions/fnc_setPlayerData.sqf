@@ -13,17 +13,11 @@
  */
 
 params ["_playerData"];
-_playerData params ["_nickname","_armaUID", "_playerRank", "_playerAdmin", "_playerPos", "_playerDir", "_operation", "_isMedic", "_isEngineer", "_unit", "_callsign", "_freq", "_buddy", "_lr_freq", "_armarank", "_role", "_leader", "_isZeus", "_isEOD", "_isLogistics", "_isReporter"];
+// _playerData = [armauid, playerRank, playerAdmin, playerPos, playerDir, operation, is_medic_level, is_engineer_level, unit, callsign, freq, buddy, lr_freq, armarank, role, leader, is_zeus, is_eod, is_logistics, is_reporter];
+_playerData params ["_armaUID", "_playerRank", "_playerAdmin", "_playerPos", "_playerDir", "_operation", "_isMedic", "_isEngineer", "_unit", "_callsign", "_freq", "_buddy", "_lr_freq", "_armarank", "_role", "_leader", "_isZeus", "_isEOD", "_isLogistics", "_isReporter"];
 
-// set rank
+// set tank
 player setUnitRank _armarank;
-
-//check if name is correct
-_msg = profileName + " profile name error - change to: " + _nickname;
- 
-if !(profileName isEqualTo _nickname) then {
-	_msg remoteExec ["systemchat", 0]; 
-}
 
 // set ACE traits
 if !((_isMedic call BIS_fnc_parseNumber) > -1) then {
@@ -70,4 +64,11 @@ if (_autoZeus && _isZeus isEqualTo 1) then {
 	[QEGVAR(ServerEvent,addToCurator), [player]] call CBA_fnc_serverEvent;
 };
 
+// Calls "UNITAF_localEvent_playerData" locally
+// sends all the playerData
+//
+// ["UNITAF_localEvent_playerData", {
+//    params ["_armaUID", "_playerRank", "_playerAdmin", "_playerPos", "_playerDir", "_operation", "_isMedic", "_isEngineer", "_unit", "_callsign", "_freq", "_buddy", "_lr_freq", "_armarank", "_role", "_leader", "_isZeus", "_isEOD", "_isLogistics", "_isReporter"];
+//    ..code..
+// }] call CBA_fnc_addEventHandler;
 [QEGVAR(localEvent,playerData), _playerData] call CBA_fnc_localEvent;
