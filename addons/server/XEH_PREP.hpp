@@ -1,6 +1,11 @@
 // initialize Database
 PREP(initDatabase);
 
+// Connect / Disconnect / Kicked handlers
+PREP(onConnect);
+PREP(onDisconnect);
+PREP(onKicked);
+
 // Queries - Server
 PREP(queryORBATGroups);
 PREP(queryFullORBAT);

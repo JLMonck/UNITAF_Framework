@@ -25,4 +25,8 @@ if (!(parseSimpleArray (_resultDB) select 0 isEqualTo 1)) exitWith { diag_log "e
 private _resultPROT = "extDB3" callExtension "9:ADD_DATABASE_PROTOCOL:UTFN:SQL:FETCHDATA:TEXT";
 if (!(parseSimpleArray (_resultPROT) select 0 isEqualTo 1)) exitWith { diag_log "extDB3: Error with Protocol Connection"; diag_log format ["%1", _resultPROT]; false };
 
+// Set Protocol
+private _resultSPROT = "extDB3" callExtension "9:ADD_DATABASE_PROTOCOL:UTFN:SQL:SETDATA:TEXT";
+if (!(parseSimpleArray (_resultSPROT) select 0 isEqualTo 1)) exitWith { diag_log "extDB3: Error with Protocol Connection"; diag_log format ["%1", _resultSPROT]; false };
+
 true
