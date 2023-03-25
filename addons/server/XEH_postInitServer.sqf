@@ -30,11 +30,12 @@
 
 // Enable connection logging (connect, disconnect, kick)
 private _runConnectionLog = QGVAR(Server_connectionLog) call CBA_settings_fnc_get;
-if(_runConnectionLog) {
-	addMissionEventHandler ["OnUserConnected", { call FUNC(onConnect) }];
-	addMissionEventHandler ["OnUserDisconnected", { call FUNC(onDisconnect) }];
-	addMissionEventHandler ["OnUserKicked", { call FUNC(onKicked) }];
-}
+
+if (_runConnectionLog) then {
+	addMissionEventHandler ["OnUserConnected", { call FUNC(onConnect); }];
+	addMissionEventHandler ["OnUserDisconnected", { call FUNC(onDisconnect); }];
+	addMissionEventHandler ["OnUserKicked", { call FUNC(onKicked); }];
+};
 
 /**
  * Start running the scripts needed on the server
