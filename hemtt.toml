@@ -1,0 +1,11 @@
+name = "United Task Force Framework"
+prefix = "unitaf"
+author = "United Task Force"
+files = [
+    "*.dll",
+    "*.so",
+    "mod.cpp",
+    "README.md",
+    "unitaf.paa",
+    "meta.cpp"
+]
