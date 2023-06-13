@@ -3,3 +3,9 @@
 /releases
 
 /u/UNITAF
+
+# HEMTT 0.7.6
+releases/*
+*.biprivatekey
+keys/*
+.hemtt/local
