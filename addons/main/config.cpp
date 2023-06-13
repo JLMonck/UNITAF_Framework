@@ -129,7 +129,7 @@ class CfgVehicles {
         editorCategory = QUOTE(EdCat_UNITAF_Base);
 		editorSubcategory = QUOTE(EdSubcat_UNITAF_Base_Equipment);
         class EventHandlers {
-			init = QUOTE((_this select 0) remoteExec ['BIS_fnc_laptopPlayVideo', 0]);
+			init = "(_this select 0) remoteExec ['BIS_fnc_laptopPlayVideo', 0]";
 		};
     };
 };

@@ -4,7 +4,7 @@ params ["_role"];
 _role = toLowerANSI _role;
 
 // set ACE_GForceCoef for pilots
-if ("pilot" in _role || "jet" in _role || "rotary" in _role || "fixed wing" in _role) then {
+if ("pilot" in _role || "jet" in _role || "rotary" in _role || "fixed wing" in _role  || "fixed-wing" in _role) then {
 	player setVariable ["ACE_GForceCoef", 0.55];
 };
 // set ACE_GForceCoef for MERT

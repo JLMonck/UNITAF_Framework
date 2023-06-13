@@ -52,76 +52,76 @@ class GVAR(GUI_Control_Map): GVAR(GUI_Control_Base) {
 			colorBackground[] 	= {0,0,0,1};
 			colorText[] 		= {1,1,1,1};
 			font 				= "TahomaB";
-			sizeEx 				= GUI_TEXT_SIZE_MEDIUM;
+			sizeEx 				= QUOTE(GUI_TEXT_SIZE_MEDIUM);
   			text 				= "";
 
 			x 					= 0;
 			y 					= 0;
-			w 					= CALC_W(4);
-			h 					= GRID_FRAME_H;
+			w 					= QUOTE(CALC_W(4));
+			h 					= QUOTE(GRID_FRAME_H);
 		};
 		class GVAR(MapInfo_Current): GVAR(GUI_Text_Base) {
 			idc 				= -1;
 			
 			x 					= 0;
 			y 					= 0;
-			w 					= CALC_W(4);
-			h 					= CALC_H(1);
+			w 					= QUOTE(CALC_W(4));
+			h 					= QUOTE(CALC_H(1));
 
-			sizeEx				= GUI_TEXT_SIZE_SMALL;
+			sizeEx				= QUOTE(GUI_TEXT_SIZE_SMALL);
 			text 				= "Current Pos:";
 			colorBackground[]	= {0,0,0,0};
 			colorText[]			= {1,1,1,1};
 		};
 		class GVAR(MapInfo_time): GVAR(MapInfo_Current) {
 			idc 				= IDC_Tablet_MapInfo_Time;
-			y 					= (0 + CALC_Y(1));
+			y 					= QUOTE(0 + CALC_Y(1));
 			text 				= "";
 		};
 		class GVAR(MapInfo_dirDegree): GVAR(MapInfo_Current) {
 			idc 				= IDC_Tablet_MapInfo_Degree;
-			y 					= (0 + CALC_Y(2));
+			y 					= QUOTE(0 + CALC_Y(2));
 			text 				= "";
 		};
 		class GVAR(MapInfo_grid): GVAR(MapInfo_Current) {
 			idc 				= IDC_Tablet_MapInfo_Grid;
-			y 					= (0 + CALC_Y(3));
+			y 					= QUOTE(0 + CALC_Y(3));
 			text 				= "";
 		};
 		class GVAR(MapInfo_dirOctant): GVAR(MapInfo_Current) {
 			idc 				= IDC_Tablet_MapInfo_Octant;
-			y 					= (0 + CALC_Y(4));
+			y 					= QUOTE(0 + CALC_Y(4));
 			text 				= "";
 		};
 		class GVAR(MapInfo_elevation): GVAR(MapInfo_Current) {
 			idc 				= IDC_Tablet_MapInfo_Elevation;
-			y 					= (0 + CALC_Y(5));
+			y 					= QUOTE(0 + CALC_Y(5));
 			text 				= "";
 		};
 
 		class GVAR(MapInfo_Pointer): GVAR(MapInfo_Current) {
 			idc 				= IDC_Tablet_MapInfo_Elevation;
-			y 					= (0 + CALC_Y(7));
+			y 					= QUOTE(0 + CALC_Y(7));
 			text 				= "Pointer Pos:";
 		};
 		class GVAR(MapInfo_hookGrid): GVAR(MapInfo_Current) {
 			idc 				= IDC_Tablet_MapInfo_HookGrid;
-			y 					= (0 + CALC_Y(8));
+			y 					= QUOTE(0 + CALC_Y(8));
 			text 				= "";
 		};
 		class GVAR(MapInfo_hookElevation): GVAR(MapInfo_Current) {
 			idc 				= IDC_Tablet_MapInfo_hookElevation;
-			y 					= (0 + CALC_Y(9));
+			y 					= QUOTE(0 + CALC_Y(9));
 			text 				= "";
 		};
 		class GVAR(MapInfo_hookDst): GVAR(MapInfo_Current) {
 			idc 				= IDC_Tablet_MapInfo_HookDst;
-			y 					= (0 + CALC_Y(10));
+			y 					= QUOTE(0 + CALC_Y(10));
 			text 				= "";
 		};
 		class GVAR(MapInfo_hookDir): GVAR(MapInfo_Current) {
 			idc 				= IDC_Tablet_MapInfo_HookDir;
-			y 					= (0 + CALC_Y(11));
+			y 					= QUOTE(0 + CALC_Y(11));
 			text 				= "";
 		};
 	};

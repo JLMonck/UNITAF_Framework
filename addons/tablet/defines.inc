@@ -119,10 +119,10 @@
 #define GRID_FRAME_H 	CALC_H(17.6)
 
 #define GRID_FRAME \
-	x 					= GRID_FRAME_X;	\
-	y 					= GRID_FRAME_Y;	\
-	w 					= GRID_FRAME_W;	\
-	h 					= GRID_FRAME_H;
+	x 					= QUOTE(GRID_FRAME_X);	\
+	y 					= QUOTE(GRID_FRAME_Y);	\
+	w 					= QUOTE(GRID_FRAME_W);	\
+	h 					= QUOTE(GRID_FRAME_H);
 
 #define GRID_BUTTON_W   CALC_W(5.75)           // (28 - 1) / (columns + (columns + 1)
 #define GRID_BUTTON_H   CALC_H(1.5)

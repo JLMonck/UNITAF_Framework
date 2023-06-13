@@ -1,6 +1,6 @@
 #define UNITAF_INSIGNIA(CLASSNAME,NAME,COLOR,FILE) \
     class GVAR(CLASSNAME) { \
-        displayName = QUOTE([UNITAF] #NAME (#COLOR)); \
+        displayName = QUOTE([UNITAF] NAME (COLOR)); \
         author = "$STR_unitaf_main_Author"; \
         texture = QUOTE(\u\UNITAF\addons\insignias\ui\##FILE); \
         dlc = QUOTE(PREFIX); \
