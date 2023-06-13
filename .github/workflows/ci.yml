@@ -1,0 +1,24 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  hemtt:
+    name: HEMTT
+    runs-on: windows-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
+
+    - name: Build with HEMTT
+      uses: gruppe-adler/action-release-with-hemtt@master
+      id: build
+      
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ steps.build.outputs.zip_name }}
+        path: ${{ steps.build.outputs.release_path }}

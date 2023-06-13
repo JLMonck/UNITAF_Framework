@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project ID="Arma3">
+    <Package name="core">
+        <Key ID="STR_UNITAF_COMPAT_Intercom_ACESelfAction_Name">
+            <Original>IntercomChannel</Original>
+            <English>IntercomChannel</English>
+            <Japanese>インターコム チャンネル</Japanese>
+            <Korean>인터콤 채널</Korean>
+            <Chinese>對講機頻道</Chinese>
+            <Chinesesimp>对讲机频道</Chinesesimp>
+            <Russian>Интерком</Russian>
+        </Key>
+        <Key ID="STR_UNITAF_COMPAT_Intercom_ACESelfAction_Channel1">
+            <Original>Cargo</Original>
+            <English>Cargo</English>
+            <Japanese>後部座席</Japanese>
+            <Korean>화물석</Korean>
+            <Chinese>乘客</Chinese>
+            <Chinesesimp>乘客</Chinesesimp>
+            <Russian>Пассажиры</Russian>
+        </Key>
+        <Key ID="STR_UNITAF_COMPAT_Intercom_ACESelfAction_Channel2">
+            <Original>Crew</Original>
+            <English>Crew</English>
+            <Japanese>乗員</Japanese>
+            <Korean>승무원</Korean>
+            <Chinese>機組員</Chinese>
+            <Chinesesimp>机组员</Chinesesimp>
+            <Russian>Экипаж</Russian>
+        </Key>
+    </Package>
+</Project>
