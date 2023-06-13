@@ -1,7 +1,7 @@
 [
     QGVAR(Server_connectionLog),
     "CHECKBOX",
-    ["Add all mission objects to Zeus", "WARNING: will cause lag spike!!!"],
+    ["Enable connection logging", "Will store connect, disconnect and kick events to the UNITAF database"],
     [QUOTE(PREFIX), "UNITAB - SERVER"],
     false,
     true,
