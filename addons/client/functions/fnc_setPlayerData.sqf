@@ -19,13 +19,6 @@ _playerData params ["_armaUID", "_playerRank", "_playerAdmin", "_playerPos", "_p
 // set rank
 player setUnitRank _armarank;
 
-//check if name is correct
-_msg = profileName + " profile name error - change to: " + _nickname;
- 
-if !(profileName isEqualTo _nickname) then {
-	_msg remoteExec ["systemchat", 0]; 
-}
-
 // set ACE traits
 if !((_isMedic call BIS_fnc_parseNumber) > -1) then {
 	_isMedic = parseNumber _isMedic;
