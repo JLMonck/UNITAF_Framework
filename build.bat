@@ -1,3 +1,4 @@
 @echo off
-hemtt.exe build
+hemtt.exe build -vvv
+hemtt.exe release
 pause

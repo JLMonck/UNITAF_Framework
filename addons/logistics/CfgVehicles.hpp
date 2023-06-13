@@ -34,17 +34,17 @@ class CfgVehicles {
 		ace_cargo_canLoad = 1;
 		ace_Cargo_hasCargo = 1;
 
-        ace_dragging_canDrag = 1;
-        ace_dragging_dragPosition[] = {0, 1.5, 0};
-        ace_dragging_dragDirection = 0;
+		ace_dragging_canDrag = 1;
+		ace_dragging_dragPosition[] = {0, 1.5, 0};
+		ace_dragging_dragDirection = 0;
 
-        ace_dragging_canCarry = 1;
-        ace_dragging_carryPosition[] = {0, 1.5, 0};
-        ace_dragging_carryDirection = 0;
+		ace_dragging_canCarry = 1;
+		ace_dragging_carryPosition[] = {0, 1.5, 0};
+		ace_dragging_carryDirection = 0;
 
 		class VehicleTransport {
 			class Cargo {
-				parachuteClass			= B_Parachute_02_F;
+				parachuteClass			= "B_Parachute_02_F";
 				parachuteHeightLimit	= 40;
 				canBeTransported		= 1;
 				dimensions[]			= {"BBox_1_1_pos", "BBox_1_2_pos"};

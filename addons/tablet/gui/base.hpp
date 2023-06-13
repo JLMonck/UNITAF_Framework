@@ -21,13 +21,13 @@ class GVAR(Tablet_Side_Button_Base) {
 	soundClick[] 				= {"",0.1,1};
 	soundEscape[] 				= {"",0.1,1};
 
-	x 							= CALC_X(36.3);	// 34 + 2.3 ?
-	y 							= CALC_Y(5);
-	w 							= CALC_W(1);
-	h 							= CALC_H(1.2);
+	x 							= QUOTE(CALC_X(36.3));	// 34 + 2.3 ?
+	y 							= QUOTE(CALC_Y(5));
+	w 							= QUOTE(CALC_W(1));
+	h 							= QUOTE(CALC_H(1.2));
 
 	font 						= "PuristaLight";
-	sizeEx 						= GUI_TEXT_SIZE_MEDIUM;
+	sizeEx 						= QUOTE(GUI_TEXT_SIZE_MEDIUM);
 
 	offsetPressedX				= 0;
 	offsetPressedY				= 0;
@@ -67,9 +67,9 @@ class GVAR(GUI_Control_Base) {
 class GVAR(GUI_Button_Base) {
 	type						= CT_BUTTON;
 	idc 						= -1;
-	w 							= GRID_BUTTON_W;
-	h 							= GRID_BUTTON_H;
-	style 						= ST_CENTER + ST_SINGLE;
+	w 							= QUOTE(GRID_BUTTON_W);
+	h 							= QUOTE(GRID_BUTTON_H);
+	style 						= QUOTE(ST_CENTER + ST_SINGLE);
 	text 						= "";
 	borderSize 					= 0;
 	default 					= 0;
@@ -90,7 +90,7 @@ class GVAR(GUI_Button_Base) {
 	offsetPressedY 				= 0;
 	offsetX 					= 0;
 	offsetY 					= 0;
-	sizeEx 						= GUI_TEXT_SIZE_MEDIUM;
+	sizeEx 						= QUOTE(GUI_TEXT_SIZE_MEDIUM);
 
 	soundClick[]				= { "\A3\ui_f\data\sound\RscButton\soundClick", 0.09, 1.0 };
 	soundEnter[] 				= { "\A3\ui_f\data\sound\RscButton\soundEnter", 0.09, 1.0 };
@@ -102,23 +102,23 @@ class GVAR(GUI_Button_Base) {
 class GVAR(GUI_Title_Base) {
 	type 						= CT_STATIC;
 	idc 						= -1;
-	w 							= GRID_BUTTON_W;
-	h 							= CALC_H(1);
-	style 						= ST_LEFT + ST_UPPERCASE;
+	w 							= QUOTE(GRID_BUTTON_W);
+	h 							= QUOTE(CALC_H(1));
+	style 						= QUOTE(ST_LEFT + ST_UPPERCASE);
 	text 						= "???";
 	colorBackground[] 			= {0,0,0,0};
 	colorText[] 				= COLOR_TEXT;
 	font 						= "PuristaMedium";
-	sizeEx 						= GUI_TEXT_SIZE_SMALL;
+	sizeEx 						= QUOTE(GUI_TEXT_SIZE_SMALL);
 };
 class GVAR(GUI_Text_Base) {
 	type 						= CT_STRUCTURED_TEXT;
 	idc 						= -1;
-	w 							= GRID_BUTTON_W;
-	h 							= CALC_H(1);
+	w 							= QUOTE(GRID_BUTTON_W);
+	h 							= QUOTE(CALC_H(1));
 	style						= ST_LEFT;
 	text 						= "unknown";
-	size 						= GUI_TEXT_SIZE_SMALL;
+	size 						= QUOTE(GUI_TEXT_SIZE_SMALL);
 	access 						= 0;
 	colorBackground[] 			= {0,0,0,0};
 	colorText[] 				= COLOR_SUBTEXT;
@@ -126,7 +126,7 @@ class GVAR(GUI_Text_Base) {
 	class Attributes {
 		font 						= "PuristaLight";
 		color 						= "#3a7085";
-		align 						= left;
+		align 						= "left";
 		size 						= 1;
 	};
 };
@@ -134,17 +134,17 @@ class GVAR(GUI_List_Base) {
 	//type 						= CT_LISTBOX;
 	type 						= CT_LISTNBOX;
 	idc 						= -1;
-	w 							= GRID_BUTTON_W;
-	h 							= CALC_H(4);
-	style 						= ST_LEFT + LB_TEXTURES;
+	w 							= QUOTE(GRID_BUTTON_W);
+	h 							= QUOTE(CALC_H(4));
+	style 						= QUOTE(ST_LEFT + LB_TEXTURES);
 	colorBackground[] 			= COLOR_BACKGROUND;
 	colorDisabled[] 			= COLOR_BUTTON_DISABLED;
 	colorSelect[] 				= {0,0,0,0};
 	colorText[] 				= COLOR_SUBTEXT;
 	maxHistoryDelay 			= 0;
 	font 						= "PuristaLight";
-	rowHeight 					= GUI_TEXT_SIZE_MEDIUM;
-	sizeEx 						= GUI_TEXT_SIZE_SMALL;
+	rowHeight 					= QUOTE(GUI_TEXT_SIZE_MEDIUM);
+	sizeEx 						= QUOTE(GUI_TEXT_SIZE_SMALL);
 	soundSelect[] 				= { "\A3\ui_f\data\sound\RscListbox\soundSelect", 0.09, 1.0 };
 	columns[] 					= {0.2, 0.6, 0.2};
 	idcLeft 					= -1; 
@@ -164,9 +164,9 @@ class GVAR(GUI_List_Base) {
 class GVAR(GUI_Button_Table_Freq): GVAR(GUI_Button_Base) {
 	x 							= 0;
 	y  							= 0;
-	w 							= CALC_W(2);
-	h 							= CALC_H(1);
-	sizeEx 						= (GUI_GRID_H * 0.8);
+	w 							= QUOTE(CALC_W(2));
+	h 							= QUOTE(CALC_H(1));
+	sizeEx 						= QUOTE(GUI_GRID_H * 0.8);
 	colorBackground[] 			= COLOR_SUBTEXT;
 	toolTip						= "Set this frequency to Ch. 3";
 };
@@ -200,17 +200,17 @@ class GVAR(GUI_Combo_Base) {
 	class ComboScrollBar {
 		color[] 					= COLOR_SUBTEXT;
 	};
-	style 						= ST_MULTI + ST_NO_RECT;
+	style 						= QUOTE(ST_MULTI + ST_NO_RECT);
 	font 						= "RobotoCondensed";
-	sizeEx 						= GUI_TEXT_SIZE_SMALL;
+	sizeEx 						= QUOTE(GUI_TEXT_SIZE_SMALL);
 	shadow 						= 0;
 	x 							= 0;
 	y 							= 0;
-	w 							= GRID_BUTTON_W;
-	h 							= GRID_BUTTON_H;
+	w 							= QUOTE(GRID_BUTTON_W);
+	h 							= QUOTE(GRID_BUTTON_H);
 	colorSelectBackground[] 	= {1,1,1,0.7};
 	arrowEmpty 					= "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_ca.paa";
 	arrowFull 					= "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_active_ca.paa";
-	wholeHeight 				= GRID_BUTTON_H * 5;
+	wholeHeight 				= QUOTE(GRID_BUTTON_H * 5);
 	colorActive[] 				= {1,0,0,1};
 };

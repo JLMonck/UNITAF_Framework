@@ -9,15 +9,15 @@ class GVAR(GUI_Control_ORBAT): GVAR(GUI_Control_Base) {
 			style 					= 0;
 			x 						= 0;
 			y 						= 0;
-			w 						= GRID_FRAME_W;
-			h 						= GRID_FRAME_H;
+			w 						= QUOTE(GRID_FRAME_W);
+			h 						= QUOTE(GRID_FRAME_H);
 
  			firstIDC 				= IDC_Tablet_ORBAT_Table_First;
 			lastIDC 				= IDC_Tablet_ORBAT_Table_Last;
 
-			lineSpacing 			= (GUI_GRID_H * 0.1);
-    		rowHeight 				= (GUI_GRID_H * 1);
-    		headerHeight 			= (GUI_GRID_H * 1.2);
+			lineSpacing 			= QUOTE(GUI_GRID_H * 0.1);
+    		rowHeight 				= QUOTE(GUI_GRID_H * 1);
+    		headerHeight 			= QUOTE(GUI_GRID_H * 1.2);
 
 			//-- added to prevent errors, need to see what it does --//
 			// Colours which are used for animation (i.e. change of colour) of the selected line.
@@ -49,22 +49,22 @@ class GVAR(GUI_Control_ORBAT): GVAR(GUI_Control_Base) {
 				class HeaderBackground {
 					controlBaseClassPath[]	= {"RscText"};
 					columnX 				= 0;
-					columnW 				= CALC_W(28);
+					columnW 				= QUOTE(CALC_W(28));
 					controlOffsetY			= 0;
-					controlH 				= (GUI_GRID_H * 1.2);
+					controlH 				= QUOTE(GUI_GRID_H * 1.2);
 				};
 				// Callsign
 				class Column1 {
 					controlBaseClassPath[] 	= {"RscText"};
 					columnX 				= 0;
-					columnW 				= CALC_W(24);
+					columnW 				= QUOTE(CALC_W(24));
 					controlOffsetY			= 0;
 				};
 				// Team Radio Freq
 				class Column2 {
 					controlBaseClassPath[] 	= {QGVAR(GUI_Button_Table_Freq)};
-					columnX 				= CALC_X(24);
-					columnW 				= CALC_W(4);
+					columnX 				= QUOTE(CALC_X(24));
+					columnW 				= QUOTE(CALC_W(4));
 					controlOffsetY			= 0;
 				};
 			};
@@ -73,36 +73,36 @@ class GVAR(GUI_Control_ORBAT): GVAR(GUI_Control_Base) {
     		class RowTemplate {
 				class RowBackground {
 					controlBaseClassPath[]	= {"RscText"};
-					columnX 				= CALC_X(1);
-					columnW 				= CALC_W(28);
+					columnX 				= QUOTE(CALC_X(1));
+					columnW 				= QUOTE(CALC_W(28));
 					controlOffsetY			= 0;
 				};
 				// Team Color
 				class Column1 {
 					controlBaseClassPath[] 	= {"RscText"};
-					columnX 				= CALC_X(1);
-					columnW 				= CALC_W(2);
+					columnX 				= QUOTE(CALC_X(1));
+					columnW 				= QUOTE(CALC_W(2));
 					controlOffsetY			= 0;
 				};
 				// Rank Image
 				class Column2 {
 					controlBaseClassPath[] 	= {"RscPictureKeepAspect"};
-					columnX 				= CALC_X(3);
-					columnW 				= CALC_W(4);
+					columnX 				= QUOTE(CALC_X(3));
+					columnW 				= QUOTE(CALC_W(4));
 					controlOffsetY			= 0;
 				};
 				// Name
 				class Column3 {
 					controlBaseClassPath[] 	= {"RscText"};
-					columnX 				= CALC_X(7);
-					columnW 				= CALC_W(11);
+					columnX 				= QUOTE(CALC_X(7));
+					columnW 				= QUOTE(CALC_W(11));
 					controlOffsetY			= 0;
 				};
 				// Role
 				class Column4 {
 					controlBaseClassPath[] 	= {"RscText"};
-					columnX 				= CALC_X(18);
-					columnW 				= CALC_W(11);
+					columnX 				= QUOTE(CALC_X(18));
+					columnW 				= QUOTE(CALC_W(11));
 					controlOffsetY			= 0;
 				};
 			};

@@ -5,72 +5,72 @@ class GVAR(GUI_Control_Main): GVAR(GUI_Control_Base) {
 	class Controls {
 		// ORBAT Items
 		class GVAR(GUI_Title_Callsign): GVAR(GUI_Title_Base) {
-			x 					= GRID_OFFSET_COL3;
-			w 					= GRID_BUTTON_WIDE_W;
-			y 					= CALC_Y(1);
+			x 					= QUOTE(GRID_OFFSET_COL3);
+			w 					= QUOTE(GRID_BUTTON_WIDE_W);
+			y 					= QUOTE(CALC_Y(1));
 			text 				= "Callsign";
 		};
 		class GVAR(GUI_Text_Callsign): GVAR(GUI_Text_Base) {
 			idc 				= IDC_Tablet_Main_Callsign;
-			x 					= GRID_OFFSET_COL3;
-			w 					= GRID_BUTTON_WIDE_W;
-			y 					= CALC_Y(2);
+			x 					= QUOTE(GRID_OFFSET_COL3);
+			w 					= QUOTE(GRID_BUTTON_WIDE_W);
+			y 					= QUOTE(CALC_Y(2));
 			colorBackground[] 	= {0,0,0,0.5};
 		};
 
 		class GVAR(GUI_Title_Report): GVAR(GUI_Title_Base) {
-			x 					= GRID_OFFSET_COL3;
-			w 					= GRID_BUTTON_WIDE_W;
-			y 					= CALC_Y(3);
+			x 					= QUOTE(GRID_OFFSET_COL3);
+			w 					= QUOTE(GRID_BUTTON_WIDE_W);
+			y 					= QUOTE(CALC_Y(3));
 			text 				= "Report To";
 		};
 		class GVAR(GUI_Text_Report): GVAR(GUI_Text_Base) {
 			idc 				= IDC_Tablet_Main_Report;
-			x 					= GRID_OFFSET_COL3;
-			w 					= GRID_BUTTON_WIDE_W;
-			y 					= CALC_Y(4);
+			x 					= QUOTE(GRID_OFFSET_COL3);
+			w 					= QUOTE(GRID_BUTTON_WIDE_W);
+			y 					= QUOTE(CALC_Y(4));
 			colorBackground[] 	= {0,0,0,0.5};
 		};
 
 		class GVAR(GUI_Title_Role): GVAR(GUI_Title_Base) {
-			x 					= GRID_OFFSET_COL3;
-			w 					= GRID_BUTTON_WIDE_W;
-			y 					= CALC_Y(5);
+			x 					= QUOTE(GRID_OFFSET_COL3);
+			w 					= QUOTE(GRID_BUTTON_WIDE_W);
+			y 					= QUOTE(CALC_Y(5));
 			text 				= "Role";
 		};
 		class GVAR(GUI_Text_Role): GVAR(GUI_Text_Base) {
 			idc 				= IDC_Tablet_Main_Role;
-			x 					= GRID_OFFSET_COL3;
-			w 					= GRID_BUTTON_WIDE_W;
-			y 					= CALC_Y(6);
+			x 					= QUOTE(GRID_OFFSET_COL3);
+			w 					= QUOTE(GRID_BUTTON_WIDE_W);
+			y 					= QUOTE(CALC_Y(6));
 			colorBackground[] 	= {0,0,0,0.5};
 		};
 
 		class GVAR(GUI_Title_Color): GVAR(GUI_Title_Base) {
-			x 					= GRID_OFFSET_COL3;
-			w 					= GRID_BUTTON_WIDE_W;
-			y 					= CALC_Y(7);
+			x 					= QUOTE(GRID_OFFSET_COL3);
+			w 					= QUOTE(GRID_BUTTON_WIDE_W);
+			y 					= QUOTE(CALC_Y(7));
 			text 				= "Buddy Color";
 		};
 		class GVAR(GUI_Text_Color): GVAR(GUI_Text_Base) {
 			idc 				= IDC_Tablet_Main_Color;
-			x 					= GRID_OFFSET_COL3;
-			w 					= GRID_BUTTON_WIDE_W;
-			y 					= CALC_Y(8);
+			x 					= QUOTE(GRID_OFFSET_COL3);
+			w 					= QUOTE(GRID_BUTTON_WIDE_W);
+			y 					= QUOTE(CALC_Y(8));
 			colorBackground[] 	= {0,0,0,0.5};
 		};
 
 		class GVAR(GUI_Title_Team): GVAR(GUI_Title_Base) {
-			x 					= GRID_OFFSET_COL3;
-			w 					= GRID_BUTTON_WIDE_W;
-			y 					= CALC_Y(9);
+			x 					= QUOTE(GRID_OFFSET_COL3);
+			w 					= QUOTE(GRID_BUTTON_WIDE_W);
+			y 					= QUOTE(CALC_Y(9));
 			text 				= "Current Team";
 		};
 		class GVAR(GUI_List_Team): GVAR(GUI_List_Base) {
 			idc 				= IDC_Tablet_Main_Team;
-			x 					= GRID_OFFSET_COL3;
-			w 					= GRID_BUTTON_WIDE_W;
-			y 					= CALC_Y(10);
+			x 					= QUOTE(GRID_OFFSET_COL3);
+			w 					= QUOTE(GRID_BUTTON_WIDE_W);
+			y 					= QUOTE(CALC_Y(10));
 			colorBackground[] 	= {0,0,0,0.5};
 		};
 		
@@ -97,8 +97,8 @@ class GVAR(GUI_Control_Main): GVAR(GUI_Control_Base) {
 		// Bottom Buttons
 		class GVAR(GUI_Button_LoadORBAT): GVAR(GUI_Button_Base) {
 			idc 						= IDC_Tablet_Main_Button_LoadORBAT;
-			x 							= GRID_OFFSET_COL4;
-			y 							= CALC_Y(15);
+			x 							= QUOTE(GRID_OFFSET_COL4);
+			y 							= QUOTE(CALC_Y(15));
 			text 						= "Load ORBAT";
 			colorBackground[] 			= COLOR_BUTTON_LOAD;
 			colorBackgroundActive[] 	= COLOR_BUTTON_LOAD;
@@ -108,8 +108,8 @@ class GVAR(GUI_Control_Main): GVAR(GUI_Control_Base) {
 		};
 		class GVAR(GUI_Button_Admin): GVAR(GUI_Button_Base) {
 			idc 						= IDC_Tablet_Main_Button_Admin;
-			x 							= GRID_OFFSET_COL3;
-			y 							= CALC_Y(15);
+			x 							= QUOTE(GRID_OFFSET_COL3);
+			y 							= QUOTE(CALC_Y(15));
 			text 						= "Admin";
 			colorBackground[] 			= COLOR_BUTTON_ADMIN;
 			colorBackgroundActive[] 	= COLOR_BUTTON_ADMIN;
@@ -119,8 +119,8 @@ class GVAR(GUI_Control_Main): GVAR(GUI_Control_Base) {
 		};
 		class GVAR(GUI_Button_Logistics): GVAR(GUI_Button_Base) {
 			idc 						= IDC_Tablet_Main_Button_Logistics;
-			x 							= GRID_OFFSET_COL2;
-			y 							= CALC_Y(15);
+			x 							= QUOTE(GRID_OFFSET_COL2);
+			y 							= QUOTE(CALC_Y(15));
 			text 						= "Logistics";
 			colorBackground[] 			= COLOR_BUTTON_ADMIN;
 			colorBackgroundActive[] 	= COLOR_BUTTON_ADMIN;
@@ -132,8 +132,8 @@ class GVAR(GUI_Control_Main): GVAR(GUI_Control_Base) {
 		// REPORTER CAMERA BUTTON
 		class GVAR(GUI_Button_REPORTER): GVAR(GUI_Button_Base) {
 			idc 						= IDC_Tablet_Main_Button_Reporter;
-			x 							= GRID_OFFSET_COL1;
-			y 							= CALC_Y(15);
+			x 							= QUOTE(GRID_OFFSET_COL1);
+			y 							= QUOTE(CALC_Y(15));
 			text 						= "Reporter";
 			action 						= QUOTE(call FUNC(openReporter));
 			toolTip 					= "Open Reporter mode (Splendid Camera)";
@@ -145,32 +145,32 @@ class GVAR(GUI_Control_Main): GVAR(GUI_Control_Base) {
 		// OOPS BUTTONS
 		class GVAR(GUI_Button_GetRadio): GVAR(GUI_Button_Base) {
 			idc 						= IDC_Tablet_Main_Button_GetRadio;
-			x 							= GRID_OFFSET_COL2;
-			y 							= CALC_Y(1);
+			x 							= QUOTE(GRID_OFFSET_COL2);
+			y 							= QUOTE(CALC_Y(1));
 			text 						= "Get SW Radio";
 			action 						= QUOTE([player] call EFUNC(client,getRadio));
 			toolTip 					= "Forgot your radio? Grab one here";
 		};
 		class GVAR(GUI_Button_GetNVG): GVAR(GUI_Button_Base) {
 			idc 						= IDC_Tablet_Main_Button_GetNVG;
-			x 							= GRID_OFFSET_COL2;
-			y 							= CALC_Y(4);
+			x 							= QUOTE(GRID_OFFSET_COL2);
+			y 							= QUOTE(CALC_Y(4));
 			text 						= "Get NVG's";
 			action 						= QUOTE([player] call EFUNC(client,getNVG));
 			toolTip 					= "Forgot some NVG's? Grab one here";
 		};
 		class GVAR(GUI_Button_GetEarplugs): GVAR(GUI_Button_Base) {
 			idc 						= IDC_Tablet_Main_Button_GetEarplugs;
-			x 							= GRID_OFFSET_COL2;
-			y 							= CALC_Y(7);
+			x 							= QUOTE(GRID_OFFSET_COL2);
+			y 							= QUOTE(CALC_Y(7));
 			text 						= "Get Earplugs";
 			action 						= QUOTE([player] call EFUNC(client,getEarplugs));
 			toolTip 					= "Forgot some earplugs? Grab one here";
 		};
 		class GVAR(GUI_Button_GetGPS): GVAR(GUI_Button_Base) {
 			idc 						= IDC_Tablet_Main_Button_GetGPS;
-			x 							= GRID_OFFSET_COL2;
-			y 							= CALC_Y(10);
+			x 							= QUOTE(GRID_OFFSET_COL2);
+			y 							= QUOTE(CALC_Y(10));
 			text 						= "Get GPS";
 			action 						= QUOTE([player] call EFUNC(client,getGPS));
 			toolTip 					= "Forgot to bring a GPS? Grab one here";
