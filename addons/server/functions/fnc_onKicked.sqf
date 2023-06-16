@@ -30,7 +30,7 @@ private _operationID = missionNamespace getVariable ['UNITAF_operationID', 0];
 
 if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith { true };
 
-private _query = "extDB3" callExtension format["0:SETDATA:INSERT INTO connection_log SET armauid = '%1', operation = '%2', status = '%3', reason = '%3'", _playerUID, _operationID, 'kicked', _kickType];
+private _query = "extDB3" callExtension format["0:SETDATA:INSERT INTO connection_log SET armauid = '%1', operation = '%2', status = '%3', reason = '%4'", _playerUID, _operationID, 'kicked', _kickType];
 
 private _result = (parseSimpleArray _query);
 
