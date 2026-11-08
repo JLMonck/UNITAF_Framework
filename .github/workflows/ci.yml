@@ -8,7 +8,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: Checkout repo
-      uses: actions/checkout@master
+      uses: actions/checkout@v4
       with:
         submodules: 'recursive'
 
@@ -17,7 +17,7 @@ jobs:
       id: build
       
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{ steps.build.outputs.zip_name }}
         path: ${{ steps.build.outputs.release_path }}
