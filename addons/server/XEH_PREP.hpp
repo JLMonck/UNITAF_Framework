@@ -17,6 +17,7 @@ PREP(queryPlayerArsenal);
 
 // Server setters
 PREP(setFullORBAT);
+PREP(queryMission);
 PREP(setORBATGroups);
 PREP(makeCurator);
 

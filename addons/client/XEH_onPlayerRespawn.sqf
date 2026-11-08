@@ -80,12 +80,14 @@ params ["_player", "_corpse", ["_arsenal", false, [true]]];
 				10,
 				{
 					params ["_player"];
-					private _loadingText = '<t align="center">
-						Something went wrong with getting data from the ORBAT.<br/>
-						This either means you''re not on the ORBAT, you''re on the reserves list, or something went wrong with the database connection.<br/>
-						<br/>
-						Please contact the Field Leader to get it resolved.
-					</t>';
+					private _problem = switch (_player getVariable [QGVAR(orbatFailure), ""]) do {
+						case "not_slotted": { "You are not slotted on this deployment's ORBAT." };
+						case "not_linked": { format ["The website does not know your Steam ID (%1). Add it to your profile.", getPlayerUID _player] };
+						case "wrong_id": { format ["This mission's ID (%1) is not a deployment on the website.", missionNamespace getVariable ['UNITAF_operationID', 0]] };
+						case "database": { "The server could not reach the website's database." };
+						default { "Something went wrong with getting data from the ORBAT." };
+					};
+					private _loadingText = format ['<t align="center">%1<br/><br/>Please contact the Field Leader to get it resolved.</t>', _problem];
 
 					private _loadingLayer = "RespawnLoading" cutText [_loadingText, "BLACK", -1, false, true];
 					

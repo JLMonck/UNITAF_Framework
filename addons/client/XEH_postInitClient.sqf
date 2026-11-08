@@ -23,6 +23,12 @@
 	_this call FUNC(setPlayerData);
 }] call CBA_fnc_addEventHandler;
 
+// Why the server has no data for this player, for the message on the loading screen
+[QEGVAR(ClientEvent,PlayerDataFailed), {
+	params ["_reason"];
+	player setVariable [QGVAR(orbatFailure), _reason];
+}] call CBA_fnc_addEventHandler;
+
 [QEGVAR(ClientEvent,PlayerArsenal), {
 	_this call FUNC(setArsenal);
 }] call CBA_fnc_addEventHandler;

@@ -56,7 +56,7 @@ switch (_oops) do {
 		};
 	};
 	case "admin": {
-		if ({call BIS_fnc_admin} isEqualTo 2 || _isAdmin) then {
+		if ((call BIS_fnc_admin) isEqualTo 2 || _isAdmin) then {
 			_return = true;
 		};
 	};

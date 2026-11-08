@@ -14,7 +14,7 @@
 
 params ["_playerData"];
 // _playerData = [armauid, playerRank, playerAdmin, playerPos, playerDir, operation, is_medic_level, is_engineer_level, unit, callsign, freq, buddy, lr_freq, armarank, role, leader, is_zeus, is_eod, is_logistics, is_reporter];
-_playerData params ["_armaUID", "_playerRank", "_playerAdmin", "_playerPos", "_playerDir", "_operation", "_isMedic", "_isEngineer", "_unit", "_callsign", "_freq", "_buddy", "_lr_freq", "_armarank", "_role", "_leader", "_isZeus", "_isEOD", "_isLogistics", "_isReporter"];
+_playerData params ["_armaUID", "_playerRank", "_playerAdmin", "_playerPos", "_playerDir", "_operation", "_isMedic", "_isEngineer", "_unit", "_callsign", "_freq", "_buddy", "_lr_freq", "_armarank", "_role", "_leader", "_isZeus", "_isEOD", "_isLogistics", "_isReporter", ["_traits", ""]];
 
 // set rank
 player setUnitRank _armarank;
@@ -38,7 +38,7 @@ if !((_isEOD call BIS_fnc_parseNumber) > -1) then {
 player setUnitTrait ["explosiveSpecialist", (_isEOD > 0)];
 player setVariable ["ACE_isEOD", (_isEOD > 0), true];	// must be boolean, otherwise DUI breaks...
 
-[_role] call FUNC(setRoleHacks);
+[_traits] call FUNC(setRoleHacks);
 
 // set insignia (with small sleep between emptying and adding)
 [_playerRank] spawn {
@@ -58,6 +58,16 @@ player setVariable ["ACE_isEOD", (_isEOD > 0), true];	// must be boolean, otherw
 
 player setVariable [QGVAR(hasUserData), true, true];
 player setVariable [QGVAR(userData), _playerData, true];
+
+// Say which deployment this is, and warn if its date does not fit: an old mission file can carry an id that now belongs to something else
+private _deployment = missionNamespace getVariable ['UNITAF_deploymentName', ""];
+if !(_deployment isEqualTo "") then {
+	systemChat format ["ORBAT loaded: %1", _deployment];
+	private _daysAway = missionNamespace getVariable ['UNITAF_deploymentDaysAway', 0];
+	if (abs _daysAway > 1) then {
+		systemChat format ["WARNING: that deployment is dated %1 days from today. Check this mission's operation ID.", _daysAway];
+	};
+};
 
 private _autoZeus = QEGVAR(server,Zeus_autoZeus) call CBA_settings_fnc_get;
 if (_autoZeus && _isZeus isEqualTo 1) then {

@@ -26,7 +26,9 @@ if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
 };
 
 // @TODO: query must be updated to support personal arsenals based on ORBAT role
-private _query = "extDB3" callExtension format ["0:FETCHDATA:SELECT faction, rankid, CONCAT('[',inventory,']') as inv FROM arsenals WHERE faction = (SELECT faction FROM operations WHERE id = '%1') LIMIT 1", _operationID];
+if !(missionNamespace getVariable ['UNITAF_databaseAvailable', false]) exitWith {};
+
+private _query = "extDB3" callExtension format ["0:FETCHDATA:SELECT faction, rankid, inv FROM game_arsenals WHERE deployment = '%1' LIMIT 1", _operationID];
 //private _query = "extDB3" callExtension "0:FETCHDATA:SELECT faction, rankid, CONCAT('[',inventory,']') as inv FROM arsenals WHERE faction = 1 LIMIT 1";
 private _result = (parseSimpleArray _query);
 
@@ -36,6 +38,8 @@ switch (_result select 0) do {
 		 diag_log format["Database Error: %1", (_result select 1)];
 	};
 	case 1: {
+		// this faction has no arsenal
+		if ((_result select 1) isEqualTo []) exitWith {};
 		// only get the first result, fix into actual array (instead of comma seperated string)
 		[QEGVAR(ClientEvent,PlayerArsenal), (_result select 1), [_player]] call CBA_fnc_targetEvent;
 	};

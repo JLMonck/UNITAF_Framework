@@ -6,13 +6,17 @@
 params ["_networkId", "_clientStateNumber", "_clientState"];
 
 private _userInfo = getUserInfo _networkId;
-_userInfo params ["_playerID", "_ownerId", "_playerUID", "_profileName", "_displayName", "_steamName"];
+_userInfo params ["_playerID", "_ownerId", "_playerUID", "_profileName", "_displayName", "_steamName", "_userState", ["_isHC", false, [false]]];
 
 private _operationID = missionNamespace getVariable ['UNITAF_operationID', 0];
 
 if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith { true };
 
-private _query = "extDB3" callExtension format["0:SETDATA:INSERT INTO connection_log SET armauid = '%1', operation = '%2', status = '%3'", _playerUID, _operationID, "disconnected"];
+// Only log real players, and only once the database has been set up for this mission
+if (_isHC || {_playerUID isEqualTo ""}) exitWith { true };
+if !(missionNamespace getVariable ['UNITAF_databaseAvailable', false]) exitWith { true };
+
+private _query = "extDB3" callExtension format["1:SETDATA:INSERT INTO game_connections SET game_user_id = '%1', event_reference = '%2', status = '%3'", _playerUID, _operationID, "disconnected"];
 
 private _result = (parseSimpleArray _query);
 

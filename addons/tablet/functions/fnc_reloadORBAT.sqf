@@ -13,7 +13,5 @@
  * No
  */
 
- // get Full ORBAT
-private _operationId = missionNamespace getVariable ['UNITAF_operationID', 0];
-
-[QEGVAR(ServerEvent,getFullORBAT), [_operationId]] call CBA_fnc_serverEvent;
+// Fetch this player's slot again: role, traits, group and radios. Their kit is left alone.
+[QEGVAR(ServerEvent,queryPlayerData), [player]] call CBA_fnc_serverEvent;

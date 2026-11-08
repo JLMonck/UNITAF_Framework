@@ -58,6 +58,9 @@ if ((getMissionConfigValue ["UNITAF_runDatabase", 0]) isEqualTo 1) then {
 	};
 	missionNamespace setVariable ['UNITAF_operationID', _operationId, true];
 
+	// name the deployment, and notice an id that belongs to nothing
+	[_operationId] call FUNC(queryMission);
+
 	if ((getMissionConfigValue ["UNITAF_useORBAT", 0]) isEqualTo 1) then {
 		missionNamespace setVariable ['UNITAF_useORBAT', true, true];
 		// get Full ORBAT
