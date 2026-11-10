@@ -61,6 +61,11 @@ if ((getMissionConfigValue ["UNITAF_runDatabase", 0]) isEqualTo 1) then {
 	// name the deployment, and notice an id that belongs to nothing
 	[_operationId] call FUNC(queryMission);
 
+	// once a minute, tell the website who is on (first run after a minute, once init has settled)
+	if (_runConnectionLog) then {
+		[{ call FUNC(logPresence) }, 60] call CBA_fnc_addPerFrameHandler;
+	};
+
 	if ((getMissionConfigValue ["UNITAF_useORBAT", 0]) isEqualTo 1) then {
 		missionNamespace setVariable ['UNITAF_useORBAT', true, true];
 		// get Full ORBAT
@@ -74,4 +79,13 @@ if ((getMissionConfigValue ["UNITAF_runDatabase", 0]) isEqualTo 1) then {
 // let server update its FPS into a public variable based on a fixed update interval (5sec)
 [{
 	missionNameSpace setVariable [QGVAR(ServerFPS), floor diag_fps, true];
+	// lowest since the last presence snapshot, for the website (local only, never broadcast)
+	missionNameSpace setVariable [QGVAR(ServerFPSMin), (missionNameSpace getVariable [QGVAR(ServerFPSMin), diag_fpsMin]) min diag_fpsMin];
+
+	// clients send their FPS to the server only; pass them on in one message to each Zeus for the FPS counter
+	private _curators = ((allCurators apply { getAssignedCuratorUnit _x }) select { !isNull _x && { isPlayer _x } });
+	if (_curators isNotEqualTo []) then {
+		private _pairs = ((allPlayers - entities "HeadlessClient_F") apply { [_x, _x getVariable [QEGVAR(client,PlayerFPS), -1]] }) select { (_x select 1) >= 0 };
+		[QGVAR(curatorPlayerFPS), [_pairs], _curators] call CBA_fnc_targetEvent;
+	};
 }, 5] call CBA_fnc_addPerFrameHandler;

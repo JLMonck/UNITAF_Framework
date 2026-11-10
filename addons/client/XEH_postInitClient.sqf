@@ -70,9 +70,10 @@ if (hasInterface) then {
 	private _update = QGVAR(FPSUpdate) call CBA_settings_fnc_get;
 	if (_update) then {
 		private _interval = QGVAR(FPSUpdateInterval) call CBA_settings_fnc_get;
-		// let each client update their FPS into a public variable based on a fixed update interval
+		// send this client's FPS to the server only (2) on a fixed interval; the server passes them on
+		// to whoever is Zeus (unitaf_server_curatorPlayerFPS), so no client hears every other client
 		[{
-			player setVariable [QGVAR(PlayerFPS), floor diag_fps, true];
+			player setVariable [QGVAR(PlayerFPS), floor diag_fps, 2];
 		}, _interval] call CBA_fnc_addPerFrameHandler;
 	};
 };

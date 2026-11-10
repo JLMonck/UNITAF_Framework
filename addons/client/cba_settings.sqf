@@ -12,7 +12,7 @@
 [
     QGVAR(FPSUpdate),
     "CHECKBOX",
-    ["Player FPS Update", "Allow the FPS of each client to be updated and shown under the name of the client in Zeus"],
+    ["Player FPS Update", "Send each client's FPS to the server, for the Zeus FPS counter and the operation's performance record on the website"],
     [QUOTE(PREFIX), "ZEUS"],
     true,
     1,
@@ -22,9 +22,9 @@
 [
     QGVAR(FPSUpdateInterval),
     "SLIDER",
-    ["Player FPS Update Interval", "Interval in seconds on which the FPS is updated"],
+    ["Player FPS Update Interval", "Interval in seconds on which each client sends its FPS to the server"],
     [QUOTE(PREFIX), "ZEUS"],
-    [0, 30, 1, 0],
+    [1, 30, 5, 0],
     3,
     {},
 	false

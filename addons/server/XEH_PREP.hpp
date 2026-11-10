@@ -5,6 +5,7 @@ PREP(initDatabase);
 PREP(onConnect);
 PREP(onDisconnect);
 PREP(onKicked);
+PREP(logPresence);
 
 // Queries - Server
 PREP(queryORBATGroups);

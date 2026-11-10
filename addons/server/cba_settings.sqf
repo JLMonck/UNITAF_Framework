@@ -1,7 +1,7 @@
 [
     QGVAR(Server_connectionLog),
     "CHECKBOX",
-    ["Enable connection logging", "Will store connect, disconnect and kick events to the UNITAF database"],
+    ["Enable connection logging", "Will store connect, disconnect and kick events, and once a minute who is on the server, to the UNITAF database"],
     [QUOTE(PREFIX), "UNITAB - SERVER"],
     false,
     true,
