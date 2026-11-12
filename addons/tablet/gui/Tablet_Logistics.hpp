@@ -81,12 +81,12 @@ class GVAR(GUI_Control_Logistics): GVAR(GUI_Control_Base) {
         class GVAR(GUI_Button_EditInventory): GVAR(GUI_Button_Base) {
 			x 							= QUOTE(GRID_OFFSET_COL4);
 			y 							= QUOTE(CALC_Y(13));
-			text 						= "Edit";
+			text 						= "Spawn";
 			colorBackground[] 			= COLOR_BUTTON_LOAD;
 			colorBackgroundActive[] 	= COLOR_BUTTON_LOAD;
 			colorFocused[] 				= COLOR_BUTTON_LOAD;
-			action 						= QUOTE(call FUNC(logisticsConfigure));
-			toolTip 					= "Edit Inventory";
+			action 						= QUOTE(call FUNC(logisticsSpawn));
+			toolTip 					= "Spawn it in front of you (at base only)";
 		};
     };
 };

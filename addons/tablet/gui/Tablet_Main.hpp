@@ -125,7 +125,7 @@ class GVAR(GUI_Control_Main): GVAR(GUI_Control_Base) {
 			colorBackground[] 			= COLOR_BUTTON_ADMIN;
 			colorBackgroundActive[] 	= COLOR_BUTTON_ADMIN;
 			colorFocused[] 				= COLOR_BUTTON_ADMIN;
-			//action 						= QUOTE(['init'] call FUNC(openTabletLogistics));
+			action 						= QUOTE(call FUNC(openTabletLogistics));
 			//toolTip 					= "Functions only accessable for Admins";
 		};
 

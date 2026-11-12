@@ -7,7 +7,8 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            QMAIN_ADDON
+            QMAIN_ADDON,
+            "3DEN"
         };
         author = ECSTRING(main,author);
         url = ECSTRING(main,url);
@@ -16,4 +17,5 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
+#include "Display3DEN.hpp"
 //#include "CfgVehicles.hpp"

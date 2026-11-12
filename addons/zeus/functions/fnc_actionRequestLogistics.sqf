@@ -1,25 +1,20 @@
 #include "script_component.hpp"
+/*
+ * Author: Grezvany13, JLMonck
+ * "Request logistics" confirmed: the server reads the crate, packs it and spawns the boxes.
+ *
+ * Arguments:
+ * 0: Dialog values [supplies, container type, full arsenal] <ARRAY>
+ * 1: Arguments [position] <ARRAY>
+ *
+ * Return Value:
+ * None
+ *
+ * Public: No
+ */
 
 params ["_values", "_arguments"];
-_values params ["_config", "_type", "_arsenal"];
+_values params ["_choice", "_type", "_arsenal"];
 _arguments params ["_position"];
 
-// Create container
-_container = createVehicle [_type, [_position select 0, _position select 1, 0]];
-
-if (_arsenal) then {
-	// If ACE Arsenal, add ALL items to container
-	[_container, true] call ace_arsenal_fnc_initBox;
-} else {
-	// Get content from list or DB
-	_contents = [_config] call EFUNC(logistics,getSupplyContents);
-
-	// empty out container
-	clearItemCargoGlobal _container;
-	// Add items to container
-	{
-		_container addItemCargoGlobal [_x select 0, _x select 1];
-	} count _contents;
-};
-// ensure all curators get access to the container
-[QEGVAR(ServerEvent,addToCurator), [_container]] call CBA_fnc_serverEvent;
+[QEGVAR(ServerEvent,spawnCrate), [_choice, _type, _arsenal, _position]] call CBA_fnc_serverEvent;

@@ -1,7 +1,15 @@
 #include "script_component.hpp"
 /**
- * Author: Grezvany13
- * Opens the Logistics Page on the tablet
+ * Author: Grezvany13, JLMonck
+ * The tablet's Logistics page (D-470): pick what to spawn, see what is in it, pick the box
+ * (Automatic: the smallest that fits, more boxes if needed), then Spawn, at base.
+ *
+ * What to spawn:
+ *	- Website crates: the ones this operation's logistics people made (a resupply says whom it
+ *	  serves), then the faction's own crates. Listed and read from the server.
+ *	- Mod presets: the mod's own CfgSupplies.
+ *	- Full ACE Arsenal.
+ *	- Empty box.
  *
  * Arguments:
  * None
@@ -9,8 +17,7 @@
  * Return Value:
  * None
  *
- * Public:
- * No
+ * Public: No
  */
 
 private _display = GET_TABLET;
@@ -20,230 +27,156 @@ if (_display isEqualTo displayNull) exitWith {};
 [GET_LOGISTICS] call FUNC(hideAll);
 GET_LOGISTICS ctrlShow true;
 
-lnbClear GET_IN_LOGISTICS(IDC_Tablet_Logistics_Combo_Type);
-lnbClear GET_IN_LOGISTICS(IDC_Tablet_Logistics_Combo_Preset);
-lnbClear GET_IN_LOGISTICS(IDC_Tablet_Logistics_Combo_Container);
+lbClear GET_IN_LOGISTICS(IDC_Tablet_Logistics_Combo_Type);
+lbClear GET_IN_LOGISTICS(IDC_Tablet_Logistics_Combo_Preset);
+lbClear GET_IN_LOGISTICS(IDC_Tablet_Logistics_Combo_Container);
+lnbClear GET_IN_LOGISTICS(IDC_Tablet_Logistics_Preview);
 
-GVAR(selectedType) = nil;
-GVAR(selectedPreset) = nil;
-GVAR(selectedContainer) = nil;
+// What is picked: the type, the choice spawnCrate reads ("db:<id>", "mod:<class>", "arsenal",
+// "empty"), its contents for the preview, and the box ("" is Automatic)
+GVAR(logisticsType) = "";
+GVAR(logisticsChoice) = "";
+GVAR(logisticsContents) = [];
+GVAR(logisticsContainer) = "";
 
-/**
- * set Types
- *	- Database Presets
- *	- Mod Presets
- *	- Arsenal
- *	- Empty
- */
+// 1. Type
 GVAR(_fnc_setTypes) = {
-	_ctrlTypes = GET_IN_LOGISTICS(IDC_Tablet_Logistics_Combo_Type);
+	private _ctrlTypes = GET_IN_LOGISTICS(IDC_Tablet_Logistics_Combo_Type);
+	lbClear _ctrlTypes;
 	{
-		_index = _ctrlTypes lbAdd (_x select 0);
-		_ctrlTypes lbSetValue [_index, _foreachIndex];
-		_ctrlTypes lbSetData [_index, (_x select 1)];
+		private _index = _ctrlTypes lbAdd (_x select 0);
+		_ctrlTypes lbSetData [_index, _x select 1];
 	} forEach [
-		["Database Presets", "db"],
-		["Mod Presets", "mod"],
-		["Arsenal", "arsenal"],
-		["Empty", "empty"]
+		["Website crates", "db"],
+		["Mod presets", "mod"],
+		["Full ACE Arsenal", "arsenal"],
+		["Empty box", "empty"]
 	];
-
-	GVAR(_fnc_typeChange) = {
-		params ["_control", "_selectedIndex"];
-
-		_selected = _control lbValue _selectedIndex;
-		_selectedData = _control lbData _selectedIndex;
-
-		GVAR(selectedType) = _selectedData;
-
-		if (GVAR(selectedType) == "empty") then {
-			private _ctrlPresets = GET_IN_LOGISTICS(IDC_Tablet_Logistics_Combo_Preset);
-			lnbClear _ctrlPresets; // empty list first!
-			GVAR(selectedPreset) = nil;
-			call GVAR(_fnc_setContainers);
-		} else {
-			call GVAR(_fnc_setPresets);
-		};
-		true;
-	};
-	_ctrlTypes ctrlSetEventHandler ["LBSelChanged", QUOTE(call GVAR(_fnc_typeChange))];
+	_ctrlTypes ctrlSetEventHandler ["LBSelChanged", QUOTE(call GVAR(_fnc_typeChanged))];
 };
 
-/**
- * set Presets
- *	- Database Presets
- *	 	> list database results
- *	- Mod Presets
- *		> list mod results
- *	- Arsenal
- *		> Limited ACE Arsenal
- *		> Full ACE Arsenal
- *	- Empty
- */
-GVAR(_fnc_setPresets) = {
-	_selectedType = GVAR(selectedType);
+GVAR(_fnc_typeChanged) = {
+	params ["_control", "_selectedIndex"];
+	GVAR(logisticsType) = _control lbData _selectedIndex;
+	GVAR(logisticsChoice) = "";
+	GVAR(logisticsContents) = [];
+	call GVAR(_fnc_setPresets);
+	call GVAR(_fnc_setPreview);
+	call GVAR(_fnc_setContainers);
+	true
+};
 
+// 2. Preset: what of that type
+GVAR(_fnc_setPresets) = {
 	private _ctrlPresets = GET_IN_LOGISTICS(IDC_Tablet_Logistics_Combo_Preset);
-	lnbClear _ctrlPresets; // empty list first!
-	
-	switch (_selectedType) do {
+	lbClear _ctrlPresets;
+
+	switch (GVAR(logisticsType)) do {
 		case "db": {
-			// list presets from DB
+			// Asked of the server; crateList fills it in (XEH_postInitClient)
+			_ctrlPresets lbAdd "Loading the operation's crates…";
+			[QEGVAR(ServerEvent,listCrates), [getPosATL player, player, QGVAR(crateList)]] call CBA_fnc_serverEvent;
 		};
 		case "mod": {
 			{
-				_index = _ctrlPresets lbAdd (getText (_x >> "displayName"));
-				_ctrlPresets lbSetValue [_index, _foreachIndex];
-				_ctrlPresets lbSetData [_index, (configName _x)];
-				
+				private _index = _ctrlPresets lbAdd (getText (_x >> "displayName"));
+				_ctrlPresets lbSetData [_index, format ["mod:%1", configName _x]];
 			} forEach ("true" configClasses (configFile >> "CfgSupplies"));
 		};
 		case "arsenal": {
-			{
-				_index = _ctrlPresets lbAdd (_x select 0);
-				_ctrlPresets lbSetValue [_index, _foreachIndex];
-				_ctrlPresets lbSetData [_index, (_x select 1)];
-			} forEach [
-				["Limited ACE Arsenal", "limited"],
-				["Full ACE Arsenal", "full"],
-				["Custom ACE Arsenal", "custom"]
-			];
+			_ctrlPresets lbSetData [_ctrlPresets lbAdd "Full ACE Arsenal", "arsenal"];
 		};
-		case "empty": {};
+		case "empty": {
+			_ctrlPresets lbSetData [_ctrlPresets lbAdd "Empty box", "empty"];
+		};
 	};
 
-	GVAR(_fnc_presetChanged) = {
-		params ["_control", "_selectedIndex"];
-
-		_selected = _control lbValue _selectedIndex;
-		_selectedData = _control lbData _selectedIndex;
-
-		GVAR(selectedPreset) = _selectedData;
-
-		call GVAR(_fnc_setContainers);
-		true;
-	};
 	_ctrlPresets ctrlSetEventHandler ["LBSelChanged", QUOTE(call GVAR(_fnc_presetChanged))];
+	if (GVAR(logisticsType) in ["arsenal", "empty"]) then { _ctrlPresets lbSetCurSel 0; };
 };
 
-/**
- * list classes from 'Logistics'
- */
-GVAR(_fnc_setContainers) = {
-	_selectedType = GVAR(selectedType);
-	_selectedPreset = GVAR(selectedPreset);
+GVAR(_fnc_presetChanged) = {
+	params ["_control", "_selectedIndex"];
+	private _choice = _control lbData _selectedIndex;
+	if (_choice isEqualTo "") exitWith { true };
 
-	private _ctrlContainers = GET_IN_LOGISTICS(IDC_Tablet_Logistics_Combo_Container);
-	lnbClear _ctrlContainers; // empty list first!
+	GVAR(logisticsChoice) = _choice;
+	GVAR(logisticsContents) = [];
+
+	(_choice splitString ":") params ["_source", ["_key", ""]];
+	switch (_source) do {
+		case "db": {
+			// Asked of the server; crateContents fills the preview in (XEH_postInitClient)
+			[QEGVAR(ServerEvent,crateContents), [parseNumber _key, player, QGVAR(crateContents)]] call CBA_fnc_serverEvent;
+		};
+		case "mod": {
+			GVAR(logisticsContents) = getArray (configFile >> "CfgSupplies" >> _key >> "items");
+		};
+	};
+
+	call GVAR(_fnc_setPreview);
+	call GVAR(_fnc_setContainers);
+	true
+};
+
+// 3. Preview: what is in it, and what it weighs
+GVAR(_fnc_setPreview) = {
+	private _ctrlPreview = GET_IN_LOGISTICS(IDC_Tablet_Logistics_Preview);
+	lnbClear _ctrlPreview;
 
 	private _weight = 0;
-	switch (_selectedType) do {
-		case "db": {
-			//call GVAR(_fnc_setContentPreview);
-		};
-		case "mod": {
-			call GVAR(_fnc_setContentPreview);
-			{
-				_mass = [_x select 0] call FUNC(logisticsGetItemMass);
-				_weight = _weight + (_mass * (_x select 1));
-			} forEach getArray (configFile >> "CfgSupplies" >> _selectedPreset >> "items");
-		};
-	};
-	private _containers = [];
-	if (_weight > 0) then {
-		_containers = QUOTE((getNumber (_x >> 'scope') >= 2) && (getNumber (_x >> 'maximumLoad') >= _weight) && (configName _x) isKindOf SQUOTE(EGVAR(logistics,Container_Base))) configClasses (configFile >> "CfgVehicles");
-	} else {
-		_containers = QUOTE((getNumber (_x >> 'scope') >= 2) && (configName _x) isKindOf SQUOTE(EGVAR(logistics,Container_Base))) configClasses (configFile >> "CfgVehicles");
-	};
-
-	_containers = [_containers, [], {configName _x}, "DESCEND"] call BIS_fnc_sortBy;
-	_containers = [_containers, [], {getNumber (_x >> "maximumLoad")}, "ASCEND"] call BIS_fnc_sortBy;
-	private _containerArray = _containers apply { [configName _x, (getText (_x >> "displayName")), format ["maxLoad: %1", (getNumber (_x >> "maximumLoad"))], (getText (_x >> "editorPreview"))]};
-	
-	{
-		_index = _ctrlContainers lbAdd (_x select 1);
-		_ctrlContainers lbSetValue [_index, _foreachIndex];
-		_ctrlContainers lbSetData [_index, (_x select 0)];
-		_ctrlContainers lbSetTooltip [_index, (_x select 2)];
-		_ctrlContainers lbSetPicture  [_index, (_x select 3)];
-	} forEach _containerArray;
-
-	GVAR(_fnc_containerChanged) = {
-		params ["_control", "_selectedIndex"];
-
-		_selected = _control lbValue _selectedIndex;
-		_selectedData = _control lbData _selectedIndex;
-
-		GVAR(selectedContainer) = _selectedData;
-
-		call GVAR(_fnc_setInventory);
-		true;
-	};
-	_ctrlContainers ctrlSetEventHandler ["LBSelChanged", QUOTE(call GVAR(_fnc_containerChanged))];
-};
-
-GVAR(_fnc_setInventory) = {
-	_selectedType = GVAR(selectedType);
-	_selectedPreset = GVAR(selectedPreset);
-	_selectedContainer = GVAR(selectedContainer);
-
-	diag_log format ["Type: %1 - Preset: %2 - Container: %3", _selectedType, _selectedPreset, _selectedContainer];
-	systemChat format ["Type: %1 - Preset: %2 - Container: %3", _selectedType, _selectedPreset, _selectedContainer];
-};
-
-GVAR(_fnc_setContentPreview) = {
-	_selectedType = GVAR(selectedType);
-	_selectedPreset = GVAR(selectedPreset);
-
-	private _ctrlPreview = GET_IN_LOGISTICS(IDC_Tablet_Logistics_Preview);
-	lnbClear _ctrlPreview; // empty list first!
-
-	private _objects = [];
-
-	switch (_selectedType) do {
-		case "db": {};
-		case "mod": {
-			_objects = getArray (configFile >> "CfgSupplies" >> _selectedPreset >> "items");
-		};
-	};
-
-	private _itemsList = uiNamespace getVariable QGVAR(itemsList);
-	private _cfgGlasses   = configFile >> "CfgGlasses";
-    private _cfgMagazines = configFile >> "CfgMagazines";
-    private _cfgVehicles  = configFile >> "CfgVehicles";
-    private _cfgWeapons   = configFile >> "CfgWeapons";
-
 	{
 		_x params ["_item", "_amount"];
-
-		// Get appropriate config for each item, items can be from any category
 		private _config = switch (true) do {
-			case (_item in (_itemsList select 7));
-			case (_item in (_itemsList select 20));
-			case (_item in (_itemsList select 21)): {
-				_cfgMagazines >> _item;
-			};
-			case (_item in (_itemsList select 11)): {
-				_cfgVehicles >> _item;
-			};
-			case (_item in (_itemsList select 12)): {
-				_cfgGlasses >> _item;
-			};
-			default {
-				_cfgWeapons >> _item;
-			};
+			case (isClass (configFile >> "CfgMagazines" >> _item)): { configFile >> "CfgMagazines" >> _item };
+			case (isClass (configFile >> "CfgVehicles" >> _item)): { configFile >> "CfgVehicles" >> _item };
+			case (isClass (configFile >> "CfgGlasses" >> _item)): { configFile >> "CfgGlasses" >> _item };
+			default { configFile >> "CfgWeapons" >> _item };
 		};
-		private _displayName = getText (_config >> "displayName");
-		// Check if the item is matches the current filter
-		private _picture = getText (_config >> "picture");
-		private _tooltip = format ["%1\n%2", _displayName, _item];
+		private _name = getText (_config >> "displayName");
+		private _index = _ctrlPreview lnbAddRow ["", [_name, _item] select (_name isEqualTo ""), str _amount];
+		_ctrlPreview lnbSetPicture [[_index, 0], getText (_config >> "picture")];
+		_weight = _weight + (([_item] call EFUNC(logistics,itemMass)) * _amount);
+	} forEach GVAR(logisticsContents);
 
-		private _index = _ctrlPreview lnbAddRow ["", _displayName, str (_amount)];
-		//_ctrlPreview lnbSetData    [[_index, 0], _item];
-		_ctrlPreview lnbSetPicture [[_index, 0], _picture];
-		//_ctrlPreview lbSetTooltip  [_index * count lnbGetColumnsPosition _ctrlPreview, _tooltip];
-	} forEach _objects;
+	if (_weight > 0) then {
+		// The game's mass is a tenth of a pound
+		_ctrlPreview lnbAddRow ["", "Total weight", format ["%1 kg", round (_weight * 0.04536)]];
+	};
 };
 
-// Initialize scripts
+// 4. Box: Automatic first, then every box it fits in, smallest first
+GVAR(_fnc_setContainers) = {
+	private _ctrlContainers = GET_IN_LOGISTICS(IDC_Tablet_Logistics_Combo_Container);
+	lbClear _ctrlContainers;
+
+	private _weight = 0;
+	{ _weight = _weight + (([_x select 0] call EFUNC(logistics,itemMass)) * (_x select 1)); } forEach GVAR(logisticsContents);
+
+	private _containers = QUOTE((getNumber (_x >> 'scope') >= 2) && (configName _x) isKindOf SQUOTE(EGVAR(logistics,Container_Base))) configClasses (configFile >> "CfgVehicles");
+	_containers = _containers select { getNumber (_x >> "maximumLoad") >= _weight };
+	_containers = [_containers, [], {configName _x}, "DESCEND"] call BIS_fnc_sortBy;
+	_containers = [_containers, [], {getNumber (_x >> "maximumLoad")}, "ASCEND"] call BIS_fnc_sortBy;
+
+	private _index = _ctrlContainers lbAdd "Automatic";
+	_ctrlContainers lbSetData [_index, ""];
+	_ctrlContainers lbSetTooltip [_index, "The smallest box it fits in; more boxes if needed"];
+	{
+		_index = _ctrlContainers lbAdd (getText (_x >> "displayName"));
+		_ctrlContainers lbSetData [_index, configName _x];
+		_ctrlContainers lbSetTooltip [_index, format ["maxLoad: %1", getNumber (_x >> "maximumLoad")]];
+		_ctrlContainers lbSetPicture [_index, getText (_x >> "editorPreview")];
+	} forEach _containers;
+
+	_ctrlContainers ctrlSetEventHandler ["LBSelChanged", QUOTE(call GVAR(_fnc_containerChanged))];
+	_ctrlContainers lbSetCurSel 0;
+	GVAR(logisticsContainer) = "";
+};
+
+GVAR(_fnc_containerChanged) = {
+	params ["_control", "_selectedIndex"];
+	GVAR(logisticsContainer) = _control lbData _selectedIndex;
+	true
+};
+
 call GVAR(_fnc_setTypes);

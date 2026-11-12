@@ -24,4 +24,15 @@ GVAR(inCuratorInterface) = false;
 	} forEach _pairs;
 }] call CBA_fnc_addEventHandler;
 
+// the server's answer to "Request logistics": this deployment's crates, then the dialog (D-470)
+[QEGVAR(ClientEvent,crateList), {
+	_this call FUNC(dialogRequestLogistics);
+}] call CBA_fnc_addEventHandler;
+
+// Register the module after every addon's preInit: this addon does not require ZEN, so in preInit
+// ZEN's own setup could run after ours and drop the registration
+if (isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) then {
+	call FUNC(moduleRequestLogistics);
+};
+
 call FUNC(initClientFPS);

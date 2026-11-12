@@ -48,4 +48,5 @@ PREP(logisticsKeyDown);
 PREP(logisticsGetDefaultInventory);
 PREP(logisticsClear);
 PREP(logisticsConfirm);
+PREP(logisticsSpawn);
 PREP(logisticsPreload);

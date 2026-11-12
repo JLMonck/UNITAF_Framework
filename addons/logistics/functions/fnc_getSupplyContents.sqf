@@ -1,16 +1,22 @@
 #include "script_component.hpp"
+/*
+ * Author: JLMonck
+ * A supply preset the mod carries itself (CfgSupplies), for when the website has no crate for it
+ * or the mission runs without the database. The website's crates are read by
+ * unitaf_server_fnc_queryCrateContents instead.
+ *
+ * Arguments:
+ * 0: CfgSupplies class name <STRING>
+ *
+ * Return Value:
+ * Contents, [[class name, count], ...] <ARRAY>
+ *
+ * Example:
+ * ["unitaf_logistics_MedicalSupplies"] call unitaf_logistics_fnc_getSupplyContents;
+ *
+ * Public: No
+ */
 
-params ["_config"];
+params [["_preset", "", [""]]];
 
-private _containers = [
-	["47/190", [["ACE_Splint", 10], ["ACE_Morphine", 10]]],
-	["47/200", [["ACE_Splint", 10], ["ACE_Morphine", 10]]],
-	["47/201", [["ACE_Splint", 10], ["ACE_Morphine", 10]]],
-	["47/202", [["ACE_Splint", 10], ["ACE_Morphine", 10]]],
-	["47/203", [["ACE_Splint", 10], ["ACE_Morphine", 10]]],
-	["47/204", [["ACE_Splint", 10], ["ACE_Morphine", 10]]],
-	["47/205", [["ACE_Splint", 10], ["ACE_Morphine", 10]]],
-	["47/206", [["ACE_Splint", 10], ["ACE_Morphine", 10]]]
-];
-
-_containers select { (_x select 0) isEqualTo _config } select 0 select 1;
+getArray (configFile >> "CfgSupplies" >> _preset >> "items")

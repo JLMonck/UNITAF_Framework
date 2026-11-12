@@ -92,13 +92,11 @@ if (
 				GET_IN_MAIN(IDC_Tablet_Main_Button_Admin) ctrlEnable true;
 				GET_IN_MAIN(IDC_Tablet_Main_Button_Admin) ctrlShow true;
 			};
-			// isLogi ?
-			/*
+			// Logistics (D-470): a role of the Logistics kind, or a leader who may manage logistics
 			if (_isAdmin || _isLogistics isEqualTo 1) then {
 				GET_IN_MAIN(IDC_Tablet_Main_Button_Logistics) ctrlEnable true;
 				GET_IN_MAIN(IDC_Tablet_Main_Button_Logistics) ctrlShow true;
 			};
-			*/
 			// isReporter ?
 			if (_isAdmin || _isReporter isEqualTo 1) then {
 				GET_IN_MAIN(IDC_Tablet_Main_Button_Reporter) ctrlEnable true;

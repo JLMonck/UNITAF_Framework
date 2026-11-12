@@ -1,6 +1,7 @@
-// PREP(moduleRequestLogistics);
-// PREP(dialogRequestLogistics);
-// PREP(actionRequestLogistics);
+// "Request logistics": the website's crates for this deployment (D-470)
+PREP(moduleRequestLogistics);
+PREP(dialogRequestLogistics);
+PREP(actionRequestLogistics);
 
 // PREP(moduleHackTerminal);
 // PREP(dialogHackTerminal);

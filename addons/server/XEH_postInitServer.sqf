@@ -28,6 +28,20 @@
 	_this call FUNC(makeCurator);
 }] call CBA_fnc_addEventHandler;
 
+// Zeus's "Request logistics" and the tablet's Logistics page: the deployment's crates, one
+// crate's contents for the preview, then the spawn (D-470). Each asker names its reply event.
+[QEGVAR(ServerEvent,listCrates), {
+	params ["_position", "_player", ["_reply", QEGVAR(ClientEvent,crateList)]];
+	[_reply, [_position, call FUNC(queryCrates)], _player] call CBA_fnc_targetEvent;
+}] call CBA_fnc_addEventHandler;
+[QEGVAR(ServerEvent,crateContents), {
+	params ["_crate", "_player", "_reply"];
+	[_reply, [_crate, [_crate] call FUNC(queryCrateContents)], _player] call CBA_fnc_targetEvent;
+}] call CBA_fnc_addEventHandler;
+[QEGVAR(ServerEvent,spawnCrate), {
+	_this call FUNC(spawnCrate);
+}] call CBA_fnc_addEventHandler;
+
 // Enable connection logging (connect, disconnect, kick)
 private _runConnectionLog = QGVAR(Server_connectionLog) call CBA_settings_fnc_get;
 if(_runConnectionLog) then {

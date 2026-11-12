@@ -24,3 +24,8 @@ PREP(makeCurator);
 
 // Special stuff
 PREP(addToCurators);
+
+// Logistics: the website's crates for this deployment (D-470)
+PREP(queryCrates);
+PREP(queryCrateContents);
+PREP(spawnCrate);
