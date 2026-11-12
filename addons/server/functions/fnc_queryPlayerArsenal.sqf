@@ -25,10 +25,10 @@ if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
 	[QEGVAR(ClientEvent,PlayerArsenal), (_result select 1), [_player]] call CBA_fnc_targetEvent;
 };
 
-// @TODO: query must be updated to support personal arsenals based on ORBAT role
+// Each player's own arsenal: the faction their unit or slot fields on the ORBAT (site tracker #146).
 if !(missionNamespace getVariable ['UNITAF_databaseAvailable', false]) exitWith {};
 
-private _query = "extDB3" callExtension format ["0:FETCHDATA:SELECT faction, rankid, inv FROM game_arsenals WHERE deployment = '%1' LIMIT 1", _operationID];
+private _query = "extDB3" callExtension format ["0:FETCHDATA:SELECT faction, rankid, inv FROM game_player_arsenals WHERE armauid = '%1' AND deployment = '%2' ORDER BY is_home DESC LIMIT 1", _playerUID, _operationID];
 //private _query = "extDB3" callExtension "0:FETCHDATA:SELECT faction, rankid, CONCAT('[',inventory,']') as inv FROM arsenals WHERE faction = 1 LIMIT 1";
 private _result = (parseSimpleArray _query);
 
