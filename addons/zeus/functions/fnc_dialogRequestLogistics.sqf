@@ -2,8 +2,11 @@
 /*
  * Author: Grezvany13, JLMonck
  * Zeus's "Request logistics" dialog: what to spawn (the deployment's crates from the website,
- * then the mod's own presets), which box (Automatic: the smallest that fits, more if needed),
- * or a full ACE Arsenal. Opened by the server's crateList reply; the spawn runs on the server.
+ * then the mod's own presets, or an empty box), which box (Automatic: the smallest that fits, more
+ * if needed), or a full ACE Arsenal. The boxes are the website's allowed ones that are in this
+ * game, else the mod's own (unitaf_logistics_fnc_getBoxes, 2.6.0); one offered only as an empty
+ * box says so, and the server packs nothing into it. Opened by the server's crateList reply; the
+ * spawn runs on the server.
  *
  * Arguments:
  * 0: Position <ARRAY>
@@ -34,17 +37,16 @@ private _labels = [];
 	_choices pushBack format ["mod:%1", configName _x];
 	_labels pushBack [getText (_x >> "displayName"), "From the mod", "", [0.7, 0.7, 0.7, 1]];
 } forEach ("true" configClasses (configFile >> "CfgSupplies"));
-
-if (_choices isEqualTo []) exitWith {
-	["No crates for this deployment, and no presets in the mod"] call zen_common_fnc_showMessage;
-};
+_choices pushBack "empty";
+_labels pushBack ["Empty box", "Nothing in it; the box picked below, or the smallest a soldier can carry", "", [0.7, 0.7, 0.7, 1]];
 
 // Which box: Automatic first, then every box smallest first
-private _containers = QUOTE((getNumber (_x >> 'scope') >= 2) && (configName _x) isKindOf SQUOTE(EGVAR(logistics,Container_Base))) configClasses (configFile >> "CfgVehicles");
-_containers = [_containers, [], {configName _x}, "DESCEND"] call BIS_fnc_sortBy;
-_containers = [_containers, [], {getNumber (_x >> "maximumLoad")}, "ASCEND"] call BIS_fnc_sortBy;
-private _containerClasses = [""] + (_containers apply { configName _x });
-private _containerNames = [["Automatic", "Smallest box that fits; more boxes if needed", ""]] + (_containers apply { [(getText (_x >> "displayName")), format ["maxLoad: %1", (getNumber (_x >> "maximumLoad"))], (getText (_x >> "editorPreview"))] });
+(call EFUNC(logistics,getBoxes)) params ["_containers"];
+private _containerClasses = [""] + (_containers apply { _x select 1 });
+private _containerNames = [["Automatic", "Smallest box that fits; more boxes if needed", ""]] + (_containers apply {
+	_x params ["_space", "_class", "", "", "_emptyOnly", "_name"];
+	[[_name, format ["%1 (empty box only)", _name]] select _emptyOnly, format ["Space: %1", _space], getText (configFile >> "CfgVehicles" >> _class >> "editorPreview")]
+});
 
 [
 	"Logistics Request",

@@ -1,9 +1,11 @@
 #include "script_component.hpp"
 /*
  * Author: JLMonck
- * Decide which of the mod's boxes a crate's contents go in. By default the smallest carryable
- * box it fits in (up to AUTO_MAX_LOAD; the shipping containers only when picked); a crate of
- * nothing but medical items goes in a medical box when one is big enough.
+ * Decide which boxes a crate's contents go in: the website's allowed boxes that are in this game,
+ * else the mod's own (unitaf_logistics_fnc_getBoxes, 2.6.0). By default the smallest automatic
+ * box it fits in (boxes a soldier can carry; pallets and containers only when picked); a crate of
+ * nothing but medical items goes in a medical box when one is big enough. A box offered only as
+ * an empty box is never packed: picked for a crate, the crate goes in automatic boxes instead.
  * When it fits in no single box, it is shared over as many of the largest boxes as it takes,
  * so nothing is left behind, and each box is then shrunk to the smallest one its share fits.
  * A box can be named instead, and the same rule fills as many of that box as it takes.
@@ -27,21 +29,8 @@ params [["_contents", [], [[]]], ["_chosen", "", [""]]];
 
 if (_contents isEqualTo []) exitWith { [] };
 
-// The mod's own boxes, smallest first, read once and kept: [load, class name, medical]
-if (isNil QGVAR(boxes)) then {
-	private _base = QGVAR(Container_Base);
-	private _boxes = [];
-	{
-		private _class = configName _x;
-		private _load = getNumber (_x >> "maximumLoad");
-		if (_load > 0 && {getNumber (_x >> "scope") >= 2} && {_class isKindOf [_base, configFile >> "CfgVehicles"]}) then {
-			// Our medical variants are the classes named *_Medical
-			_boxes pushBack [_load, _class, (_class select [count _class - 8]) == "_Medical"];
-		};
-	} forEach ("true" configClasses (configFile >> "CfgVehicles"));
-	_boxes sort true;
-	GVAR(boxes) = _boxes;
-};
+// The boxes, smallest first: [space, class name, medical, automatic, empty box only, name]
+(call FUNC(getBoxes)) params ["_boxes"];
 
 private _units = _contents apply { _x params ["_class", "_count"]; [_class, floor _count, [_class] call FUNC(itemMass)] };
 private _total = 0;
@@ -49,9 +38,9 @@ private _total = 0;
 
 // Which boxes may be used: the one named, else medical boxes for an all-medical crate, else plain ones
 private _medical = _units findIf { getNumber (configFile >> "CfgWeapons" >> (_x select 0) >> "ACE_isMedicalItem") != 1 } == -1;
-private _carryable = GVAR(boxes) select { (_x select 0) <= AUTO_MAX_LOAD };
+private _carryable = _boxes select { _x select 3 };
 private _pool = if (_chosen isNotEqualTo "") then {
-	GVAR(boxes) select { (_x select 1) == _chosen }
+	_boxes select { (_x select 1) == _chosen && {!(_x select 4)} }
 } else {
 	private _medicalBoxes = _carryable select { _x select 2 };
 	if (_medical && {_medicalBoxes isNotEqualTo []} && {(_medicalBoxes select (count _medicalBoxes - 1) select 0) >= _total}) then {
@@ -60,7 +49,10 @@ private _pool = if (_chosen isNotEqualTo "") then {
 		_carryable select { !(_x select 2) }
 	};
 };
-if (_pool isEqualTo []) then { _pool = _carryable };
+if (_pool isEqualTo []) then {
+	if (_chosen isNotEqualTo "") then { diag_log format ["UNITAF logistics: %1 is not a box a crate may be packed in; packed automatically", _chosen]; };
+	_pool = _carryable;
+};
 if (_pool isEqualTo []) exitWith { diag_log "UNITAF logistics: no boxes to pack into"; [] };
 
 private _smallestFor = {

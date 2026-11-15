@@ -145,7 +145,9 @@ GVAR(_fnc_setPreview) = {
 	};
 };
 
-// 4. Box: Automatic first, then every box it fits in, smallest first
+// 4. Box: Automatic first, then every box it fits in, smallest first: the website's allowed boxes
+// that are in this game, else the mod's own (unitaf_logistics_fnc_getBoxes, 2.6.0). A box offered
+// only as an empty box is listed for Empty box alone.
 GVAR(_fnc_setContainers) = {
 	private _ctrlContainers = GET_IN_LOGISTICS(IDC_Tablet_Logistics_Combo_Container);
 	lbClear _ctrlContainers;
@@ -153,19 +155,23 @@ GVAR(_fnc_setContainers) = {
 	private _weight = 0;
 	{ _weight = _weight + (([_x select 0] call EFUNC(logistics,itemMass)) * (_x select 1)); } forEach GVAR(logisticsContents);
 
-	private _containers = QUOTE((getNumber (_x >> 'scope') >= 2) && (configName _x) isKindOf SQUOTE(EGVAR(logistics,Container_Base))) configClasses (configFile >> "CfgVehicles");
-	_containers = _containers select { getNumber (_x >> "maximumLoad") >= _weight };
-	_containers = [_containers, [], {configName _x}, "DESCEND"] call BIS_fnc_sortBy;
-	_containers = [_containers, [], {getNumber (_x >> "maximumLoad")}, "ASCEND"] call BIS_fnc_sortBy;
+	(call EFUNC(logistics,getBoxes)) params ["_containers"];
+	private _empty = GVAR(logisticsType) isEqualTo "empty";
+	_containers = _containers select { _empty || {!(_x select 4) && {(_x select 0) >= _weight}} };
 
 	private _index = _ctrlContainers lbAdd "Automatic";
 	_ctrlContainers lbSetData [_index, ""];
-	_ctrlContainers lbSetTooltip [_index, "The smallest box it fits in; more boxes if needed"];
+	_ctrlContainers lbSetTooltip [_index, switch (GVAR(logisticsType)) do {
+		case "empty": { "The smallest box a soldier can carry" };
+		case "arsenal": { "The largest box a soldier can carry" };
+		default { "The smallest box it fits in; more boxes if needed" };
+	}];
 	{
-		_index = _ctrlContainers lbAdd (getText (_x >> "displayName"));
-		_ctrlContainers lbSetData [_index, configName _x];
-		_ctrlContainers lbSetTooltip [_index, format ["maxLoad: %1", getNumber (_x >> "maximumLoad")]];
-		_ctrlContainers lbSetPicture [_index, getText (_x >> "editorPreview")];
+		_x params ["_space", "_class", "", "", "_emptyOnly", "_name"];
+		_index = _ctrlContainers lbAdd _name;
+		_ctrlContainers lbSetData [_index, _class];
+		_ctrlContainers lbSetTooltip [_index, format ["Space: %1%2", _space, ["", " (empty box only)"] select _emptyOnly]];
+		_ctrlContainers lbSetPicture [_index, getText (configFile >> "CfgVehicles" >> _class >> "editorPreview")];
 	} forEach _containers;
 
 	_ctrlContainers ctrlSetEventHandler ["LBSelChanged", QUOTE(call GVAR(_fnc_containerChanged))];

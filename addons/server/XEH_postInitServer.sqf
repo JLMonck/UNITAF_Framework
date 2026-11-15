@@ -75,6 +75,9 @@ if ((getMissionConfigValue ["UNITAF_runDatabase", 0]) isEqualTo 1) then {
 	// name the deployment, and notice an id that belongs to nothing
 	[_operationId] call FUNC(queryMission);
 
+	// the crate boxes the website allows for it, in its camo, for every machine (2.6.0)
+	[_operationId] call FUNC(queryCrateBoxes);
+
 	// once a minute, tell the website who is on (first run after a minute, once init has settled)
 	if (_runConnectionLog) then {
 		[{ call FUNC(logPresence) }, 60] call CBA_fnc_addPerFrameHandler;
