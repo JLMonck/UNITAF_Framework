@@ -12,6 +12,11 @@
  * Public: No
  */
 
+// Sent by the server's queryPlayerData with remoteExecCall; taken from nobody else (UNITAF tracker #202)
+if (isRemoteExecuted && {remoteExecutedOwner isNotEqualTo 2}) exitWith {
+	diag_log format ["UNITAF: ignored ORBAT data from client %1: only the server sends it", remoteExecutedOwner];
+};
+
 params ["_playerData"];
 // _playerData = [armauid, playerRank, playerAdmin, playerPos, playerDir, operation, is_medic_level, is_engineer_level, unit, callsign, freq, buddy, lr_freq, armarank, role, leader, is_zeus, is_eod, is_logistics, is_reporter];
 _playerData params ["_armaUID", "_playerRank", "_playerAdmin", "_playerPos", "_playerDir", "_operation", "_isMedic", "_isEngineer", "_unit", "_callsign", "_freq", "_buddy", "_lr_freq", "_armarank", "_role", "_leader", "_isZeus", "_isEOD", "_isLogistics", "_isReporter", ["_traits", ""]];

@@ -3,15 +3,23 @@
  * Author: Grezvany13
  * Heal player and show ENDEX message
  *
+ * Sent to every machine by the server's unitaf_server_fnc_callENDEX, once clientRequest has
+ * checked who asked. Taken only from the server (UNITAF tracker #202): any other sender is logged
+ * and ignored, so no client can call ENDEX on everyone.
+ *
  * Arguments:
- * 0: player <OBJECT>
+ * None
  *
  * Return Value:
  * None
-
  *
  * Public: Yes
  */
+
+if (!hasInterface) exitWith {};
+if (isRemoteExecuted && {remoteExecutedOwner isNotEqualTo 2}) exitWith {
+	diag_log format ["UNITAF: ignored ENDEX from client %1: only the server sends it", remoteExecutedOwner];
+};
 
 // Fully heal player
 if (isClass(configFile >> "CfgPatches" >> "ace_medical_treatment")) then {

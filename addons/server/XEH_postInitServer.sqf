@@ -3,15 +3,9 @@
 /**
  * Set Event Handlers
  */
-[QEGVAR(ServerEvent,queryPlayerInventory), {
-	_this call FUNC(queryPlayerInventory);
-}] call CBA_fnc_addEventHandler;
-[QEGVAR(ServerEvent,queryPlayerData), {
-	_this call FUNC(queryPlayerData);
-}] call CBA_fnc_addEventHandler;
-[QEGVAR(ServerEvent,queryPlayerArsenal), {
-	_this call FUNC(queryPlayerArsenal);
-}] call CBA_fnc_addEventHandler;
+// A player's ORBAT data, kit and arsenal are asked for with remoteExecCall of queryPlayerData,
+// queryPlayerInventory and queryPlayerArsenal, which take it only for the sender's own unit
+// (UNITAF tracker #202); the old CBA server events below are turned down.
 
 [QEGVAR(ServerEvent,getFullORBAT), {
 	//_this call FUNC(queryFullORBAT);
@@ -25,16 +19,20 @@
 // them against the website (UNITAF tracker #199). These CBA server events do not say who sent
 // them, so through them anyone could spawn crates or make anyone Zeus: whatever still sends one
 // is turned down, with a line in the RPT. The ORBAT's groups are made by the server itself now.
+// So are the player data requests, which could name anyone's unit (2.6.2, UNITAF tracker #202).
 {
 	[_x, {
-		diag_log format ["UNITAF: refused %1 %2: a CBA server event does not say who sent it, so the server no longer takes it (2.6.1)", _thisType, _this];
+		diag_log format ["UNITAF: refused %1 %2: a CBA server event does not say who sent it, so the server no longer takes it (2.6.2)", _thisType, _this];
 	}] call CBA_fnc_addEventHandlerArgs;
 } forEach [
 	QEGVAR(ServerEvent,addToCurator),
 	QEGVAR(ServerEvent,listCrates),
 	QEGVAR(ServerEvent,crateContents),
 	QEGVAR(ServerEvent,spawnCrate),
-	QEGVAR(ServerEvent,ORBATGroups)
+	QEGVAR(ServerEvent,ORBATGroups),
+	QEGVAR(ServerEvent,queryPlayerData),
+	QEGVAR(ServerEvent,queryPlayerInventory),
+	QEGVAR(ServerEvent,queryPlayerArsenal)
 ];
 
 // Enable connection logging (connect, disconnect, kick)

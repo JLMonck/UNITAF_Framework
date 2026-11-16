@@ -28,8 +28,11 @@ if (!hasInterface) then {
 	/**
 	 * Set Event Handlers
 	 */
+	// ENDEX for the AI comes from the server only, by remoteExecCall of callENDEX (UNITAF tracker
+	// #202). This CBA event does not say who sent it, so any client could stop every AI through
+	// it: whatever still sends one is turned down, with a line in the RPT.
 	[QEGVAR(HeadlessEvent,callENDEX), {
-		_this call FUNC(callENDEX);
+		diag_log "UNITAF: ignored a CBA ENDEX event for the AI: a CBA event does not say who sent it, so only the server's ENDEX is taken (2.6.2)";
 	}] call CBA_fnc_addEventHandler;
 };
 

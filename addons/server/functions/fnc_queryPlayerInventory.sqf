@@ -9,12 +9,18 @@
  * Return Value:
  * None
  *
+ * Clients ask with remoteExecCall to the server, for their own unit only (UNITAF tracker #202);
+ * the reply goes to that unit's machine by remoteExecCall of unitaf_client_fnc_setInventory.
+ *
  * Example:
- * [42] call unitaf_server_fnc_queryPlayerData;
+ * [player] remoteExecCall ["unitaf_server_fnc_queryPlayerInventory", 2];
  *
  * Public: No
  */
-params ["_player"];
+params [["_player", objNull, [objNull]]];
+
+if (!isServer || {isNull _player}) exitWith {};
+if !([_player, "playerInventory"] call FUNC(checkOwnUnit)) exitWith {};
 
 private _operationID = missionNamespace getVariable ['UNITAF_operationID', 0];
 private _playerUID = getPlayerUID _player;
@@ -22,7 +28,7 @@ private _playerUID = getPlayerUID _player;
 if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
 	_query = "[1, [[[""srifle_DMR_03_tan_AMS_LP_F"","""",""acc_pointer_IR"",""optic_AMS_snd"",[""20Rnd_762x51_Mag"",20],[],""bipod_01_F_snd""],[],[""hgun_P07_F"","""","""","""",[""16Rnd_9x21_Mag"",16],[],""""],[""U_B_CombatUniform_mcam"",[[""FirstAidKit"",1],[""20Rnd_762x51_Mag"",1,20],[""Chemlight_green"",1,1]]],[""V_PlateCarrier1_rgr"",[[""20Rnd_762x51_Mag"",6,20],[""16Rnd_9x21_Mag"",2,16],[""SmokeShell"",1,1],[""SmokeShellGreen"",1,1],[""Chemlight_green"",1,1],[""HandGrenade"",2,1]]],[],""H_HelmetB"","""",[""Binocular"","""","""","""",[],[],""""],[""ItemMap"","""",""ItemRadio"",""ItemCompass"",""ItemWatch"",""NVGoggles""]]]]";
 	_result = (parseSimpleArray _query);
-	[QEGVAR(ClientEvent,PlayerInventory), (_result select 1), [_player]] call CBA_fnc_targetEvent;
+	(_result select 1) remoteExecCall [QEFUNC(client,setInventory), _player];
 };
 
 if !(missionNamespace getVariable ['UNITAF_databaseAvailable', false]) exitWith {};
@@ -41,7 +47,7 @@ switch (_result select 0) do {
 		// no loadout for this role and faction: leave the player in the mission's default kit
 		if ((_result select 1) isEqualTo []) exitWith {};
 		// only get the first result
-		[QEGVAR(ClientEvent,PlayerInventory), (_result select 1 select 0), [_player]] call CBA_fnc_targetEvent;
+		(_result select 1 select 0) remoteExecCall [QEFUNC(client,setInventory), _player];
 	};
 	default {
 		diag_log "extDB3: Something went wrong with Player Inventory";

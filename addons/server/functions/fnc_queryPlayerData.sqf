@@ -9,12 +9,18 @@
  * Return Value:
  * None
  *
+ * Clients ask with remoteExecCall to the server, for their own unit only (UNITAF tracker #202);
+ * the reply goes to that unit's machine by remoteExecCall of unitaf_client_fnc_setPlayerData.
+ *
  * Example:
- * [42] call unitaf_server_fnc_queryPlayerData;
+ * [player] remoteExecCall ["unitaf_server_fnc_queryPlayerData", 2];
  *
  * Public: No
  */
-params ["_player"];
+params [["_player", objNull, [objNull]]];
+
+if (!isServer || {isNull _player}) exitWith {};
+if !([_player, "playerData"] call FUNC(checkOwnUnit)) exitWith {};
 
 private _operationID = missionNamespace getVariable ['UNITAF_operationID', 0];
 private _playerUID = getPlayerUID _player;
@@ -22,7 +28,7 @@ private _playerUID = getPlayerUID _player;
 if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
 	_query = "[1, [[12345678,"""",0,""rp1"",0,0,2,1,1,""REAPER"",251,""RED"",50,""PRIVATE"",""Fireteam Leader"",""Capt James"",0,0,1,1]]]";
 	_result = (parseSimpleArray _query);
-	[QEGVAR(ClientEvent,PlayerData), (_result select 1), [_player]] call CBA_fnc_targetEvent;
+	(_result select 1) remoteExecCall [QEFUNC(client,setPlayerData), _player];
 };
 
 if !(missionNamespace getVariable ['UNITAF_databaseAvailable', false]) exitWith {
@@ -51,7 +57,7 @@ switch (_result select 0) do {
 			[QEGVAR(ClientEvent,PlayerDataFailed), [_reason], [_player]] call CBA_fnc_targetEvent;
 		};
 		// ignore "first" result
-		[QEGVAR(ClientEvent,PlayerData), (_result select 1), [_player]] call CBA_fnc_targetEvent;
+		(_result select 1) remoteExecCall [QEFUNC(client,setPlayerData), _player];
 	};
 	default {
 		diag_log "extDB3: Something went wrong with Player Data";

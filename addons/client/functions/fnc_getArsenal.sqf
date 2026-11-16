@@ -18,4 +18,5 @@
  */
 params ["_player"];
 
-[QEGVAR(ServerEvent,queryPlayerArsenal), [_player]] call CBA_fnc_serverEvent;
+// Asked of the server by remoteExecCall, which takes it only for this machine's own unit (UNITAF tracker #202)
+[_player] remoteExecCall [QEFUNC(server,queryPlayerArsenal), 2];

@@ -12,6 +12,11 @@
  * Public: No
  */
 
+// Sent by the server's queryPlayerInventory with remoteExecCall; taken from nobody else (UNITAF tracker #202)
+if (isRemoteExecuted && {remoteExecutedOwner isNotEqualTo 2}) exitWith {
+	diag_log format ["UNITAF: ignored a loadout from client %1: only the server sends it", remoteExecutedOwner];
+};
+
 params [["_inventoryData", [], [[]]]];
 
 [_inventoryData] spawn {

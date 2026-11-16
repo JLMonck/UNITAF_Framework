@@ -15,13 +15,20 @@
 /**
  * Set Event Handlers
  */
-[QEGVAR(ClientEvent,PlayerInventory), {
-	_this call FUNC(setInventory);	
-}] call CBA_fnc_addEventHandler;
-
-[QEGVAR(ClientEvent,PlayerData), {
-	_this call FUNC(setPlayerData);
-}] call CBA_fnc_addEventHandler;
+// A player's ORBAT data, kit and arsenal, and ENDEX, come from the server only, by remoteExecCall
+// of setPlayerData, setInventory, setArsenal and callENDEX, which check the sender (UNITAF tracker
+// #202). These CBA events do not say who sent them, so through them any client could put kit on
+// another player or call ENDEX on everyone: whatever still sends one is turned down, in the RPT.
+{
+	[_x, {
+		diag_log format ["UNITAF: ignored %1: a CBA event does not say who sent it, so only the server's is taken (2.6.2)", _thisType];
+	}] call CBA_fnc_addEventHandlerArgs;
+} forEach [
+	QEGVAR(ClientEvent,PlayerInventory),
+	QEGVAR(ClientEvent,PlayerData),
+	QEGVAR(ClientEvent,PlayerArsenal),
+	QEGVAR(ClientEvent,callENDEX)
+];
 
 // Why the server has no data for this player, for the message on the loading screen
 [QEGVAR(ClientEvent,PlayerDataFailed), {
@@ -29,18 +36,17 @@
 	player setVariable [QGVAR(orbatFailure), _reason];
 }] call CBA_fnc_addEventHandler;
 
-[QEGVAR(ClientEvent,PlayerArsenal), {
-	_this call FUNC(setArsenal);
-}] call CBA_fnc_addEventHandler;
-
-[QEGVAR(ClientEvent,callENDEX), {
-	_this call FUNC(callENDEX);
-}] call CBA_fnc_addEventHandler;
-
 // The server turned down something this player may not ask for (unitaf_server_fnc_clientRequest, 2.6.1)
 [QEGVAR(ClientEvent,requestRefused), {
 	params [["_request", "", [""]]];
-	hint (["Logistics refused: only Logistics, admins and Zeus can list or spawn crates.", "Zeus refused: only a Zeus on the ORBAT or an admin can have Zeus."] select (_request isEqualTo "addToCurator"));
+	hint (switch (_request) do {
+		case "addToCurator": { "Zeus refused: only a Zeus on the ORBAT or an admin can have Zeus." };
+		case "callENDEX": { "ENDEX refused: only the Field Leader, an admin or a Zeus can call ENDEX." };
+		case "playerData";
+		case "playerInventory";
+		case "playerArsenal": { "ORBAT refused: you can only load your own ORBAT data." };
+		default { "Logistics refused: only Logistics, admins and Zeus can list or spawn crates." };
+	});
 }] call CBA_fnc_addEventHandler;
 
 

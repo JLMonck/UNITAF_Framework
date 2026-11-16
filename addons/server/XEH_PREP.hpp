@@ -34,3 +34,8 @@ PREP(spawnCrate);
 // What clients may ask of the server, checked against who sent it (UNITAF tracker #199)
 PREP(clientRequest);
 PREP(queryPlayerRights);
+PREP(requestSender);
+PREP(checkOwnUnit);
+
+// ENDEX, sent by the server once clientRequest has checked who asked (UNITAF tracker #202)
+PREP(callENDEX);

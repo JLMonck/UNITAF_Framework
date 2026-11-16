@@ -16,3 +16,13 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
+
+// The server stops each headless client's AI at ENDEX with remoteExecCall (UNITAF tracker #202);
+// the function takes it only from the server. Listed so it works where remote execution is whitelisted.
+class CfgRemoteExec {
+    class Functions {
+        class FUNC(callENDEX) {
+            allowedTargets = 0;
+        };
+    };
+};

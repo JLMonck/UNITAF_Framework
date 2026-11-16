@@ -55,6 +55,16 @@ if ([player, "gps"] call FUNC(canOOPS)) then {
 	GET_IN_MAIN(IDC_Tablet_Main_Button_GetGPS) ctrlEnable true;
 };
 
+// An admin logged in on the server has every page at once, ORBAT data or not (UNITAF tracker
+// #202): the server takes their requests as an admin's (clientRequest), and an unslotted
+// platform operator can still log in for them.
+if ((call BIS_fnc_admin) isEqualTo 2) then {
+	{
+		GET_IN_MAIN(_x) ctrlEnable true;
+		GET_IN_MAIN(_x) ctrlShow true;
+	} forEach [IDC_Tablet_Main_Button_Admin, IDC_Tablet_Main_Button_Logistics, IDC_Tablet_Main_Button_Reporter];
+};
+
 if (
 	(missionNamespace getVariable ['UNITAF_useORBAT', false])
 ) then {
