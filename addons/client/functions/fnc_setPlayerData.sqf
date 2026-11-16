@@ -71,7 +71,8 @@ if !(_deployment isEqualTo "") then {
 
 private _autoZeus = QEGVAR(server,Zeus_autoZeus) call CBA_settings_fnc_get;
 if (_autoZeus && _isZeus isEqualTo 1) then {
-	[QEGVAR(ServerEvent,addToCurator), [player]] call CBA_fnc_serverEvent;
+	// Through clientRequest, which checks the website says so (2.6.1)
+	["addToCurator", []] remoteExecCall [QEFUNC(server,clientRequest), 2];
 
 	// check if CrowsZA is loaded
 	private _hasCrows = isClass (configFile >> "CfgPatches" >> "CrowsZA");

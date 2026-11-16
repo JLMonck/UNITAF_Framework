@@ -21,9 +21,10 @@ params ["_operationID"];
 // _playerUID = getPlayerUID _player;
 
 if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith {
-	[QEGVAR(ServerEvent,ORBATGroups), [
+	// Called here on the server, no longer as a CBA server event any client could send (2.6.1)
+	[
 		(parseSimpleArray "[1, [[1,""MONTY"",""WEST""]]]")  select 1
-	]] call CBA_fnc_serverEvent;	
+	] call FUNC(setORBATGroups);
 };
 
 // Must return: <ID>, <CALLSIGN>, <SIDE>
@@ -37,7 +38,7 @@ switch (_result select 0) do {
 		 diag_log format["Database Error: %1", (_result select 1)];
 	};
 	case 1: {
-		[QEGVAR(ServerEvent,ORBATGroups), (_result select 1)] call CBA_fnc_serverEvent;
+		(_result select 1) call FUNC(setORBATGroups);
 	};
 	default {
 		diag_log "extDB3: Something went wrong with Player Arsenal";

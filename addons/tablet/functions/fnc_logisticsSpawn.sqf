@@ -26,6 +26,7 @@ if !([player] call FUNC(canAccessORBAT)) exitWith {
 
 // Three metres in front, at the player's own height (ASL), so it works on decks and upper floors
 private _position = player modelToWorldWorld [0, 3, 0];
-[QEGVAR(ServerEvent,spawnCrate), [_choice, GVAR(logisticsContainer), _choice isEqualTo "arsenal", _position]] call CBA_fnc_serverEvent;
+// through clientRequest, which checks the player may (2.6.1)
+["spawnCrate", [_choice, GVAR(logisticsContainer), _choice isEqualTo "arsenal", _position]] remoteExecCall [QEFUNC(server,clientRequest), 2];
 
 hint "Spawning in front of you.";

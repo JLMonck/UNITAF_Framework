@@ -17,4 +17,5 @@ params ["_values", "_arguments"];
 _values params ["_choice", "_type", "_arsenal"];
 _arguments params ["_position"];
 
-[QEGVAR(ServerEvent,spawnCrate), [_choice, _type, _arsenal, _position]] call CBA_fnc_serverEvent;
+// Through clientRequest, which checks who asks (2.6.1)
+["spawnCrate", [_choice, _type, _arsenal, _position]] remoteExecCall [QEFUNC(server,clientRequest), 2];

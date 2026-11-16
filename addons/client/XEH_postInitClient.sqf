@@ -37,6 +37,12 @@
 	_this call FUNC(callENDEX);
 }] call CBA_fnc_addEventHandler;
 
+// The server turned down something this player may not ask for (unitaf_server_fnc_clientRequest, 2.6.1)
+[QEGVAR(ClientEvent,requestRefused), {
+	params [["_request", "", [""]]];
+	hint (["Logistics refused: only Logistics, admins and Zeus can list or spawn crates.", "Zeus refused: only a Zeus on the ORBAT or an admin can have Zeus."] select (_request isEqualTo "addToCurator"));
+}] call CBA_fnc_addEventHandler;
+
 
 //if (!isMultiplayer && !is3DENMultiplayer) exitWith {};
 if (hasInterface) then {

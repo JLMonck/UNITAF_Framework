@@ -14,4 +14,5 @@
  */
 params ["_player"];
 
-[QEGVAR(ServerEvent,addToCurator), [_player]] call CBA_fnc_serverEvent;
+// Through clientRequest, which checks the sender is an admin and makes their own unit Zeus (2.6.1)
+["addToCurator", []] remoteExecCall [QEFUNC(server,clientRequest), 2];

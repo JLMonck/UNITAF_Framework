@@ -30,3 +30,7 @@ PREP(queryCrates);
 PREP(queryCrateContents);
 PREP(queryCrateBoxes);
 PREP(spawnCrate);
+
+// What clients may ask of the server, checked against who sent it (UNITAF tracker #199)
+PREP(clientRequest);
+PREP(queryPlayerRights);

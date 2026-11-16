@@ -75,7 +75,8 @@ GVAR(_fnc_setPresets) = {
 		case "db": {
 			// Asked of the server; crateList fills it in (XEH_postInitClient)
 			_ctrlPresets lbAdd "Loading the operation's crates…";
-			[QEGVAR(ServerEvent,listCrates), [getPosATL player, player, QGVAR(crateList)]] call CBA_fnc_serverEvent;
+			// through clientRequest, which checks who asks (2.6.1)
+			["listCrates", [getPosATL player, QGVAR(crateList)]] remoteExecCall [QEFUNC(server,clientRequest), 2];
 		};
 		case "mod": {
 			{
@@ -107,7 +108,7 @@ GVAR(_fnc_presetChanged) = {
 	switch (_source) do {
 		case "db": {
 			// Asked of the server; crateContents fills the preview in (XEH_postInitClient)
-			[QEGVAR(ServerEvent,crateContents), [parseNumber _key, player, QGVAR(crateContents)]] call CBA_fnc_serverEvent;
+			["crateContents", [parseNumber _key, QGVAR(crateContents)]] remoteExecCall [QEFUNC(server,clientRequest), 2];
 		};
 		case "mod": {
 			GVAR(logisticsContents) = getArray (configFile >> "CfgSupplies" >> _key >> "items");

@@ -3,10 +3,6 @@
 /**
  * Set Event Handlers
  */
-[QEGVAR(ServerEvent,ORBATGroups), {
-	_this call FUNC(setORBATGroups);
-}] call CBA_fnc_addEventHandler;
-
 [QEGVAR(ServerEvent,queryPlayerInventory), {
 	_this call FUNC(queryPlayerInventory);
 }] call CBA_fnc_addEventHandler;
@@ -24,23 +20,22 @@
 	//_this call FUNC(setFullORBAT);
 }] call CBA_fnc_addEventHandler;
 
-[QEGVAR(ServerEvent,addToCurator), {
-	_this call FUNC(makeCurator);
-}] call CBA_fnc_addEventHandler;
-
-// Zeus's "Request logistics" and the tablet's Logistics page: the deployment's crates, one
-// crate's contents for the preview, then the spawn (D-470). Each asker names its reply event.
-[QEGVAR(ServerEvent,listCrates), {
-	params ["_position", "_player", ["_reply", QEGVAR(ClientEvent,crateList)]];
-	[_reply, [_position, call FUNC(queryCrates)], _player] call CBA_fnc_targetEvent;
-}] call CBA_fnc_addEventHandler;
-[QEGVAR(ServerEvent,crateContents), {
-	params ["_crate", "_player", "_reply"];
-	[_reply, [_crate, [_crate] call FUNC(queryCrateContents)], _player] call CBA_fnc_targetEvent;
-}] call CBA_fnc_addEventHandler;
-[QEGVAR(ServerEvent,spawnCrate), {
-	_this call FUNC(spawnCrate);
-}] call CBA_fnc_addEventHandler;
+// Zeus for oneself, and the crates of Zeus's "Request logistics" and the tablet's Logistics page
+// (D-470), are asked for through unitaf_server_fnc_clientRequest, which knows who asked and checks
+// them against the website (UNITAF tracker #199). These CBA server events do not say who sent
+// them, so through them anyone could spawn crates or make anyone Zeus: whatever still sends one
+// is turned down, with a line in the RPT. The ORBAT's groups are made by the server itself now.
+{
+	[_x, {
+		diag_log format ["UNITAF: refused %1 %2: a CBA server event does not say who sent it, so the server no longer takes it (2.6.1)", _thisType, _this];
+	}] call CBA_fnc_addEventHandlerArgs;
+} forEach [
+	QEGVAR(ServerEvent,addToCurator),
+	QEGVAR(ServerEvent,listCrates),
+	QEGVAR(ServerEvent,crateContents),
+	QEGVAR(ServerEvent,spawnCrate),
+	QEGVAR(ServerEvent,ORBATGroups)
+];
 
 // Enable connection logging (connect, disconnect, kick)
 private _runConnectionLog = QGVAR(Server_connectionLog) call CBA_settings_fnc_get;
