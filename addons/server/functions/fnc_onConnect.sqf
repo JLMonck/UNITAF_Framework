@@ -16,7 +16,13 @@ if ((getMissionConfigValue ['UNITAF_noDBTest', 0]) isEqualTo 1) exitWith { true 
 if (_isHC || {_playerUID isEqualTo ""}) exitWith { true };
 if !(missionNamespace getVariable ['UNITAF_databaseAvailable', false]) exitWith { true };
 
-private _query = "extDB3" callExtension format["1:SETDATA:INSERT INTO game_connections SET game_user_id = '%1', event_reference = '%2', status = '%3'", _playerUID, _operationID, "connected"];
+// The profile name the player joined with, so the website can tell a member whose name is not
+// their rank and name (UNITAF tracker #262). Nothing that could break out of an SQL string or an
+// extDB3 message gets through, as in fnc_logPresence. Cut to 64 characters through toArray, so a
+// character outside ASCII is never cut in half.
+private _name = toString ((toArray ((_profileName splitString "'""\:") joinString "")) select [0, 64]);
+
+private _query = "extDB3" callExtension format["1:SETDATA:INSERT INTO game_connections SET game_user_id = '%1', event_reference = '%2', status = '%3', profile_name = '%4'", _playerUID, _operationID, "connected", _name];
 
 private _result = (parseSimpleArray _query);
 
